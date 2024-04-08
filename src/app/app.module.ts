@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { UiLibraryModule } from './ui-library/ui-library.module';
+import { HomeFoodPageModule } from './home-food-page/home-food-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { UiLibraryModule } from './ui-library/ui-library.module';
     AuthModule,
     SharedModule,
     UiLibraryModule,
+    HomeFoodPageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
