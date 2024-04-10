@@ -7,6 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { UiLibraryModule } from './ui-library/ui-library.module';
 import { HomeFoodPageModule } from './home-food-page/home-food-page.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +20,9 @@ import { HomeFoodPageModule } from './home-food-page/home-food-page.module';
     SharedModule,
     UiLibraryModule,
     HomeFoodPageModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
   ],
   providers: [],
   bootstrap: [AppComponent],
