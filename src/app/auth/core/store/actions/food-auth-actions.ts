@@ -15,6 +15,25 @@ export const loginFailed = createAction(
   props<{ serverError: string }>()
 );
 
+export const register = createAction(
+  '[Auth] Register',
+  props<{ fullName: string; email: string; password: string; role: string }>()
+);
+
+export const registerSucess = createAction(
+  '[Auth] Register Sucess',
+  props<{ jwt: string; message: string; role: string }>()
+);
+
+export const registerFailed = createAction(
+  '[Auth] Register Failed',
+  props<{ serverError: string }>()
+);
+
 export const logout = createAction('[Auth] logout');
 
 export const logoutSucess = createAction('[Auth] logoutSucess');
+
+export const initAuth = createAction('[Auth] init auth');
+
+export const extractLoginData = createAction('[Auth] extract login data');

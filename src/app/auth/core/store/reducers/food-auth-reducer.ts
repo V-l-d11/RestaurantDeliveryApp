@@ -1,6 +1,15 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthState } from 'src/app/models/storeModels/authModels';
-import { login, loginFailed, loginSucess } from '../actions/food-auth-actions';
+import {
+  login,
+  loginFailed,
+  loginSucess,
+  logout,
+  logoutSucess,
+  register,
+  registerFailed,
+  registerSucess,
+} from '../actions/food-auth-actions';
 
 export const FOOD_AUTH_FEATURE_NAME = 'auth';
 
@@ -13,6 +22,10 @@ export const initialState: AuthState = {
     message: '',
     role: '',
   },
+  fullName: '',
+  email: '',
+  password: '',
+  role: '',
 };
 
 export const AuthReducer = createReducer(
@@ -35,6 +48,42 @@ export const AuthReducer = createReducer(
   on(loginFailed, (state, { serverError }) => ({
     ...state,
     authData: null,
+    serverError,
+    loading: false,
+    loaded: true,
+  })),
+  on(logout, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(logoutSucess, (state) => ({
+    ...state,
+    authData: null,
+    loading: false,
+    loaded: true,
+  })),
+  on(register, (state, { fullName, email, password, role }) => ({
+    ...state,
+    fullName,
+    email,
+    password,
+    role,
+    loading: true,
+    loaded: false,
+  })),
+  on(registerSucess, (state, { jwt, message, role }) => ({
+    ...state,
+    authData: {
+      token: jwt,
+      message,
+      role,
+    },
+    loading: false,
+    loaded: true,
+  })),
+  on(registerFailed, (state, { serverError }) => ({
+    ...state,
     serverError,
     loading: false,
     loaded: true,

@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
-import { UiLibraryModule } from './ui-library/ui-library.module';
 import { HomeFoodPageModule } from './home-food-page/home-food-page.module';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { initAuth } from './auth/core/store/actions/food-auth-actions';
+import { AuthReducer } from './auth/core/store/reducers/food-auth-reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,13 +18,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     AuthModule,
     SharedModule,
-    UiLibraryModule,
     HomeFoodPageModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({
+      auth: AuthReducer,
+    }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(store$: Store) {
+    //    store$.dispatch(initAuth());
+  }
+}

@@ -17,4 +17,8 @@ export class FoodAuthServiceService {
   login(user: FoodLoginRequest): Observable<any> {
     return this.http.post('http://localhost:8080/auth/signin', { user });
   }
+
+  register(user: FoodUserRegister): Observable<any> {
+    return this.http.post('http://localhost:8080/auth/signup', { user });
+  }
 }
