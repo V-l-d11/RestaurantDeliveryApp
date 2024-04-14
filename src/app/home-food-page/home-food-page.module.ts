@@ -8,6 +8,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { FoodCardRestaurantsComponent } from './components/food-card-restaurants/food-card-restaurants.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { FoodRestaurantsCardsSectionComponent } from './components/food-restaurants-cards-section/food-restaurants-cards-section.component';
+import { FoodPromoSectionComponent } from './components/food-promo-section/food-promo-section.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +19,17 @@ import { MatIconModule } from '@angular/material/icon';
     MainImageSectionFoodComponent,
     CouruselSliderFoodComponent,
     FoodCardRestaurantsComponent,
+    FoodRestaurantsCardsSectionComponent,
+    FoodPromoSectionComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
+    AuthModule,
     SlickCarouselModule,
     MatCardModule,
     MatIconModule,
+    MatInputModule,
   ],
   exports: [HomeFoodPageComponent],
 })

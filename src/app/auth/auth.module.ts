@@ -13,9 +13,7 @@ import { FoodAuthEffects } from './core/store/effects/food-auth.effects';
 import { FoodAuthLoginDialogComponent } from './core/components/food-auth-login-dialog/food-auth-login-dialog.component';
 
 @NgModule({
-  declarations: [
-    FoodAuthLoginDialogComponent
-  ],
+  declarations: [FoodAuthLoginDialogComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -23,5 +21,6 @@ import { FoodAuthLoginDialogComponent } from './core/components/food-auth-login-
     StoreModule.forFeature(FOOD_AUTH_FEATURE_NAME, AuthReducer),
     EffectsModule.forFeature([FoodAuthEffects]),
   ],
+  exports: [FoodAuthLoginDialogComponent],
 })
 export class AuthModule {}

@@ -20,7 +20,7 @@ export class AuthDialogModalsService {
       height: '40vh',
       hasBackdrop: true,
       closeOnNavigation: true,
-      disableClose: false,
+      disableClose: true,
     });
   };
 }

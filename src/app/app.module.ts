@@ -10,7 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { initAuth } from './auth/core/store/actions/food-auth-actions';
 import { AuthReducer } from './auth/core/store/reducers/food-auth-reducer';
-
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -19,6 +19,7 @@ import { AuthReducer } from './auth/core/store/reducers/food-auth-reducer';
     AuthModule,
     SharedModule,
     HomeFoodPageModule,
+    MatDialogModule,
     StoreModule.forRoot({
       auth: AuthReducer,
     }),
