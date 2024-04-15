@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FoodAuthLoginDialogComponent } from '../../components/food-auth-login-dialog/food-auth-login-dialog.component';
+import { FoodAuthRegisterDialogComponent } from '../../components/food-auth-register-dialog/food-auth-register-dialog.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,18 @@ export class AuthDialogModalsService {
 
   public loginModaldialog = () => {
     const dialogRef = this.dialog.open(FoodAuthLoginDialogComponent, {
-      width: '50%',
-      height: '40vh',
+      width: '40%',
+      height: '42vh',
+      hasBackdrop: true,
+      closeOnNavigation: true,
+      disableClose: true,
+    });
+  };
+
+  public RegisterModaldialog = () => {
+    const dialogRef = this.dialog.open(FoodAuthRegisterDialogComponent, {
+      width: '40%',
+      height: '50vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: true,

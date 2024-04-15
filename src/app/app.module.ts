@@ -11,6 +11,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { initAuth } from './auth/core/store/actions/food-auth-actions';
 import { AuthReducer } from './auth/core/store/reducers/food-auth-reducer';
 import { MatDialogModule } from '@angular/material/dialog';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenIntercaptor } from './interceptors/token-interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,7 +28,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenIntercaptor,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -44,6 +44,19 @@
           </div>
         </div>
 
+        <div class="row inpt-row">
+          <div class="col-12 d-flex justify-content-center">
+            <mat-form-field class="mat-field">
+              <mat-label>Favorite food</mat-label>
+              <mat-select class="mat-select" formControlName="role">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
         <div class="row row-btn">
           <div class="col-12 d-flex justify-content-center">
             <button (click)="onSubmit()" class="btn-log">Submit</button>
@@ -54,7 +67,7 @@
           <div class="col-12 d-flex justify-content-center">
             <p class="p">
               You don't have an account yet?
-              <button class="sp-btn" (click)="redirectToRegister()">
+              <button class="sp-btn" (click)="redirectToLogin()">
                 Registration
               </button>
             </p>

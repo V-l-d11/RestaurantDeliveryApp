@@ -9,9 +9,15 @@ import { AuthDialogModalsService } from 'src/app/auth/core/services/food-dialog-
 export class UiFoodHeaderComponent {
   mainText: string = 'FoodDeliv';
 
-  constructor(private loginDialogModalService: AuthDialogModalsService) {}
+  constructor(private loginDialogModalService: AuthDialogModalsService) {
+    this.loginDialogModalService.RegisterModaldialog();
+  }
 
   openDialogModal() {
     this.loginDialogModalService.loginModaldialog();
+  }
+
+  openRegisterDialogModal() {
+    this.loginDialogModalService.RegisterModaldialog();
   }
 }

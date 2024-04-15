@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FoodAuthServiceService } from '../../services/food-auth-service.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { login } from '../../store/actions/food-auth-actions';
 
 @Component({
   selector: 'app-food-auth-login-dialog',
@@ -25,7 +26,15 @@ export class FoodAuthLoginDialogComponent implements OnInit {
         Validators.required,
         Validators.minLength(9),
       ]),
-      role: new FormControl(null, [Validators.required]),
     });
   }
+
+  onSubmit() {
+    console.log('Submit');
+    //  if (this.form.valid) {
+    this.store$.dispatch(login(this.form.value));
+    // }
+  }
+
+  redirectToRegister() {}
 }
