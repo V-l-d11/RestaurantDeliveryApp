@@ -13,6 +13,7 @@ import { AuthReducer } from './auth/core/store/reducers/food-auth-reducer';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from './interceptors/token-interceptor';
+import { FoodSearchPageModule } from './food-search-page/food-search-page.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +23,7 @@ import { TokenIntercaptor } from './interceptors/token-interceptor';
     SharedModule,
     HomeFoodPageModule,
     MatDialogModule,
+    FoodSearchPageModule,
     StoreModule.forRoot({
       auth: AuthReducer,
     }),

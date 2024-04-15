@@ -30,8 +30,8 @@
 .p {
   margin-top: 10px;
   font-size: 13px;
-
   .sp-btn {
+    text-align: center;
     border: none;
     background-color: transparent;
     color: #ff4b4b;
@@ -44,5 +44,16 @@
   height: 70px;
 }
 
-.mat-select {
+.select-role {
+  padding: 0px;
+  font-size: 18px;
+  margin-top: 15px;
+  width: 400px !important;
+  height: 38px;
+  border-radius: 8px;
+  .option-role {
+    font-size: 15px;
+    color: #00000098;
+    font-family: Jost;
+  }
 }

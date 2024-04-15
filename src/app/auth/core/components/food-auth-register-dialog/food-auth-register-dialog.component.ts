@@ -17,7 +17,7 @@ export class FoodAuthRegisterDialogComponent implements OnInit {
   form!: FormGroup;
   selectedValue!: string;
 
-  foods: Role[] = [
+  role: Role[] = [
     { value: ' ROLE_RESTAURANT_OWNER', viewValue: 'Owner' },
     { value: 'ROLE_CUSTOMER', viewValue: 'Customer' },
   ];

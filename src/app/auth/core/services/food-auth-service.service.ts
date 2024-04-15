@@ -10,15 +10,13 @@ import { FoodUserRegister } from 'src/app/models/api/requests/food-user-register
 })
 export class FoodAuthServiceService {
   private token!: string;
-
   constructor(private http: HttpClient, private router: Router) {}
-
   login(user: FoodLoginRequest): Observable<any> {
     console.log(user, 'User Service');
     return this.http.post('http://localhost:8080/auth/signin', user);
   }
-
   register(user: FoodUserRegister): Observable<any> {
-    return this.http.post('http://localhost:8080/auth/signup', { user });
+    console.log(user, 'Register User Service');
+    return this.http.post('http://localhost:8080/auth/signup', user);
   }
 }

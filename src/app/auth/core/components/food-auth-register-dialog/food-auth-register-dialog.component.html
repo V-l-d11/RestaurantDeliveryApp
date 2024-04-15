@@ -13,7 +13,6 @@
             <h1 class="h1">Sign In</h1>
           </div>
         </div>
-
         <div class="row">
           <div class="col-12 d-flex justify-content-center">
             <span class="span-inf">
@@ -21,7 +20,6 @@
             </span>
           </div>
         </div>
-
         <div class="row inpt-row">
           <div class="col-12 d-flex justify-content-center">
             <input
@@ -32,7 +30,6 @@
             />
           </div>
         </div>
-
         <div class="row inpt-row">
           <div class="col-12 d-flex justify-content-center">
             <input
@@ -43,26 +40,28 @@
             />
           </div>
         </div>
-
         <div class="row inpt-row">
           <div class="col-12 d-flex justify-content-center">
-            <mat-form-field class="mat-field">
-              <mat-label>Favorite food</mat-label>
-              <mat-select class="mat-select" formControlName="role">
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{ food.viewValue }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <select
+              class="select-role"
+              [(ngModel)]="selectedValue"
+              formControlName="role"
+            >
+              <option
+                class="option-role"
+                *ngFor="let i of role"
+                [value]="i.value"
+              >
+                {{ i.viewValue }}
+              </option>
+            </select>
           </div>
         </div>
-
         <div class="row row-btn">
           <div class="col-12 d-flex justify-content-center">
             <button (click)="onSubmit()" class="btn-log">Submit</button>
           </div>
         </div>
-
         <div class="row row-inf-span">
           <div class="col-12 d-flex justify-content-center">
             <p class="p">
