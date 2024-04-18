@@ -1,1 +1,20 @@
-<app-ui-card-food></app-ui-card-food>
+<div class="container-fluid">
+  <div class="row section">
+    <div class="col d-flex justify-content-center">
+      <input placeholder="Search Food" class="inpt-search" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col d-flex justify-content-start">
+      <h1 class="h1">Popular Cuisines</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <app-food-carusel-popelar-cuisin
+      class="col-12"
+      style="display: flex; justify-content: center; width: 100%"
+    ></app-food-carusel-popelar-cuisin>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+$font-famuly: Jost;
+
+.container-fluid {
+  width: 100%;
+}
+.inpt-search {
+  width: 70%;
+  padding-left: 15px;
+  font-family: $font-famuly;
+  border-radius: 8px;
+  border: 0.5px solid #d9d9d94f;
+  height: 50px;
+  background-color: #d9d9d94f;
+}
+
+.inpt-search::placeholder {
+  padding-left: 50px;
+  background-image: url("./../../../../../assets/imgSvg/searchPage.svg");
+  background-repeat: no-repeat;
+  background-position: 15px center;
+}
+.inpt-search:focus {
+  border: #d9d9d94f;
+  padding-left: 50px;
+}
+.h1 {
+  font-size: 30px;
+  font-family: $font-famuly;
+  font-weight: 800;
+}
