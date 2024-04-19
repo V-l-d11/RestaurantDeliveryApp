@@ -6,7 +6,7 @@ import {
 } from '../actions/food-search-actions';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 
-interface SearchSatate {
+export interface SearchSatate {
   foodSearch: FoodSearchResponse[];
   serverError: string;
   loading: boolean;

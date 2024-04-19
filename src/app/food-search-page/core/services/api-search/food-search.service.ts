@@ -11,11 +11,7 @@ export class FoodSearchService {
   constructor(private http: HttpClient, private router: Router) {}
 
   searchCustomerFood(name: string): Observable<FoodSearchResponse[]> {
-    return this.http.post<FoodSearchResponse[]>(
-      'http://localhost:8080/foodl/search',
-      {
-        params: { name: name },
-      }
-    );
+    const url = `http://localhost:8080/foodl/search?name=${name}`;
+    return this.http.get<FoodSearchResponse[]>(url);
   }
 }
