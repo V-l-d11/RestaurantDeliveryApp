@@ -11,16 +11,34 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col d-flex justify-content-start">
+  <div class="row popular-cuisin">
+    <div class="col d-flex justify-content-around info-parag">
       <h1 class="h1">Popular Cuisines</h1>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row carusel-food">
     <app-food-carusel-popelar-cuisin
       class="col-12"
       style="display: flex; justify-content: center; width: 100%"
     ></app-food-carusel-popelar-cuisin>
   </div>
+
+  <div class="row" *ngIf="result$ | async as results">
+    <ng-container *ngIf="results && results.length > 0; else emptyResult">
+      <div class="col" *ngFor="let result of results">
+        <app-ui-card-food [result]="result"></app-ui-card-food>
+      </div>
+    </ng-container>
+  </div>
+
+  <ng-template #emptyResult>
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <h2 class="info-found">
+          {{ query ? "No food found..." : "Enter something..." }}
+        </h2>
+      </div>
+    </div>
+  </ng-template>
 </div>

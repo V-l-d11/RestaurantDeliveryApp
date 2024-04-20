@@ -1,4 +1,5 @@
 <div
+  *ngIf="result"
   class="container-fluid card-section"
   [ngClass]="{ expanded: isShowCategory }"
 >
@@ -28,8 +29,7 @@
   </div>
   <div class="info-paragraf d-flex justify-content-center">
     <p class="p-info">
-      Experience authentic Indian cuisine at our restaurant, where flavors from
-      across the subcontinent come together in a symphony of spices and aromas.
+      {{ result.description }}
     </p>
   </div>
   <ng-container *ngIf="isShowCategory">
@@ -51,7 +51,7 @@
   </ng-container>
 
   <div class="price-section d-flex justify-content-center">
-    <h3 class="price">$10.20 USD</h3>
+    <h3 class="price">${{ result.price }} USD</h3>
   </div>
 
   <div class="btn-category d-flex justify-content-center">
@@ -61,7 +61,16 @@
   </div>
 
   <div class="btn-add-bascet d-flex justify-content-around">
-    <button class="btn-add">Add</button>
+    <button [disabled]="!result?.available" class="btn-add">Add</button>
+    <button
+      class="btn-available"
+      [ngClass]="{
+        'green-btn': result?.available,
+        'red-btn': !result?.available
+      }"
+    >
+      {{ result?.available ? "Add" : "Not available" }}
+    </button>
     <button class="btn-like" (click)="toggleLike()">
       <svg
         width="28"

@@ -34,7 +34,7 @@ export const SearchReducer = createReducer(
   })),
   on(searchFoodSuccess, (state, { obj }) => ({
     ...state,
-    foodSearch: [...state.foodSearch, ...obj],
+    foodSearch: obj,
     loading: false,
     loaded: true,
   })),

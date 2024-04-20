@@ -14,6 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from './interceptors/token-interceptor';
 import { FoodSearchPageModule } from './food-search-page/food-search-page.module';
+import { SearchReducer } from './food-search-page/core/store+/reducer/food-search-reducer';
+import { FoodRestaurantsPageModule } from './food-restaurants-page/food-restaurants-page.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,8 +26,10 @@ import { FoodSearchPageModule } from './food-search-page/food-search-page.module
     HomeFoodPageModule,
     MatDialogModule,
     FoodSearchPageModule,
+    FoodRestaurantsPageModule,
     StoreModule.forRoot({
       auth: AuthReducer,
+      search: SearchReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),

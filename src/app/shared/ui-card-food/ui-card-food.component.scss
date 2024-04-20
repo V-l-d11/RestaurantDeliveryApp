@@ -100,3 +100,28 @@ $font-family: Jost;
 .btn-like:hover {
   color: $background-color;
 }
+
+.green-btn {
+  padding: 5px 30px 5px 30px;
+  font-size: 15px;
+  border: none;
+  font-family: $font-family;
+  color: #fff;
+  border-radius: 16px;
+  background-color: green;
+}
+
+.red-btn {
+  background-color: $background-color;
+  padding: 5px 30px 5px 30px;
+  font-size: 15px;
+  border: none;
+  font-family: $font-family;
+  color: #fff;
+  border-radius: 16px;
+}
+
+.btn-add:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
