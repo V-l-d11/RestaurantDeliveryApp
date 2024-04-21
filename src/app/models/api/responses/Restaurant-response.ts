@@ -3,6 +3,7 @@ import { FoodSearchResponse } from './Food-search-response';
 export interface RestaurantCustomer {
   id: number;
   name: string;
+  description: string;
   cuisineType: string;
   address: Address;
   contactInformathion: ContactInformathion;

@@ -4,6 +4,7 @@
       <input
         type="text"
         [(ngModel)]="query"
+        (input)="onInputChange()"
         (ngModelChange)="onInputChange()"
         placeholder="Search Restaurant"
         class="inpt-search"
@@ -12,6 +13,58 @@
   </div>
 
   <div class="row">
-    <div class="col"></div>
+    <div class="col d-flex justify-content-center section-search">
+      <div class="section-search-loacathion">
+        <input class="location-inpt" type="text" placeholder="Locathion" />
+      </div>
+
+      <div class="search-type-inpt">
+        <input
+          class="cuisin-type-inpt"
+          type="text"
+          placeholder="Cuisine Type"
+        />
+      </div>
+
+      <div class="section-is-open">
+        <button class="is-open-btn">Is Open?</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center section-1">
+    <div
+      class=""
+      *ngIf="
+        searchRestaurants$ | async as restaurants;
+        else allRestaurantsBlock
+      "
+    >
+      <div
+        *ngIf="restaurants.length > 0"
+        class="d-flex flex-wrap justify-content-around"
+      >
+        <div *ngFor="let restaurant of restaurants">
+          <app-ui-restaurant-card
+            [restaurant]="restaurant"
+          ></app-ui-restaurant-card>
+        </div>
+      </div>
+
+      <div *ngIf="restaurants.length === 0">No restaurants found.</div>
+    </div>
+
+    <ng-template #allRestaurantsBlock>
+      <div
+        class="d-flex flex-wrap justify-content-around"
+        *ngIf="allRestaurants$ | async as allRestaurants"
+      >
+        <div class="card-component" *ngFor="let restaurant of allRestaurants">
+          <app-ui-restaurant-card
+            [restaurant]="restaurant"
+          ></app-ui-restaurant-card>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

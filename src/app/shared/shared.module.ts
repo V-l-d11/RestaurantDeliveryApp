@@ -6,7 +6,8 @@ import { UiFoodLargeH1Component } from './ui-food-large-h1/ui-food-large-h1.comp
 import { UiFoodBtnActionComponent } from './ui-food-btn-action/ui-food-btn-action.component';
 import { UiFoodPromoCardLargeComponent } from './ui-food-promo-card-large/ui-food-promo-card-large.component';
 import { UiCardFoodComponent } from './ui-card-food/ui-card-food.component';
-
+import { UiRestaurantCardComponent } from './ui-restaurant-card/ui-restaurant-card.component';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     UiFoodHeaderComponent,
@@ -15,13 +16,15 @@ import { UiCardFoodComponent } from './ui-card-food/ui-card-food.component';
     UiFoodBtnActionComponent,
     UiFoodPromoCardLargeComponent,
     UiCardFoodComponent,
+    UiRestaurantCardComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule],
   exports: [
     UiFoodHeaderComponent,
     UiFoodH1Component,
     UiFoodLargeH1Component,
     UiCardFoodComponent,
+    UiRestaurantCardComponent,
   ],
 })
 export class SharedModule {}

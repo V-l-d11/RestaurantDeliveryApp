@@ -12,8 +12,11 @@ export class RestaurantService {
 
   constructor(private http: HttpClient) {}
 
-  searchRestaurantByNameORLocal(query: string) {
+  searchRestaurantByNameORLocal(
+    query: string
+  ): Observable<RestaurantCustomer[]> {
     const url = `http://localhost:8080/customers/restaurants/search?keyword=${query}`;
+    return this.http.get<RestaurantCustomer[]>(url);
   }
 
   getAllRestaurants(): Observable<RestaurantCustomer[]> {

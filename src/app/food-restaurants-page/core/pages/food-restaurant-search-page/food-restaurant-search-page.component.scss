@@ -1,5 +1,6 @@
 $font-famuly: Jost;
-
+$width-inpt: 300px;
+$height-inpt: 50px;
 .container-fluid {
   width: 100%;
 }
@@ -46,4 +47,66 @@ $font-famuly: Jost;
   display: flex;
   justify-content: center;
   margin-top: 15px;
+}
+
+.section-1 {
+  margin-top: 2%;
+}
+.card-component {
+  padding-top: 40px;
+}
+
+.section-search {
+  margin-top: 1%;
+  .section-search-loacathion {
+    margin-right: 5%;
+  }
+  .search-type-inpt {
+    margin-right: 5%;
+  }
+
+  .location-inpt {
+    width: $width-inpt;
+    height: $height-inpt;
+    border-radius: 6px;
+    border: none;
+    background-color: #d6d6d6;
+  }
+
+  .location-inpt::placeholder {
+    background-image: url("./../../../../../assets/imgSvg/location.svg");
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    color: #5a5858;
+    padding-left: 50px;
+  }
+
+  .cuisin-type-inpt {
+    width: $width-inpt;
+    height: $height-inpt;
+    border-radius: 6px;
+
+    border: none;
+    background-color: #d9d9d9;
+  }
+
+  .cuisin-type-inpt::placeholder {
+    background-image: url("./../../../../../assets/imgSvg/foodType.svg");
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    color: #3b3b3b;
+    padding-left: 50px;
+  }
+
+  .is-open-btn {
+    border: none;
+    font-size: 18px;
+    padding: 10px 30px 10px 30px;
+    color: #fff;
+    font-weight: 500;
+    font-family: Jost;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #68b900;
+  }
 }

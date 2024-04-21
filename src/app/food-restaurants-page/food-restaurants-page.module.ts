@@ -3,13 +3,36 @@ import { CommonModule } from '@angular/common';
 import { FoodRestaurantSearchPageComponent } from './core/pages/food-restaurant-search-page/food-restaurant-search-page.component';
 import { FoodSingleRestaurantPageComponent } from './core/pages/food-single-restaurant-page/food-single-restaurant-page.component';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import {
+  RESTAURANT_CUSTOMER_FEATURE_NAME,
+  RestaurantCustomerReducer,
+} from './core/store+/reducers/restaurant-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { RestaurantCustomerEffects } from './core/store+/effects/restaurant-effects';
+import { SharedModule } from '../shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     FoodRestaurantSearchPageComponent,
     FoodSingleRestaurantPageComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
+    FormsModule,
+    SharedModule,
+    StoreModule.forFeature(
+      RESTAURANT_CUSTOMER_FEATURE_NAME,
+      RestaurantCustomerReducer
+    ),
+    EffectsModule.forFeature([RestaurantCustomerEffects]),
+  ],
   exports: [FoodRestaurantSearchPageComponent],
 })
 export class FoodRestaurantsPageModule {}
