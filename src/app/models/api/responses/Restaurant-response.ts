@@ -9,6 +9,7 @@ export interface RestaurantCustomer {
   contactInformathion: ContactInformathion;
   openingHours: string;
   open: boolean;
+  images: Array<string> | null;
   foods: FoodSearchResponse[] | null;
 }
 

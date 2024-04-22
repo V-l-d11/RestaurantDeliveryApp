@@ -44,7 +44,7 @@
         *ngIf="restaurants.length > 0"
         class="d-flex flex-wrap justify-content-around"
       >
-        <div *ngFor="let restaurant of restaurants">
+        <div class="card-component" *ngFor="let restaurant of restaurants">
           <app-ui-restaurant-card
             [restaurant]="restaurant"
           ></app-ui-restaurant-card>
