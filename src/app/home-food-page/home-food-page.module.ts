@@ -12,6 +12,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FoodRestaurantsCardsSectionComponent } from './components/food-restaurants-cards-section/food-restaurants-cards-section.component';
 import { FoodPromoSectionComponent } from './components/food-promo-section/food-promo-section.component';
 import { AuthModule } from '../auth/auth.module';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [{ path: 'main', component: HomeFoodPageComponent }];
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule.forChild(routes),
     AuthModule,
     SlickCarouselModule,
     MatCardModule,

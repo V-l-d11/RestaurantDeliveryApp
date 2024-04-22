@@ -15,6 +15,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { FoodAuthEffects } from './core/store/effects/food-auth.effects';
 import { FoodAuthLoginDialogComponent } from './core/components/food-auth-login-dialog/food-auth-login-dialog.component';
 import { FoodAuthRegisterDialogComponent } from './core/components/food-auth-register-dialog/food-auth-register-dialog.component';
+import { Routes } from '@angular/router';
+
+FoodAuthLoginDialogComponent;
+const routes: Routes = [
+  {
+    path: 'login',
+    component: FoodAuthLoginDialogComponent,
+  },
+  {
+    path: 'registration',
+    component: FoodAuthRegisterDialogComponent,
+  },
+];
 
 @NgModule({
   declarations: [FoodAuthLoginDialogComponent, FoodAuthRegisterDialogComponent],
