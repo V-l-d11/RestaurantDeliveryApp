@@ -10,6 +10,7 @@ import {
   delay,
   distinctUntilChanged,
   map,
+  mergeMap,
   of,
   switchMap,
 } from 'rxjs';
@@ -60,6 +61,26 @@ export class RestaurantCustomerEffects {
           catchError((error) =>
             of(
               RestaurantCustomerActions.serachRestaurantsFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  loadSelectedRestaurant$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getSingleRestaurant),
+      mergeMap(({ id }) =>
+        this.restaurantService.getSingleRestaurant(id).pipe(
+          map((restaurant) =>
+            RestaurantCustomerActions.getSingleRestaurantSucess({ restaurant })
+          ),
+          catchError((error) =>
+            of(
+              RestaurantCustomerActions.getSingleRestaurantFailed({
                 serverError: error.massage,
               })
             )

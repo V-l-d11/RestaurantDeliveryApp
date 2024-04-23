@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import {
   getAllRestaurants,
+  getSingleRestaurant,
   serachRestaurants,
 } from '../../store+/actions/restaurant-actions';
 import {
@@ -11,6 +12,7 @@ import {
   getLoading,
   getSearchRestaurants,
 } from '../../store+/selectors/restaurant-selectors';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-food-restaurant-search-page',
@@ -22,12 +24,21 @@ export class FoodRestaurantSearchPageComponent implements OnInit {
   allRestaurants$!: Observable<RestaurantCustomer[] | null>;
   searchRestaurants$!: Observable<RestaurantCustomer[] | null>;
 
-  constructor(private store$: Store) {}
+  constructor(
+    private store$: Store,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.store$.dispatch(getAllRestaurants());
     this.allRestaurants$ = this.store$.select(getAllRestaurantsSelector);
     this.searchRestaurants$ = this.store$.select(getSearchRestaurants);
+  }
+
+  redirectToRestaurant(id: number) {
+    this.store$.dispatch(getSingleRestaurant({ id }));
+    this.router.navigate([`foodapp/RestaurantSearch/restaurant/${id}`]);
   }
 
   onInputChange(): void {

@@ -28,3 +28,18 @@ export const serachRestaurantsFailed = createAction(
   '[Restaurant Customer page] Search Restaurants Failed',
   props<{ serverError: string }>()
 );
+
+export const getSingleRestaurant = createAction(
+  '[Restaurant Customer page] get Single Restaurant',
+  props<{ id: number }>()
+);
+
+export const getSingleRestaurantSucess = createAction(
+  '[Restaurant Customer page] get Single Restaurant Success',
+  props<{ restaurant: RestaurantCustomer }>()
+);
+
+export const getSingleRestaurantFailed = createAction(
+  '[Restaurant Customer page] get Single Restaurant Failed',
+  props<{ serverError: string }>()
+);

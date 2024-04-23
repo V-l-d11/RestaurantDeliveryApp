@@ -24,3 +24,8 @@ export const getSearchRestaurants = createSelector(
   getFeature,
   (state) => state.searchedRestaurants
 );
+
+export const getSingleRestaurant = createSelector(
+  getFeature,
+  (state) => state.selectedRestaurant
+);

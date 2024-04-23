@@ -14,17 +14,33 @@ import { SharedModule } from '../shared/shared.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule, Routes } from '@angular/router';
+import { RestaurantFilterSectionComponent } from './core/components/restaurant-filter-section/restaurant-filter-section.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: FoodRestaurantSearchPageComponent,
+  },
+  {
+    path: 'restaurant/:id',
+    component: FoodSingleRestaurantPageComponent,
+  },
+];
 
 @NgModule({
   declarations: [
     FoodRestaurantSearchPageComponent,
     FoodSingleRestaurantPageComponent,
+    RestaurantFilterSectionComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
+    RouterModule.forChild(routes),
     FormsModule,
     SharedModule,
     StoreModule.forFeature(

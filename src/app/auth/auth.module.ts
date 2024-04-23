@@ -6,7 +6,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   AuthReducer,
   FOOD_AUTH_FEATURE_NAME,
@@ -37,7 +36,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatSelectModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forFeature(FOOD_AUTH_FEATURE_NAME, AuthReducer),
     EffectsModule.forFeature([FoodAuthEffects]),

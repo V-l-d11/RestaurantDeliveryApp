@@ -14,7 +14,35 @@ import { FoodPromoSectionComponent } from './components/food-promo-section/food-
 import { AuthModule } from '../auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [{ path: 'main', component: HomeFoodPageComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomeFoodPageComponent,
+  },
+
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'FoodDeliverSearch',
+  },
+
+  {
+    path: 'FoodDeliverSearch',
+    loadChildren: () =>
+      import('./../food-search-page/food-search-page.module').then(
+        (m) => m.FoodSearchPageModule
+      ),
+  },
+
+  {
+    path: 'RestaurantSearch',
+    loadChildren: () =>
+      import('./../food-restaurants-page/food-restaurants-page.module').then(
+        (m) => m.FoodRestaurantsPageModule
+      ),
+  },
+];
 
 @NgModule({
   declarations: [

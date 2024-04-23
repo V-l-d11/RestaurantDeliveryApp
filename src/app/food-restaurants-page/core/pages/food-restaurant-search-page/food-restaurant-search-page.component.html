@@ -46,6 +46,7 @@
       >
         <div class="card-component" *ngFor="let restaurant of restaurants">
           <app-ui-restaurant-card
+            (click)="redirectToRestaurant(restaurant.id)"
             [restaurant]="restaurant"
           ></app-ui-restaurant-card>
         </div>
@@ -61,6 +62,7 @@
       >
         <div class="card-component" *ngFor="let restaurant of allRestaurants">
           <app-ui-restaurant-card
+            (click)="redirectToRestaurant(restaurant.id)"
             [restaurant]="restaurant"
           ></app-ui-restaurant-card>
         </div>

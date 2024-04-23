@@ -70,5 +70,28 @@ export const RestaurantCustomerReducer = createReducer(
       loaded: true,
       serverError,
     })
+  ),
+  on(CustomerRestaurantActions.getSingleRestaurant, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(
+    CustomerRestaurantActions.getSingleRestaurantSucess,
+    (state, { restaurant }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      selectedRestaurant: restaurant,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getSingleRestaurantFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
   )
 );

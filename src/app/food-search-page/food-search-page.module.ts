@@ -13,12 +13,22 @@ import {
 } from './core/store+/reducer/food-search-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { FoodSearchEffects } from './core/store+/effects/food-search-effects';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: FoodSearchPageComponent,
+  },
+];
 
 @NgModule({
   declarations: [FoodSearchPageComponent, FoodCaruselPopelarCuisinComponent],
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule.forChild(routes),
     SlickCarouselModule,
     FormsModule,
     HttpClientModule,
