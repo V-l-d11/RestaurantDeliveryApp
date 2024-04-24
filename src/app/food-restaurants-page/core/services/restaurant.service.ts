@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
+import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,12 @@ export class RestaurantService {
   getSingleRestaurant(id: number): Observable<RestaurantCustomer> {
     return this.http.get<RestaurantCustomer>(
       `http://localhost:8080/customers/restaurants/${id}`
+    );
+  }
+
+  getRestaurantCategory(id: number): Observable<RestaurantCategory[]> {
+    return this.http.get<RestaurantCategory[]>(
+      `http://localhost:8080/customer/category/restaurant/${id}`
     );
   }
 }

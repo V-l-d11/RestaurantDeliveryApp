@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 
 import * as CustomerRestaurantActions from './../actions/restaurant-actions';
+import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
 export const RESTAURANT_CUSTOMER_FEATURE_NAME = 'CustomerRestaurant';
 
@@ -9,6 +10,7 @@ export interface CustomerRestaurantState {
   allRestaurants: RestaurantCustomer[] | null;
   searchedRestaurants: RestaurantCustomer[] | null;
   selectedRestaurant: RestaurantCustomer | null;
+  categoriesRestaurant: RestaurantCategory[] | null;
   loading: boolean;
   loaded: boolean;
   serverError: string;
@@ -18,6 +20,7 @@ export const initialState: CustomerRestaurantState = {
   allRestaurants: null,
   searchedRestaurants: null,
   selectedRestaurant: null,
+  categoriesRestaurant: null,
   loading: false,
   loaded: false,
   serverError: '',
@@ -71,7 +74,7 @@ export const RestaurantCustomerReducer = createReducer(
       serverError,
     })
   ),
-  on(CustomerRestaurantActions.getSingleRestaurant, (state) => ({
+  on(CustomerRestaurantActions.loadSingleRestaurant, (state) => ({
     ...state,
     loading: true,
     loaded: false,
@@ -87,6 +90,29 @@ export const RestaurantCustomerReducer = createReducer(
   ),
   on(
     CustomerRestaurantActions.getSingleRestaurantFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
+  ),
+  on(CustomerRestaurantActions.getCategoyRestaurant, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(
+    CustomerRestaurantActions.getCategoryRestaurantSucess,
+    (state, { categories }) => ({
+      ...state,
+      categoriesRestaurant: categories,
+      loading: false,
+      loaded: true,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getCategoryRestaurantFailed,
     (state, { serverError }) => ({
       ...state,
       loading: false,

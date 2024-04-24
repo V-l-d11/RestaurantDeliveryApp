@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import {
   getAllRestaurants,
-  getSingleRestaurant,
+  loadSingleRestaurant,
   serachRestaurants,
 } from '../../store+/actions/restaurant-actions';
 import {
@@ -37,7 +37,7 @@ export class FoodRestaurantSearchPageComponent implements OnInit {
   }
 
   redirectToRestaurant(id: number) {
-    this.store$.dispatch(getSingleRestaurant({ id }));
+    //this.store$.dispatch(getSingleRestaurant({ id }));
     this.router.navigate([`foodapp/RestaurantSearch/restaurant/${id}`]);
   }
 

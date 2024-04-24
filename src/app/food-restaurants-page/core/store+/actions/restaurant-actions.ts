@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
+import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
 export const getAllRestaurants = createAction(
   '[Restaurant Customer page] get all Restaurant'
@@ -29,7 +30,7 @@ export const serachRestaurantsFailed = createAction(
   props<{ serverError: string }>()
 );
 
-export const getSingleRestaurant = createAction(
+export const loadSingleRestaurant = createAction(
   '[Restaurant Customer page] get Single Restaurant',
   props<{ id: number }>()
 );
@@ -41,5 +42,20 @@ export const getSingleRestaurantSucess = createAction(
 
 export const getSingleRestaurantFailed = createAction(
   '[Restaurant Customer page] get Single Restaurant Failed',
+  props<{ serverError: string }>()
+);
+
+export const getCategoyRestaurant = createAction(
+  '[Restaurant Customer page]  get Category Restaurant',
+  props<{ restaurantId: number }>()
+);
+
+export const getCategoryRestaurantSucess = createAction(
+  '[Restaurant Customer page] get Category Success',
+  props<{ categories: RestaurantCategory[] }>()
+);
+
+export const getCategoryRestaurantFailed = createAction(
+  '[Restaurant Customer page] get Customer Failed',
   props<{ serverError: string }>()
 );

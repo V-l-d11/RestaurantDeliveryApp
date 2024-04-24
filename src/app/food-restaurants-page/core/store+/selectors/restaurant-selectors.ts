@@ -29,3 +29,8 @@ export const getSingleRestaurant = createSelector(
   getFeature,
   (state) => state.selectedRestaurant
 );
+
+export const getRestaurantCategories = createSelector(
+  getFeature,
+  (state) => state.categoriesRestaurant
+);

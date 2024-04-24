@@ -1,23 +1,53 @@
-<div class="container">
+<div class="container" *ngIf="categories | async as categories">
   <div class="row">
     <div class="col-6">
       <div class="card">
-        <h3>Food Type</h3>
-        <ul>
-          <li><input type="checkbox" /> All</li>
-          <li><input type="checkbox" /> Vegetarian Only</li>
-          <li><input type="checkbox" /> Non-Vegeterian Only</li>
-          <li><input type="checkbox" /> Seasonal</li>
+        <h3>Food Category</h3>
+
+        <ul class="ul-list" *ngFor="let category of categories">
+          <li>
+            <label> <input class="check" type="radio" /> All </label>
+          </li>
+          <li>
+            <label>
+              <input class="check" type="radio" />
+
+              <span>
+                {{ category.name }}
+              </span>
+            </label>
+          </li>
         </ul>
       </div>
 
       <div class="card">
-        <h3>Food Category</h3>
-        <ul>
-          <li><input type="checkbox" /> Pizza</li>
-          <li><input type="checkbox" /> Pasta</li>
-          <li><input type="checkbox" /> Susi</li>
-          <li><input type="checkbox" /> Meet</li>
+        <h3>Food Type</h3>
+        <ul class="ul-list">
+          <li>
+            <label>
+              <input class="check" type="radio" name="foodType" />
+              <span>is Vegetable </span></label
+            >
+          </li>
+          <li>
+            <label>
+              <input class="check" type="radio" name="foodType" />
+              <span>is Seasonal </span>
+            </label>
+          </li>
+          <li>
+            <label>
+              <input class="check" type="radio" name="foodType" />
+              <span>available</span>
+            </label>
+          </li>
+
+          <li>
+            <label>
+              <input class="check" type="radio" name="foodType" />
+              <span>All</span>
+            </label>
+          </li>
         </ul>
       </div>
     </div>

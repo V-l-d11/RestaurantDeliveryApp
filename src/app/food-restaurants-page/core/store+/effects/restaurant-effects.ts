@@ -72,7 +72,7 @@ export class RestaurantCustomerEffects {
 
   loadSelectedRestaurant$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(RestaurantCustomerActions.getSingleRestaurant),
+      ofType(RestaurantCustomerActions.loadSingleRestaurant),
       mergeMap(({ id }) =>
         this.restaurantService.getSingleRestaurant(id).pipe(
           map((restaurant) =>
@@ -81,6 +81,28 @@ export class RestaurantCustomerEffects {
           catchError((error) =>
             of(
               RestaurantCustomerActions.getSingleRestaurantFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  loadRestaurantCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getSingleRestaurantSucess),
+      switchMap(({ restaurant }) =>
+        this.restaurantService.getRestaurantCategory(restaurant.id).pipe(
+          map((categories) =>
+            RestaurantCustomerActions.getCategoryRestaurantSucess({
+              categories,
+            })
+          ),
+          catchError((error) =>
+            of(
+              RestaurantCustomerActions.getCategoryRestaurantFailed({
                 serverError: error.massage,
               })
             )
