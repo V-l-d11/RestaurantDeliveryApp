@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
@@ -33,6 +34,28 @@ export class RestaurantService {
   getRestaurantCategory(id: number): Observable<RestaurantCategory[]> {
     return this.http.get<RestaurantCategory[]>(
       `http://localhost:8080/customer/category/restaurant/${id}`
+    );
+  }
+
+  getFilterRestaurants(
+    restaurantId: number,
+    foodCategory: string,
+    vegeterian?: boolean,
+    seasonal?: boolean,
+    nonveg?: boolean
+  ): Observable<FoodSearchResponse[]> {
+    console.log(foodCategory, 'Food Category');
+
+    const params = {
+      vegeterian: vegeterian !== undefined ? vegeterian.toString() : '',
+      seasonal: seasonal !== undefined ? seasonal.toString() : '',
+      nonveg: nonveg !== undefined ? nonveg.toString() : '',
+      foodCategory: foodCategory || '',
+    };
+    console.log(nonveg !== undefined ? nonveg.toString() : '');
+    return this.http.get<FoodSearchResponse[]>(
+      `http://localhost:8080/foodl/restaurant/${restaurantId}`,
+      { params }
     );
   }
 }

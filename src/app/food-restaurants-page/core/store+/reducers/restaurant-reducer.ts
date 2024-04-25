@@ -3,6 +3,7 @@ import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-resp
 
 import * as CustomerRestaurantActions from './../actions/restaurant-actions';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
+import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 
 export const RESTAURANT_CUSTOMER_FEATURE_NAME = 'CustomerRestaurant';
 
@@ -11,6 +12,7 @@ export interface CustomerRestaurantState {
   searchedRestaurants: RestaurantCustomer[] | null;
   selectedRestaurant: RestaurantCustomer | null;
   categoriesRestaurant: RestaurantCategory[] | null;
+  restaurantFoodFilterRadio: FoodSearchResponse[] | null;
   loading: boolean;
   loaded: boolean;
   serverError: string;
@@ -21,6 +23,7 @@ export const initialState: CustomerRestaurantState = {
   searchedRestaurants: null,
   selectedRestaurant: null,
   categoriesRestaurant: null,
+  restaurantFoodFilterRadio: null,
   loading: false,
   loaded: false,
   serverError: '',
@@ -113,6 +116,26 @@ export const RestaurantCustomerReducer = createReducer(
   ),
   on(
     CustomerRestaurantActions.getCategoryRestaurantFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
+  ),
+  on(CustomerRestaurantActions.getFilterFoodRadio, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(CustomerRestaurantActions.getFilterFoodRadioSucess, (state, { obj }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    restaurantFoodFilterRadio: obj,
+  })),
+  on(
+    CustomerRestaurantActions.getFilterFoodRadioFailed,
     (state, { serverError }) => ({
       ...state,
       loading: false,

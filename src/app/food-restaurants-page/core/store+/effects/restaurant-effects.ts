@@ -111,4 +111,34 @@ export class RestaurantCustomerEffects {
       )
     )
   );
+
+  loadFilterRadio$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getFilterFoodRadio),
+      switchMap((action) =>
+        this.restaurantService
+          .getFilterRestaurants(
+            action.restaurantId,
+            action.foodCategory,
+            action.vegeterian,
+            action.seasonal,
+            action.nonveg
+          )
+          .pipe(
+            map((response) =>
+              RestaurantCustomerActions.getFilterFoodRadioSucess({
+                obj: response,
+              })
+            ),
+            catchError((error) =>
+              of(
+                RestaurantCustomerActions.getFilterFoodRadioFailed({
+                  serverError: error.massage,
+                })
+              )
+            )
+          )
+      )
+    )
+  );
 }

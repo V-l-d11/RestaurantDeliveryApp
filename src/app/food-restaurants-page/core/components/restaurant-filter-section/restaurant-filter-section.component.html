@@ -6,11 +6,22 @@
 
         <ul class="ul-list" *ngFor="let category of categories">
           <li>
-            <label> <input class="check" type="radio" /> All </label>
+            <label>
+              <input
+                class="check"
+                type="radio"
+                (click)="filterFood(null, null, null, '')"
+              />
+              All
+            </label>
           </li>
           <li>
             <label>
-              <input class="check" type="radio" />
+              <input
+                class="check"
+                type="radio"
+                (click)="filterFood(false, false, false, category.name)"
+              />
 
               <span>
                 {{ category.name }}
@@ -25,26 +36,46 @@
         <ul class="ul-list">
           <li>
             <label>
-              <input class="check" type="radio" name="foodType" />
+              <input
+                class="check"
+                type="radio"
+                name="foodType"
+                (click)="filterFood(true, false, false, '')"
+              />
               <span>is Vegetable </span></label
             >
           </li>
           <li>
             <label>
-              <input class="check" type="radio" name="foodType" />
+              <input
+                class="check"
+                type="radio"
+                name="foodType"
+                (click)="filterFood(false, true, false, '')"
+              />
               <span>is Seasonal </span>
             </label>
           </li>
           <li>
             <label>
-              <input class="check" type="radio" name="foodType" />
+              <input
+                class="check"
+                type="radio"
+                name="foodType"
+                (click)="filterFood(false, false, true, '')"
+              />
               <span>available</span>
             </label>
           </li>
 
           <li>
             <label>
-              <input class="check" type="radio" name="foodType" />
+              <input
+                class="check"
+                type="radio"
+                name="foodType"
+                (click)="filterFood(false, false, false, '')"
+              />
               <span>All</span>
             </label>
           </li>

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
@@ -57,5 +58,26 @@ export const getCategoryRestaurantSucess = createAction(
 
 export const getCategoryRestaurantFailed = createAction(
   '[Restaurant Customer page] get Customer Failed',
+  props<{ serverError: string }>()
+);
+
+export const getFilterFoodRadio = createAction(
+  '[Restaurant Customer page] get Filter Food Radio ',
+  props<{
+    restaurantId: number;
+    vegeterian?: boolean;
+    seasonal?: boolean;
+    nonveg?: boolean;
+    foodCategory: string;
+  }>()
+);
+
+export const getFilterFoodRadioSucess = createAction(
+  '[Restaurant Customer page] get Filter Food Radio Sucess',
+  props<{ obj: FoodSearchResponse[] }>()
+);
+
+export const getFilterFoodRadioFailed = createAction(
+  '[Restaurant Customer page] get Filter Food Radio Failed',
   props<{ serverError: string }>()
 );
