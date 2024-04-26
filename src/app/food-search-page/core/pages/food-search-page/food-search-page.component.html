@@ -24,7 +24,7 @@
     ></app-food-carusel-popelar-cuisin>
   </div>
 
-  <div class="row" *ngIf="result$ | async as results">
+  <div class="row row-cl" *ngIf="result$ | async as results">
     <ng-container *ngIf="results && results.length > 0; else emptyResult">
       <div class="col" *ngFor="let result of results">
         <app-ui-card-food [result]="result"></app-ui-card-food>

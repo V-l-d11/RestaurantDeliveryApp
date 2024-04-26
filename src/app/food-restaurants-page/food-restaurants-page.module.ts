@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { RestaurantFilterSectionComponent } from './core/components/restaurant-filter-section/restaurant-filter-section.component';
+import { FoodDetailsDialogModalComponent } from './core/components/food-details-dialog-modal/food-details-dialog-modal.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     FoodRestaurantSearchPageComponent,
     FoodSingleRestaurantPageComponent,
     RestaurantFilterSectionComponent,
+    FoodDetailsDialogModalComponent,
   ],
   imports: [
     CommonModule,

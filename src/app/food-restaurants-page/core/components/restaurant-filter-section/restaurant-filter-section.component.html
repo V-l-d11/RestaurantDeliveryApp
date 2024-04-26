@@ -1,21 +1,11 @@
-<div class="container" *ngIf="categories | async as categories">
-  <div class="row">
-    <div class="col-6">
+<div class="container-fluid" *ngIf="categories | async as categories">
+  <div class="row row-inf">
+    <div class="col-2">
       <div class="card">
-        <h3>Food Category</h3>
+        <h3 class="h3-inf">Food Category</h3>
 
-        <ul class="ul-list" *ngFor="let category of categories">
-          <li>
-            <label>
-              <input
-                class="check"
-                type="radio"
-                (click)="filterFood(null, null, null, '')"
-              />
-              All
-            </label>
-          </li>
-          <li>
+        <ul class="ul-list">
+          <li *ngFor="let category of categories">
             <label>
               <input
                 class="check"
@@ -31,8 +21,8 @@
         </ul>
       </div>
 
-      <div class="card">
-        <h3>Food Type</h3>
+      <div class="card section-2">
+        <h3 class="h3-inf">Food Type</h3>
         <ul class="ul-list">
           <li>
             <label>
@@ -82,6 +72,19 @@
         </ul>
       </div>
     </div>
-    <div class="col-6">hello2</div>
+    <div class="col-6" *ngIf="filterItems$ | async as filterItems">
+      <div
+        class="col d-flex justify-content-center list-food"
+        *ngIf="filterItems$ | async as filterItems"
+      >
+        <div *ngFor="let item of filterItems" class="mr-5 cards">
+          <app-ui-card-food
+            class="card-component"
+            [result]="item"
+            (openDetailsFoodCard)="openDetailsFoodCard($event)"
+          ></app-ui-card-food>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

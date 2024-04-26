@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, map } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 import {
   getFilterRestaurantFoodRadio,
@@ -9,18 +9,29 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { getFilterFoodRadio } from '../../store+/actions/restaurant-actions';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
+import { FoodRestaurantDialogModalsService } from '../../services/dialog-modal/food-restaurant-dialog-modals.service';
 @Component({
   selector: 'app-restaurant-filter-section',
   templateUrl: './restaurant-filter-section.component.html',
   styleUrls: ['./restaurant-filter-section.component.scss'],
 })
-export class RestaurantFilterSectionComponent implements OnInit {
+export class RestaurantFilterSectionComponent implements OnInit, OnDestroy {
+  @Input() openDetailsFoodCardHandler!: (item: FoodSearchResponse) => void;
   @Input()
   id!: number;
   categories!: Observable<RestaurantCategory[] | null>;
-  filterItems$!: Observable<any[] | null>;
+  filterItems$!: Observable<FoodSearchResponse[] | null>;
 
-  constructor(private store$: Store) {}
+  private filterIntemsSubscription: Subscription | undefined;
+
+  constructor(
+    private store$: Store,
+    private dialogService: FoodRestaurantDialogModalsService
+  ) {}
+
+  openDetailsFoodCard(item: FoodSearchResponse) {
+    this.dialogService.foodDetailsOpen(item);
+  }
 
   filterFood(
     vegeterian: boolean | null,
@@ -47,5 +58,12 @@ export class RestaurantFilterSectionComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.store$.select(getRestaurantCategories);
     this.filterItems$ = this.store$.select(getFilterRestaurantFoodRadio);
+    this.filterIntemsSubscription = this.filterItems$.subscribe();
+  }
+
+  ngOnDestroy(): void {
+    if (this.filterIntemsSubscription) {
+      this.filterIntemsSubscription.unsubscribe();
+    }
   }
 }
