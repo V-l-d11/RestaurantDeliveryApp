@@ -4,6 +4,7 @@ import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-resp
 import * as CustomerRestaurantActions from './../actions/restaurant-actions';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
+import { ingridientsCategory } from 'src/app/models/api/responses/ingridients-category-from-restaurant';
 
 export const RESTAURANT_CUSTOMER_FEATURE_NAME = 'CustomerRestaurant';
 
@@ -13,6 +14,7 @@ export interface CustomerRestaurantState {
   selectedRestaurant: RestaurantCustomer | null;
   categoriesRestaurant: RestaurantCategory[] | null;
   restaurantFoodFilterRadio: FoodSearchResponse[] | null;
+  ingridientsCategories: ingridientsCategory[] | null;
   loading: boolean;
   loaded: boolean;
   serverError: string;
@@ -24,6 +26,7 @@ export const initialState: CustomerRestaurantState = {
   selectedRestaurant: null,
   categoriesRestaurant: null,
   restaurantFoodFilterRadio: null,
+  ingridientsCategories: null,
   loading: false,
   loaded: false,
   serverError: '',
@@ -136,6 +139,32 @@ export const RestaurantCustomerReducer = createReducer(
   })),
   on(
     CustomerRestaurantActions.getFilterFoodRadioFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getIngridientsCategoriesRestaurant,
+    (state, { id }) => ({
+      ...state,
+      loading: true,
+      loaded: false,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getIngridientsCategoriesRestaurantSucess,
+    (state, { obj }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      ingridientsCategories: obj,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getIngridientsCategoriesRestaurantFailed,
     (state, { serverError }) => ({
       ...state,
       loading: false,

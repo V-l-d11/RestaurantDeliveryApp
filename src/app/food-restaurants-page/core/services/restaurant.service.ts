@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
+import {
+  IngridientsItem,
+  ingridientsCategory,
+} from 'src/app/models/api/responses/ingridients-category-from-restaurant';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 
 @Injectable({
@@ -56,6 +60,14 @@ export class RestaurantService {
     return this.http.get<FoodSearchResponse[]>(
       `http://localhost:8080/foodl/restaurant/${restaurantId}`,
       { params }
+    );
+  }
+
+  getIngridientsCategoryFromRestaurant(
+    id: number
+  ): Observable<ingridientsCategory[]> {
+    return this.http.get<ingridientsCategory[]>(
+      `http://localhost:8080/customer/ingridients/restaurant/${id}/category`
     );
   }
 }

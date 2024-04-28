@@ -30,7 +30,10 @@ export class RestaurantFilterSectionComponent implements OnInit, OnDestroy {
   ) {}
 
   openDetailsFoodCard(item: FoodSearchResponse) {
-    this.dialogService.foodDetailsOpen(item);
+    this.dialogService.foodDetailsOpen({
+      item,
+      id: this.id,
+    });
   }
 
   filterFood(

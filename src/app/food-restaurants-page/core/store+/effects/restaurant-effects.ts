@@ -141,4 +141,30 @@ export class RestaurantCustomerEffects {
       )
     )
   );
+
+  loadIngridientsCategory = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getIngridientsCategoriesRestaurant),
+      switchMap((action) =>
+        this.restaurantService
+          .getIngridientsCategoryFromRestaurant(action.id)
+          .pipe(
+            map((response) =>
+              RestaurantCustomerActions.getIngridientsCategoriesRestaurantSucess(
+                { obj: response }
+              )
+            ),
+            catchError((error) =>
+              of(
+                RestaurantCustomerActions.getIngridientsCategoriesRestaurantFailed(
+                  {
+                    serverError: error.massage,
+                  }
+                )
+              )
+            )
+          )
+      )
+    )
+  );
 }

@@ -1,1 +1,48 @@
-<p>food-details-dialog-modal works!</p>
+<div class="container" *ngIf="data">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <h3>{{ data.item.name }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span>{{ data.item.description }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span>{{ data.item.price }}</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span>{{ data.item.available }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6" *ngIf="categories$ | async as categories">
+      <div class="row">
+        <div class="col">
+          <h3>Select your favorite Ingridients</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" *ngFor="let category of categories">
+          <h4>{{ category.name }}</h4>
+          <p>{{ category.ingredients[0].name }}</p>
+          <div class="col">
+            <ul>
+              <li *ngFor="let ingredient of category.ingredients">
+                {{ ingredient.name }} ==== {{ ingredient.price }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
