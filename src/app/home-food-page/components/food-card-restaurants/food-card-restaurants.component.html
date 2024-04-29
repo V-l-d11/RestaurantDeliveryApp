@@ -3,7 +3,7 @@
     <img
       mat-card-image
       style="width: 400px; height: 260px"
-      src="./../../../../assets/images/imgRestaurant1.png"
+      src="{{data?.images?.[0]}}"
       alt="Photo of a Shiba Inu"
     />
     <div class="overlay"></div>
@@ -11,7 +11,7 @@
   </div>
   <mat-card-content>
     <div class="d-flex justify-content-between mt-3">
-      <h2>Indian Fast Food</h2>
+      <h2>{{ data.name }}</h2>
       <button class="btn-like">
         <svg
           class="svg-icon"
@@ -36,8 +36,7 @@
       </button>
     </div>
     <p class="p">
-      Experience authentic Indian cuisine at our restaurant, where flavors from
-      across the subcontinent come together in a symphony of spices and aromas.
+      {{ data.description }}
     </p>
   </mat-card-content>
   <mat-card-actions> </mat-card-actions>

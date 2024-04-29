@@ -15,6 +15,8 @@ import { CombineFoodDialog } from 'src/app/models/combineInterfaces/combineDialo
 })
 export class FoodDetailsDialogModalComponent implements OnInit {
   categories$!: Observable<ingridientsCategory[] | null>;
+  ingridientsItems!: any[];
+  totalprice: number = this.data.item.price;
 
   constructor(
     private store$: Store,
@@ -26,7 +28,21 @@ export class FoodDetailsDialogModalComponent implements OnInit {
     console.log(data, 'Data');
   }
 
+  updateTotalPrice(ingridient: any, isCheked: boolean) {
+    if (isCheked) {
+      this.totalprice += ingridient.price;
+    } else {
+      this.totalprice -= ingridient.price;
+    }
+  }
+
+  handleCheckboxChange(event: any, ingredient: any) {
+    const isChecked = event.target.checked;
+    this.updateTotalPrice(ingredient, isChecked);
+  }
+
   ngOnInit(): void {
     this.categories$ = this.store$.select(getIngridientsCategory);
+    console.log(this.categories$, 'Categoriest');
   }
 }

@@ -8,9 +8,10 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { FoodAuthServiceService } from '../services/food-auth-service.service';
+import { FoodAuthServiceService } from '../auth/core/services/food-auth-service.service';
 import { Store } from '@ngrx/store';
-import { isAuth } from '../store/selectors/food-auth-selectors';
+import { isAuth } from '../auth/core/store/selectors/food-auth-selectors';
+import { AuthDialogModalsService } from '../auth/core/services/food-dialog-modal-services/auth-dialog-modals.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private auth: FoodAuthServiceService,
     private router: Router,
-    private store$: Store
+    private store$: Store,
+    private loginService: AuthDialogModalsService
   ) {}
 
   canActivate(
@@ -30,9 +32,11 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ): Observable<boolean> {
     this.isAuth = this.store$.select(isAuth);
     if (this.isAuth) {
+      console.log('AUUUTHHH');
       return of(true);
     } else {
-      this.router.navigate(['/login']);
+      this.loginService.loginModaldialog();
+      //  this.router.navigate(['/login']);
       return of(false);
     }
   }

@@ -13,6 +13,7 @@ import { FoodRestaurantsCardsSectionComponent } from './components/food-restaura
 import { FoodPromoSectionComponent } from './components/food-promo-section/food-promo-section.component';
 import { AuthModule } from '../auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../core/auth.guards';
 
 const routes: Routes = [
   {
@@ -26,7 +27,6 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'FoodDeliverSearch',
   },
-
   {
     path: 'FoodDeliverSearch',
     loadChildren: () =>
@@ -41,6 +41,14 @@ const routes: Routes = [
       import('./../food-restaurants-page/food-restaurants-page.module').then(
         (m) => m.FoodRestaurantsPageModule
       ),
+  },
+  {
+    path: 'userDashboard',
+    loadChildren: () =>
+      import('./../../app/users-pages/users-pages.module').then(
+        (m) => m.UsersPagesModule
+      ),
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -1,7 +1,68 @@
-ul {
-  display: none;
+$font-family: Jost;
+.data-name {
+  font-size: 35px;
+  font-family: $font-family;
+  font-weight: 700;
+}
+.data-price {
+  font-size: 22px;
+  font-family: $font-family;
+  color: #00000085;
+  font-weight: 500;
+}
+.data-description {
+  font-size: 18px;
+  color: #000;
+  font-family: $font-family;
+}
+.inpt {
+  width: 25px;
+  height: 25px;
+  border: 5px #000 solid;
+}
+.ingridient-name {
+  font-size: 19px;
+  font-family: $font-family;
+  color: #00000097;
+}
+.price {
+  font-family: $font-family;
+}
+.main-sec {
+  margin-top: 5%;
+}
+.is-avail {
+  width: 20%;
+  text-align: center;
+  margin-top: 2%;
+  border-radius: 12px;
+  .is-available {
+    color: #fff;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 20px;
+  }
 }
 
-ul.open {
-  display: block;
+.btn-fav {
+  margin-top: 2%;
+}
+.add-to-basket {
+  width: 100%;
+  background-color: #ff4b4b;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-family: $font-family;
+  font-weight: 500;
+  padding: 8px 20px 8px 20px;
+}
+
+.add-to-favorite {
+  width: 100%;
+  font-family: $font-family;
+  border: none;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 8px 20px 8px 20px;
 }
