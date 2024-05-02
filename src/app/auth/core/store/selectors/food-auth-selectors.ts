@@ -24,7 +24,7 @@ export const getAuthData = createSelector(
 
 export const getAccessToken = createSelector(
   getAuthData,
-  (authData) => authData?.token
+  (authData) => authData.token
 );
 
 export const isAuth = createSelector(getFeature, (authData) => !!authData);

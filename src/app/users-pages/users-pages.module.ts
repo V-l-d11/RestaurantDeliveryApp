@@ -8,6 +8,15 @@ import { AddressesUsersComponent } from './core/pages/addresses-users/addresses-
 import { MyOdersUsersComponent } from './core/pages/my-oders-users/my-oders-users.component';
 import { DiscountsUsersComponent } from './core/pages/discounts-users/discounts-users.component';
 import { BasketUserComponent } from './core/pages/basket-user/basket-user.component';
+import { StoreModule } from '@ngrx/store';
+import {
+  BascetReducer,
+  USER_BASCET_FEATURE_NAME,
+} from './core/store+/reducers/user-bascet-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BascetEffects } from './core/store+/effects/user-bascet-effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenIntercaptor } from '../interceptors/token-interceptor';
 
 const routes: Routes = [
   {
@@ -35,6 +44,11 @@ const routes: Routes = [
     MyOdersUsersComponent,
     BasketUserComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature(USER_BASCET_FEATURE_NAME, BascetReducer),
+    EffectsModule.forFeature([BascetEffects]),
+  ],
 })
 export class UsersPagesModule {}

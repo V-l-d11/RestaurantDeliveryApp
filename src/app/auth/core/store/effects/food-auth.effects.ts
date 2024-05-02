@@ -29,7 +29,7 @@ export class FoodAuthEffects {
           .pipe(
             map((response) =>
               AuthActions.loginSucess({
-                token: response.token,
+                token: response.jwt,
                 message: response.message,
                 role: response.role,
               })
@@ -47,6 +47,7 @@ export class FoodAuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSucess),
         tap((loginSuccessData) => {
+          console.log(loginSuccessData, 'DATA OOOO DATA');
           localStorage.setItem('token', JSON.stringify(loginSuccessData));
         })
       ),

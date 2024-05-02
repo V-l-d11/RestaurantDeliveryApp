@@ -1,84 +1,88 @@
 <div class="container main-sec" *ngIf="data">
-  <div class="row">
-    <div class="col-6">
-      <div class="row">
-        <div class="col">
-          <h3 class="data-name">{{ data.item.name }}</h3>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <h3 class="data-name">{{ data.item.name }}</h3>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <span class="data-price">{{ totalprice }}$</span>
+        <div class="row">
+          <div class="col">
+            <span class="data-price">{{ totalprice }}$</span>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <span class="data-description">{{ data.item.description }}</span>
+        <div class="row">
+          <div class="col">
+            <span class="data-description">{{ data.item.description }}</span>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col">
-          <div
-            class="is-avail"
-            [ngStyle]="{
-              'background-color': data.item.available ? '#507B35' : '#ff4b4b'
-            }"
-          >
-            <span class="is-available">inStoke</span>
+        <div class="row">
+          <div class="col">
+            <div
+              class="is-avail"
+              [ngStyle]="{
+                'background-color': data.item.available ? '#507B35' : '#ff4b4b'
+              }"
+            >
+              <span class="is-available">inStoke</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-6" *ngIf="categories$ | async as categories">
-      <div class="row">
-        <div class="col">
-          <h3>Select your favorite Ingridients</h3>
-          <hr />
-        </div>
-      </div>
-      <div class="row" *ngFor="let category of categories">
-        <div>
-          <h4>{{ category.name }}</h4>
-          <hr />
-          <div *ngFor="let i of category.ingredients">
-            <div
-              class="d-flex justify-content-between"
-              [ngStyle]="{
-                'background-color': i.inStoke ? 'inherit' : 'lightgray'
-              }"
-            >
-              <div>
-                <span class="ingridient-name">{{ i.name }}</span>
-                <br />
-                <p class="price">+ {{ i.price }} $</p>
-              </div>
-
-              <input
-                class="inpt"
-                type="checkbox"
-                [disabled]="!i.inStoke"
-                (change)="handleCheckboxChange($event, i)"
-              />
-            </div>
-
+      <div class="col-6" *ngIf="categories$ | async as categories">
+        <div class="row">
+          <div class="col">
+            <h3>Select your favorite Ingridients</h3>
             <hr />
           </div>
         </div>
-      </div>
+        <div class="row" *ngFor="let category of categories">
+          <div>
+            <h4>{{ category.name }}</h4>
+            <hr />
+            <div *ngFor="let i of category.ingredients">
+              <div
+                class="d-flex justify-content-between"
+                [ngStyle]="{
+                  'background-color': i.inStoke ? 'inherit' : 'lightgray'
+                }"
+              >
+                <div>
+                  <span class="ingridient-name">{{ i.name }}</span>
+                  <br />
+                  <p class="price">+ {{ i.price }} $</p>
+                </div>
 
-      <div class="row btn-basket">
-        <div class="col">
-          <button class="add-to-basket">Add to Basket</button>
+                <input
+                  class="inpt"
+                  type="checkbox"
+                  [disabled]="!i.inStoke"
+                  (change)="handleCheckboxChange($event, i)"
+                />
+              </div>
+
+              <hr />
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="row btn-fav">
-        <div class="col">
-          <button class="add-to-favorite">Add to Favorites</button>
+        <div class="row btn-basket">
+          <div class="col">
+            <button class="add-to-basket" (click)="addToBascet()">
+              Add to Basket
+            </button>
+          </div>
+        </div>
+
+        <div class="row btn-fav">
+          <div class="col">
+            <button class="add-to-favorite">Add to Favorites</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>

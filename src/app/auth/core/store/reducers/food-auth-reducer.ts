@@ -18,6 +18,7 @@ export const initialState: AuthState = {
   loading: false,
   loaded: false,
   serverError: '',
+  jwt: '',
   authData: {
     token: '',
     message: '',

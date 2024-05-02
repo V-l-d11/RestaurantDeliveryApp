@@ -7,6 +7,10 @@ import { ingridientsCategory } from 'src/app/models/api/responses/ingridients-ca
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { CombineFoodDialog } from 'src/app/models/combineInterfaces/combineDialogFood';
+import { isAuth } from 'src/app/auth/core/store/selectors/food-auth-selectors';
+import { AuthDialogModalsService } from 'src/app/auth/core/services/food-dialog-modal-services/auth-dialog-modals.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { addItemToCard } from 'src/app/users-pages/core/store+/actions/user-panel-actions';
 
 @Component({
   selector: 'app-food-details-dialog-modal',
@@ -17,10 +21,14 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   categories$!: Observable<ingridientsCategory[] | null>;
   ingridientsItems!: any[];
   totalprice: number = this.data.item.price;
+  form!: FormGroup;
+  isAuth!: Observable<any>;
+  authentificate!: boolean;
 
   constructor(
     private store$: Store,
-    @Inject(MAT_DIALOG_DATA) public data: CombineFoodDialog
+    @Inject(MAT_DIALOG_DATA) public data: CombineFoodDialog,
+    private loaginService: AuthDialogModalsService
   ) {
     this.store$.dispatch(
       getIngridientsCategoriesRestaurant({ id: this.data.id })
@@ -38,11 +46,40 @@ export class FoodDetailsDialogModalComponent implements OnInit {
 
   handleCheckboxChange(event: any, ingredient: any) {
     const isChecked = event.target.checked;
+    const ingridentsArray = this.form.get('ingredients') as FormControl;
+    if (event.target.checked) {
+      ingridentsArray.value.push(ingredient.name);
+      console.log(ingridentsArray, 'Ingridients');
+    } else {
+      const index = ingridentsArray.value.findIndex(
+        (item: any) => item === ingredient
+      );
+      if (index !== -1) {
+        ingridentsArray.value.splice(index, 1);
+      }
+    }
+    ingridentsArray.markAsDirty();
     this.updateTotalPrice(ingredient, isChecked);
   }
 
+  addToBascet() {
+    this.isAuth = this.store$.select(isAuth);
+    this.isAuth.subscribe((el) => (this.authentificate = el));
+
+    if (this.authentificate) {
+      console.log(this.form.value, 'FORM');
+      this.store$.dispatch(addItemToCard({ item: this.form.value }));
+    } else {
+      this.loaginService.loginModaldialog();
+    }
+  }
+
   ngOnInit(): void {
+    this.form = new FormGroup({
+      foodId: new FormControl(this.data.item.id, [Validators.required]),
+      quantity: new FormControl(1, Validators.required),
+      ingredients: new FormControl([], Validators.required),
+    });
     this.categories$ = this.store$.select(getIngridientsCategory);
-    console.log(this.categories$, 'Categoriest');
   }
 }

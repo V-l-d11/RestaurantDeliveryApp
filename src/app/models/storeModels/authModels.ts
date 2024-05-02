@@ -7,6 +7,7 @@ export interface AuthData {
 export interface AuthState {
   loading: boolean;
   loaded: boolean;
+  jwt: string;
   serverError: string;
   authData: AuthData;
   fullName: string;

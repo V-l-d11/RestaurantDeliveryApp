@@ -1,13 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { CardItemRequestAdd } from 'src/app/models/api/requests/card-item-add-user-request';
 import { OderRequest } from 'src/app/models/api/requests/oder-request';
+import { updateItemRequest } from 'src/app/models/api/requests/update-item-request';
 import {
   AddCardItemResponse,
   Card,
+  CardItem,
 } from 'src/app/models/api/responses/add-card-item-users-response';
-import { RestaurantDto } from 'src/app/models/api/responses/favorites';
-import { OderResponse } from 'src/app/models/api/responses/oder-response';
-import { UserProfile } from 'src/app/models/api/responses/user-profile';
 
 export const addItemToCard = createAction(
   '[User Panel] add Item To Card',
@@ -26,6 +25,17 @@ export const addItemToCardFailed = createAction(
 
 export const clearCard = createAction('[User Panel] clear Card');
 
+export const clearCardSucess = createAction(
+  '[User Panel] clear Card Sucess',
+
+  props<{ obj: Card }>()
+);
+
+export const clearCardFailed = createAction(
+  '[User Panel] clear Card Filed',
+  props<{ serverError: string }>()
+);
+
 export const findUserCard = createAction('[User Panel] find user card');
 
 export const findUserCardSucess = createAction(
@@ -38,56 +48,32 @@ export const findUserCardFailed = createAction(
   props<{ serverError: string }>()
 );
 
-export const userProfile = createAction('[User Panel] user profile');
-
-export const userProfileSucces = createAction(
-  '[User Panel] user profile sucess',
-  props<{ obj: UserProfile }>()
-);
-
-export const userProfileFailed = createAction(
-  '[User Panel[ user profile failed',
-  props<{ serverError: string }>()
-);
-
-export const addToFavoritesRestaurant = createAction(
-  '[User Panel] add to  favorites restaurant',
+export const removeCardItem = createAction(
+  '[User Panel] remove card Item',
   props<{ id: number }>()
 );
 
-export const addToFavoritesRestaurantSucess = createAction(
-  '[User Panel] add to favorites restaurant sucess',
-  props<{ obj: RestaurantDto }>()
+export const removeCardItemSucess = createAction(
+  '[User Panel] remove card Item Sucess',
+  props<{ obj: Card }>()
 );
 
-export const addToFavoritesRestaurantFailed = createAction(
-  '[User Panel] add to favorites  restaurant failed',
-  props<{ serverError: number }>()
+export const removeCardItemFailed = createAction(
+  '[User Panel] remove card Item Failed',
+  props<{ serverError: string }>()
 );
 
-export const createOder = createAction(
-  '[User Panel] create oder',
-  props<{ oder: OderRequest }>()
+export const updateCardItem = createAction(
+  '[User Panel] update Card Item',
+  props<{ req: updateItemRequest }>()
 );
 
-export const createOderSucess = createAction(
-  '[User Panel] create oder sucess',
-  props<{ obj: OderResponse }>()
+export const updateCardItemSucess = createAction(
+  '[User Panel] update Card Item Sucess',
+  props<{ obj: CardItem }>()
 );
 
-export const createOderFailed = createAction(
-  '[User Panel] create oder failed',
-  props<{ serverError: number }>()
-);
-
-export const getOderHistory = createAction('[User Panel] get oder history');
-
-export const getOderHistorySucess = createAction(
-  '[User Panel] get oder hostory sucess',
-  props<{ obj: OderResponse }>()
-);
-
-export const getOderHistoryFailed = createAction(
-  '[User Panel] get oder history failed',
+export const updateCardItemFailed = createAction(
+  '[User Panel] update Card Item Failed',
   props<{ serverError: string }>()
 );

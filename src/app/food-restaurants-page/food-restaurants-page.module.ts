@@ -17,7 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { RestaurantFilterSectionComponent } from './core/components/restaurant-filter-section/restaurant-filter-section.component';
 import { FoodDetailsDialogModalComponent } from './core/components/food-details-dialog-modal/food-details-dialog-modal.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { BascetEffects } from '../users-pages/core/store+/effects/user-bascet-effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenIntercaptor } from '../interceptors/token-interceptor';
 const routes: Routes = [
   {
     path: '',
@@ -39,6 +42,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
@@ -49,7 +53,7 @@ const routes: Routes = [
       RESTAURANT_CUSTOMER_FEATURE_NAME,
       RestaurantCustomerReducer
     ),
-    EffectsModule.forFeature([RestaurantCustomerEffects]),
+    EffectsModule.forFeature([RestaurantCustomerEffects, BascetEffects]),
   ],
   exports: [FoodRestaurantSearchPageComponent],
 })

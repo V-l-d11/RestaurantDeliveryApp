@@ -19,6 +19,7 @@ export class UsersPanelApiService {
   constructor(private http: HttpClient) {}
 
   addCardItem(item: CardItemRequestAdd): Observable<AddCardItemResponse> {
+    console.log('Hello --- ---- --- --- --- --- ');
     return this.http.put<AddCardItemResponse>(
       'http://localhost:8080/api/card/add',
       item
