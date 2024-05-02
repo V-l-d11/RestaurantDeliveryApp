@@ -7,7 +7,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { FoodAuthServiceService } from '../auth/core/services/food-auth-service.service';
 import { Store } from '@ngrx/store';
 import { isAuth } from '../auth/core/store/selectors/food-auth-selectors';
@@ -30,15 +30,19 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     router: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    this.isAuth = this.store$.select(isAuth);
-    if (this.isAuth) {
-      console.log('AUUUTHHH');
-      return of(true);
-    } else {
-      this.loginService.loginModaldialog();
-      //  this.router.navigate(['/login']);
-      return of(false);
-    }
+    return this.store$.select(isAuth).pipe(
+      map((isAuthenticated) => {
+        console.log(isAuthenticated, 'Is Authentocated Selector');
+        if (isAuthenticated) {
+          console.log(isAuthenticated);
+          console.log('Hahah');
+          return true;
+        } else {
+          this.loginService.loginModaldialog();
+          return false;
+        }
+      })
+    );
   }
 
   canActivateChild(

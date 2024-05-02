@@ -8,7 +8,7 @@ export interface AuthState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
-  authData: AuthData | null;
+  authData: AuthData;
   fullName: string;
   email: string;
   password: string;

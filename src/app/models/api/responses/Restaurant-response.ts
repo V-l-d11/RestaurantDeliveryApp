@@ -13,7 +13,7 @@ export interface RestaurantCustomer {
   foods: FoodSearchResponse[] | null;
 }
 
-interface Address {
+export interface Address {
   id: number;
   street: string;
   city: string;

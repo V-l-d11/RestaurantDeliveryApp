@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { AuthState } from 'src/app/models/storeModels/authModels';
 import {
+  isLogin,
   login,
   loginFailed,
   loginSucess,
@@ -30,6 +31,10 @@ export const initialState: AuthState = {
 
 export const AuthReducer = createReducer(
   initialState,
+  on(isLogin, (state, { authData }) => ({
+    ...state,
+    authData: authData,
+  })),
   on(login, (state) => ({
     ...state,
     loading: true,
@@ -47,7 +52,6 @@ export const AuthReducer = createReducer(
   })),
   on(loginFailed, (state, { serverError }) => ({
     ...state,
-    authData: null,
     serverError,
     loading: false,
     loaded: true,
@@ -59,7 +63,6 @@ export const AuthReducer = createReducer(
   })),
   on(logoutSucess, (state) => ({
     ...state,
-    authData: null,
     loading: false,
     loaded: true,
   })),

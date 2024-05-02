@@ -1,0 +1,16 @@
+$font-family: Jost;
+.card-menu {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 22px;
+}
+.menu-item {
+  font-family: $font-family;
+  font-size: 20px;
+  cursor: pointer;
+}
+.rows {
+  padding-top: 50px;
+}
+.fot {
+  padding-bottom: 30px;
+}

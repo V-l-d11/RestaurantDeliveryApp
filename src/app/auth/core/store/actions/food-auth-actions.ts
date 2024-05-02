@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
 
+export const isLogin = createAction(
+  '[Auth] Is Login?',
+  props<{ authData: any }>()
+);
+
 export const login = createAction(
   '[Auth] login',
   props<{ email: string; password: string }>()
