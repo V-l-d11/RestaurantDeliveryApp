@@ -19,6 +19,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { CardItemBascetComponent } from './core/components/card-item-bascet/card-item-bascet.component';
 import { FormsModule } from '@angular/forms';
+import {
+  OdersReducerUser,
+  USER_ODERS_FEATURE_NAME,
+} from './core/store+/reducers/oder-users-reducer';
+import { OdersUserEffects } from './core/store+/effects/user-oders-effects';
 
 const routes: Routes = [
   {
@@ -52,7 +57,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(USER_BASCET_FEATURE_NAME, BascetReducer),
-    EffectsModule.forFeature([BascetEffects]),
+    StoreModule.forFeature(USER_ODERS_FEATURE_NAME, OdersReducerUser),
+    EffectsModule.forFeature([BascetEffects, OdersUserEffects]),
   ],
 })
 export class UsersPagesModule {}

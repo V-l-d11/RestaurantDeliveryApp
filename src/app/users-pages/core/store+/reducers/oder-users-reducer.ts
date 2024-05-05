@@ -1,0 +1,59 @@
+import { createReducer, on } from '@ngrx/store';
+import { OderResponse } from 'src/app/models/api/responses/oder-response';
+import * as OderActions from './../actions/oder-user-actions';
+
+export interface UserOderslState {
+  oder: OderResponse | null;
+  odersList: OderResponse[] | null;
+  loading: boolean;
+  loaded: boolean;
+  serverError: string;
+}
+
+export const USER_ODERS_FEATURE_NAME = 'oders';
+
+export const initalState: UserOderslState = {
+  oder: null,
+  odersList: null,
+  loading: false,
+  loaded: true,
+  serverError: '',
+};
+
+export const OdersReducerUser = createReducer(
+  initalState,
+  on(OderActions.createOder, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(OderActions.createOderSucess, (state, { obj }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    oder: obj,
+  })),
+  on(OderActions.createOderFailed, (state, { serverError }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    serverError,
+  })),
+  on(OderActions.getOderHistory, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(OderActions.getOderHistorySucess, (state, { obj }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    odersList: obj,
+  })),
+  on(OderActions.getOderHistoryFailed, (state, { serverError }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    serverError,
+  }))
+);

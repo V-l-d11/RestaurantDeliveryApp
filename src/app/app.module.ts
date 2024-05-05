@@ -18,6 +18,7 @@ import { SearchReducer } from './food-search-page/core/store+/reducer/food-searc
 import { FoodRestaurantsPageModule } from './food-restaurants-page/food-restaurants-page.module';
 import { RestaurantCustomerReducer } from './food-restaurants-page/core/store+/reducers/restaurant-reducer';
 import { BascetReducer } from './users-pages/core/store+/reducers/user-bascet-reducer';
+import { OdersReducerUser } from './users-pages/core/store+/reducers/oder-users-reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -34,6 +35,7 @@ import { BascetReducer } from './users-pages/core/store+/reducers/user-bascet-re
       search: SearchReducer,
       CustomerRestaurant: RestaurantCustomerReducer,
       bascet: BascetReducer,
+      oders: OdersReducerUser,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
