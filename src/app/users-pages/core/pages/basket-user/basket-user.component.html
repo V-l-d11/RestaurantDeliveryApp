@@ -1,1 +1,51 @@
-<p>basket-user works!</p>
+<div class="container" *ngIf="card$ | async as card">
+  <div class="row" *ngFor="let i of card.item">
+    <div class="col-6 mt-4">
+      <app-card-item-bascet [item]="i"></app-card-item-bascet>
+    </div>
+  </div>
+
+  <div class="row info">
+    <hr class="row-hr" />
+    <div class="row">
+      <h3 class="m-title">Bill Details</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <span class="sp">Delivery Fee</span>
+      </div>
+      <div class="col-4">
+        <span class="sp">0.21$</span>
+      </div>
+    </div>
+    <div class="row row-bl">
+      <div class="col-4">
+        <span class="sp">GST and Restaurant Charges</span>
+      </div>
+      <div class="col-4 row-bl">
+        <span class="sp">0.30$</span>
+      </div>
+    </div>
+    <div class="row row-hr">
+      <hr />
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <span class="sp-total">Total Pay</span>
+      </div>
+      <div class="col-4">
+        <span class="sp-totla-n">{{ card.total }} $</span>
+      </div>
+    </div>
+
+    <div class="row row-btn">
+      <button class="buy-btn">Buy</button>
+    </div>
+    <div class="row row-btn-close">
+      <button (click)="clearAllBascet()" class="col-6 clear-btn">
+        Clear All Bascet
+      </button>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { isAuth } from 'src/app/auth/core/store/selectors/food-auth-selectors';
 import { AuthDialogModalsService } from 'src/app/auth/core/services/food-dialog-modal-services/auth-dialog-modals.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { addItemToCard } from 'src/app/users-pages/core/store+/actions/user-panel-actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-food-details-dialog-modal',
@@ -28,7 +29,8 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   constructor(
     private store$: Store,
     @Inject(MAT_DIALOG_DATA) public data: CombineFoodDialog,
-    private loaginService: AuthDialogModalsService
+    private loaginService: AuthDialogModalsService,
+    private router: Router
   ) {
     this.store$.dispatch(
       getIngridientsCategoriesRestaurant({ id: this.data.id })
@@ -65,10 +67,11 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   addToBascet() {
     this.isAuth = this.store$.select(isAuth);
     this.isAuth.subscribe((el) => (this.authentificate = el));
-
-    if (this.authentificate) {
+    const token = localStorage.getItem('token');
+    if (token) {
       console.log(this.form.value, 'FORM');
       this.store$.dispatch(addItemToCard({ item: this.form.value }));
+      this.router.navigate(['/foodapp/userDashboard']);
     } else {
       this.loaginService.loginModaldialog();
     }

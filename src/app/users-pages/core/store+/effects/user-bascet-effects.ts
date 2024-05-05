@@ -68,6 +68,7 @@ export class BascetEffects {
           map((response) =>
             UserBascetActions.clearCardSucess({ obj: response })
           ),
+          tap(() => this.store$.dispatch(UserBascetActions.findUserCard())),
           catchError((error) =>
             of(
               UserBascetActions.clearCardFailed({
@@ -88,9 +89,31 @@ export class BascetEffects {
           map((response) =>
             UserBascetActions.removeCardItemSucess({ obj: response })
           ),
+          tap(() => this.store$.dispatch(UserBascetActions.findUserCard())),
           catchError((error) =>
             of(
               UserBascetActions.removeCardItemFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  updateCardItem$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserBascetActions.updateCardItem),
+      switchMap(({ req }) =>
+        this.userPanelService.updateCardItemQuentity(req).pipe(
+          map((response) =>
+            UserBascetActions.addItemToCardSucess({ obj: response })
+          ),
+          tap(() => this.store$.dispatch(UserBascetActions.findUserCard())),
+          catchError((error) =>
+            of(
+              UserBascetActions.updateCardItemFailed({
                 serverError: error.massage,
               })
             )

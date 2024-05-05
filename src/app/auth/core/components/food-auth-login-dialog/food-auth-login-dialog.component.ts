@@ -33,6 +33,7 @@ export class FoodAuthLoginDialogComponent implements OnInit {
     console.log('Submit');
     //  if (this.form.valid) {
     this.store$.dispatch(login(this.form.value));
+    this.router.navigate(['/foodapp/userDashboard']);
     // }
   }
 

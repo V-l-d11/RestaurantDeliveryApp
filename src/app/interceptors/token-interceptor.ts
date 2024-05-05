@@ -27,10 +27,12 @@ export class TokenIntercaptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.accessToken;
-    if (token && req.url.startsWith('http://localhost:8080/api')) {
+    console.log(token, 'Token INTERCEPTOR');
+    const token1 = localStorage.getItem('token');
+    if (token1 && req.url.startsWith('http://localhost:8080/api')) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer${token1}`,
         },
       });
     }

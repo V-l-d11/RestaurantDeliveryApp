@@ -31,6 +31,13 @@ const routes: Routes = [
     path: 'restaurant/:id',
     component: FoodSingleRestaurantPageComponent,
   },
+  {
+    path: 'userDashboard',
+    loadChildren: () =>
+      import('./../../app/users-pages/users-pages.module').then(
+        (m) => m.UsersPagesModule
+      ),
+  },
 ];
 
 @NgModule({

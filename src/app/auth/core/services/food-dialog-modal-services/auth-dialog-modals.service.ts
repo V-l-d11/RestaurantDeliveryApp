@@ -21,7 +21,7 @@ export class AuthDialogModalsService {
       height: '42vh',
       hasBackdrop: true,
       closeOnNavigation: true,
-      disableClose: true,
+      disableClose: false,
     });
   };
 

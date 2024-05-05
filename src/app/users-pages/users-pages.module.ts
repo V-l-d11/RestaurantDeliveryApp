@@ -17,6 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { BascetEffects } from './core/store+/effects/user-bascet-effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
+import { CardItemBascetComponent } from './core/components/card-item-bascet/card-item-bascet.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -43,9 +45,11 @@ const routes: Routes = [
     DiscountsUsersComponent,
     MyOdersUsersComponent,
     BasketUserComponent,
+    CardItemBascetComponent,
   ],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(USER_BASCET_FEATURE_NAME, BascetReducer),
     EffectsModule.forFeature([BascetEffects]),

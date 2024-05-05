@@ -47,8 +47,8 @@ export class FoodAuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSucess),
         tap((loginSuccessData) => {
-          console.log(loginSuccessData, 'DATA OOOO DATA');
-          localStorage.setItem('token', JSON.stringify(loginSuccessData));
+          console.log(loginSuccessData.token, 'DATA OOOO DATA');
+          localStorage.setItem('token', JSON.stringify(loginSuccessData.token));
         })
       ),
     { dispatch: false }

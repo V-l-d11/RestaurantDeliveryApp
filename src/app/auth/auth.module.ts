@@ -15,6 +15,7 @@ import { FoodAuthEffects } from './core/store/effects/food-auth.effects';
 import { FoodAuthLoginDialogComponent } from './core/components/food-auth-login-dialog/food-auth-login-dialog.component';
 import { FoodAuthRegisterDialogComponent } from './core/components/food-auth-register-dialog/food-auth-register-dialog.component';
 import { Routes } from '@angular/router';
+import { AuthGuard } from '../core/auth.guards';
 
 FoodAuthLoginDialogComponent;
 const routes: Routes = [
@@ -25,6 +26,14 @@ const routes: Routes = [
   {
     path: 'registration',
     component: FoodAuthRegisterDialogComponent,
+  },
+  {
+    path: 'userDashboard',
+    loadChildren: () =>
+      import('./../../app/users-pages/users-pages.module').then(
+        (m) => m.UsersPagesModule
+      ),
+    canActivate: [AuthGuard],
   },
 ];
 

@@ -40,6 +40,7 @@ export class UsersPanelApiService {
   }
 
   removeCardItem(itemid: number): Observable<Card> {
+    console.log(itemid, 'Item id Frm service');
     return this.http.delete<Card>(
       `http://localhost:8080/api/card-item/${itemid}/remove`
     );

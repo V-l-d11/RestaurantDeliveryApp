@@ -32,8 +32,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   ): Observable<boolean> {
     return this.store$.select(isAuth).pipe(
       map((isAuthenticated) => {
+        const token = localStorage.getItem('token');
         console.log(isAuthenticated, 'Is Authentocated Selector');
-        if (isAuthenticated) {
+        if (token) {
           console.log(isAuthenticated);
           console.log('Hahah');
           return true;

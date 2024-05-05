@@ -1,0 +1,17 @@
+$font-family: Jost;
+
+.quantity-btn {
+  border: 1px solid #ff4b4b;
+  background-color: transparent;
+  font-weight: 1000;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.quantity-sp {
+  border: none;
+
+  font-size: 20px;
+  font-family: $font-family;
+  font-weight: 700;
+}
