@@ -1,0 +1,83 @@
+$font-family: Jost;
+$bg-color: #ff0000;
+
+.card-section {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 22px;
+}
+.name-oder {
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 20px;
+}
+.address {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: 400;
+}
+.price {
+  font-family: $font-family;
+  font-size: 15px;
+  font-weight: 500;
+  color: #ff7a00;
+}
+.btn-status {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 10px 8px 10px;
+}
+
+.more-details-btn {
+  border: none;
+  background-color: transparent;
+  color: #000;
+  font-family: $font-family;
+  font-weight: 400;
+  margin-left: 10px;
+}
+.row-inf {
+  padding: 10px 30px 10px 20px;
+}
+.sp-1 {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+}
+.row-hidden {
+  padding-top: 20px;
+}
+.row-hidden-main {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.address-inf {
+  font-family: $font-family;
+  font-size: 13px;
+  font-weight: 400;
+}
+.row-list-price {
+  padding-top: 40px;
+}
+.price-el {
+  font-size: 16px;
+  font-family: $font-family;
+  font-weight: 400;
+}
+.col-list {
+  display: flex;
+  justify-content: space-between;
+}
+.price-total {
+  font-size: 22px;
+  font-weight: 600;
+  color: #ff7a00;
+  font-family: $font-family;
+}
+.total-value {
+  font-family: $font-family;
+  font-size: 18px;
+  padding-left: 10px;
+}

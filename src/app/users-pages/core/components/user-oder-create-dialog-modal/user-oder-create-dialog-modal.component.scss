@@ -1,0 +1,44 @@
+.container {
+  width: 100%;
+}
+.inpt-address {
+  border-radius: 8px;
+  width: 50%;
+  height: 40px;
+  color: rgba(0, 0, 0, 0.698);
+  padding-left: 20px;
+  border: 0.5px solid #00000063;
+}
+.inpt-address::placeholder {
+  font-family: Jost;
+  font-size: 15px;
+  font-weight: 400;
+}
+.inpt-address:focus,
+.inpt-address:active {
+  border: 0.5px solid #0000000e;
+}
+.title-section {
+  margin-top: 2%;
+}
+
+.title {
+  font-size: 23px;
+  font-family: Jost;
+  font-weight: 600;
+}
+.inpt-section {
+  margin-top: 2%;
+}
+.btn-section {
+  margin-top: 2%;
+}
+.btn-deliver {
+  border: none;
+  background-color: #ff4b4b;
+  color: #fff;
+  font-weight: 500;
+  font-family: Jost;
+  border-radius: 8px;
+  padding: 5px 40px 5px 40px;
+}

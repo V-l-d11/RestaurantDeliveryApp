@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
+import { RestaurantDto } from 'src/app/models/api/responses/favorites';
 import {
   IngridientsItem,
   ingridientsCategory,

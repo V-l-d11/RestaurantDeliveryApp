@@ -23,10 +23,10 @@ export const addToFavoritesRestaurant = createAction(
 
 export const addToFavoritesRestaurantSucess = createAction(
   '[User Panel] add to favorites restaurant sucess',
-  props<{ obj: RestaurantDto }>()
+  props<{ obj: RestaurantDto[] }>()
 );
 
 export const addToFavoritesRestaurantFailed = createAction(
   '[User Panel] add to favorites  restaurant failed',
-  props<{ serverError: number }>()
+  props<{ serverError: string }>()
 );

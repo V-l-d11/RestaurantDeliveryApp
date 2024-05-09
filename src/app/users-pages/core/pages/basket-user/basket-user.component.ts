@@ -7,6 +7,7 @@ import {
 import { getCard } from '../../store+/selectors/user-panel-selectors';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/models/api/responses/add-card-item-users-response';
+import { UserDialogService } from '../../services/dialog-modals/user-dialog.service';
 
 @Component({
   selector: 'app-basket-user',
@@ -15,7 +16,9 @@ import { Card } from 'src/app/models/api/responses/add-card-item-users-response'
 })
 export class BasketUserComponent implements OnInit {
   card$!: Observable<Card | null>;
-  constructor(private store$: Store) {
+  elemnts: any;
+  restaurantIds: number[] = [];
+  constructor(private store$: Store, private dialog: UserDialogService) {
     this.store$.dispatch(findUserCard());
   }
 
@@ -23,7 +26,13 @@ export class BasketUserComponent implements OnInit {
     this.store$.dispatch(clearCard());
   }
 
+  createOder() {
+    this.dialog.OderCreateModal(this.elemnts);
+  }
+
   ngOnInit(): void {
     this.card$ = this.store$.select(getCard);
+
+    console.log(this.restaurantIds, 'RestaurantIds');
   }
 }

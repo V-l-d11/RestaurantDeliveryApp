@@ -13,15 +13,11 @@ export class BascetEffects {
     private actions$: Actions,
     private store$: Store,
     private userPanelService: UsersPanelApiService
-  ) {
-    console.log('HHAHAHAHAHAHAH');
-  }
+  ) {}
 
   loadAddItemToCard$ = createEffect(() =>
     this.actions$.pipe(
-      tap((action) => console.log('Action  received by effects', action)),
       ofType(UserBascetActions.addItemToCard),
-      tap(({ item }) => console.log('Item after ofType:', item)),
       switchMap(({ item }) =>
         this.userPanelService.addCardItem(item).pipe(
           tap((item) => console.log('Item  Effect', item)),

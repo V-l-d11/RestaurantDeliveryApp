@@ -18,25 +18,32 @@ import { BascetEffects } from './core/store+/effects/user-bascet-effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { CardItemBascetComponent } from './core/components/card-item-bascet/card-item-bascet.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   OdersReducerUser,
   USER_ODERS_FEATURE_NAME,
 } from './core/store+/reducers/oder-users-reducer';
 import { OdersUserEffects } from './core/store+/effects/user-oders-effects';
+import { UsersCardHistoryOdersComponent } from './core/components/users-card-history-oders/users-card-history-oders.component';
+import { UserOderCreateDialogModalComponent } from './core/components/user-oder-create-dialog-modal/user-oder-create-dialog-modal.component';
+import {
+  USER_PROFILE_FEATURE_NAME,
+  UserProfilesReducer,
+} from './core/store+/reducers/user-profile-reducer';
+import { UserProfilesEffects } from './core/store+/effects/user-profiles-effects';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
+
     component: DashboardPageComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'bascet' },
       { path: 'favorites', component: FavoritesUsersComponent },
       { path: 'addresses', component: AddressesUsersComponent },
       { path: 'oders', component: MyOdersUsersComponent },
       { path: 'discounts', component: DiscountsUsersComponent },
       { path: 'bascet', component: BasketUserComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'bascet' },
     ],
   },
 ];
@@ -51,14 +58,22 @@ const routes: Routes = [
     MyOdersUsersComponent,
     BasketUserComponent,
     CardItemBascetComponent,
+    UsersCardHistoryOdersComponent,
+    UserOderCreateDialogModalComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(USER_BASCET_FEATURE_NAME, BascetReducer),
     StoreModule.forFeature(USER_ODERS_FEATURE_NAME, OdersReducerUser),
-    EffectsModule.forFeature([BascetEffects, OdersUserEffects]),
+    StoreModule.forFeature(USER_PROFILE_FEATURE_NAME, UserProfilesReducer),
+    EffectsModule.forFeature([
+      BascetEffects,
+      OdersUserEffects,
+      UserProfilesEffects,
+    ]),
   ],
 })
 export class UsersPagesModule {}

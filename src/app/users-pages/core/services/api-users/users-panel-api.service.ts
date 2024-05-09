@@ -56,8 +56,8 @@ export class UsersPanelApiService {
     );
   }
 
-  addToFavoritesRestaurant(restaurantId: number): Observable<RestaurantDto> {
-    return this.http.put<RestaurantDto>(
+  addToFavoritesRestaurant(restaurantId: number): Observable<RestaurantDto[]> {
+    return this.http.put<RestaurantDto[]>(
       `http://localhost:8080/api/restaurants/${restaurantId}/add-favorites`,
       {}
     );

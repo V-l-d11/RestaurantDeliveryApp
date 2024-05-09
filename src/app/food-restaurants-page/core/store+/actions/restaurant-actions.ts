@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
+import { RestaurantDto } from 'src/app/models/api/responses/favorites';
 import { ingridientsCategory } from 'src/app/models/api/responses/ingridients-category-from-restaurant';
 import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 

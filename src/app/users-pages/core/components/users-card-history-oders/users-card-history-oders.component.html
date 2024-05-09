@@ -1,0 +1,126 @@
+<div class="container card-section">
+  <div class="row row-inf" *ngFor="let i of item.items">
+    <div class="col-6">
+      <img />
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <h3 class="name-oder">{{ i.food.name }}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="address">{{ item.createAt }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Address:
+          <span class="address">{{ item.deliveryAddress.street }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="price">${{ item.totalPrice }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn-status">{{ item.oderStatus }}</button>
+          <button class="more-details-btn" (click)="showDetails = !showDetails">
+            More Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-hidden-main" *ngIf="showDetails">
+    <div class="row row-hidden">
+      <div class="col-6">
+        <div class="row">
+          <div class="col sp-1">Address Delivery:</div>
+        </div>
+        <div class="row">
+          <span class="address-inf">City: {{ item.deliveryAddress.city }}</span>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="address-inf"
+              >Country: {{ item.deliveryAddress.country }}</span
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="address-inf"
+              >Street: {{ item.deliveryAddress.street }}</span
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="address-inf"
+              >Zip Code: {{ item.deliveryAddress.zipCode }}</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <span class="sp-1">Ingridients:</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" *ngFor="let ingridient of item.items">
+            <div>
+              {{ ingridient.ingredients[0] }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row row-list-price">
+      <div class="col-9">
+        <div class="row">
+          <div class="col col-list">
+            <span class="price-el">Bill Details:</span>
+            <span>$50</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-list">
+            <span class="price-el">Bill Details:</span>
+            <span>$50</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-list">
+            <span class="price-el">Item Total:</span>
+            <span>$50</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-list">
+            <span class="price-el">Delivery Pay:</span>
+            <span>$50</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <hr />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="price-total">Price:</span>
+            <span class="total-value">${{ item.totalPrice }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
