@@ -1,1 +1,14 @@
-<p>favorites-users works!</p>
+<div class="container list-favorites" *ngIf="favorites$ | async as favorites">
+  <div class="row">
+    <div class="col">
+      <h2>Favorites Restaurants</h2>
+    </div>
+  </div>
+
+  <div class="row restaurant-card-section" *ngFor="let item of favorites">
+    <app-user-favorites-restaurant
+      class="col-3"
+      [item]="item"
+    ></app-user-favorites-restaurant>
+  </div>
+</div>

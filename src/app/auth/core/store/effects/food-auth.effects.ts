@@ -125,6 +125,7 @@ export class FoodAuthEffects {
       ofType(AuthActions.logout),
       map(() => {
         localStorage.removeItem('token');
+        this.router.navigate(['/foodapp']);
         return AuthActions.logoutSucess();
       })
     )

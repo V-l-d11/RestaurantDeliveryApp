@@ -31,6 +31,10 @@ import {
   UserProfilesReducer,
 } from './core/store+/reducers/user-profile-reducer';
 import { UserProfilesEffects } from './core/store+/effects/user-profiles-effects';
+import { UserFavoritesRestaurantComponent } from './core/components/user-favorites-restaurant/user-favorites-restaurant.component';
+import { UserAddressesListComponent } from './core/components/user-addresses-list/user-addresses-list.component';
+import { LogoutModalComponent } from './core/components/logout-modal/logout-modal.component';
+import { FoodAuthEffects } from '../auth/core/store/effects/food-auth.effects';
 
 const routes: Routes = [
   {
@@ -60,6 +64,9 @@ const routes: Routes = [
     CardItemBascetComponent,
     UsersCardHistoryOdersComponent,
     UserOderCreateDialogModalComponent,
+    UserFavoritesRestaurantComponent,
+    UserAddressesListComponent,
+    LogoutModalComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +80,7 @@ const routes: Routes = [
       BascetEffects,
       OdersUserEffects,
       UserProfilesEffects,
+      FoodAuthEffects,
     ]),
   ],
 })

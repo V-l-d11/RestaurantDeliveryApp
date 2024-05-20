@@ -1,0 +1,19 @@
+<div class="container card">
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <img src="{{ item.images }}" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <h3 class="title">{{ item.title }}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col btn-section d-flex justify-content-center">
+      <button class="btn-navigate" (click)="goToSingRestaurant(item.id)">
+        Restaurant Details
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserOderCreateDialogModalComponent } from '../../components/user-oder-create-dialog-modal/user-oder-create-dialog-modal.component';
+import { LogoutModalComponent } from '../../components/logout-modal/logout-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,15 @@ export class UserDialogService {
       closeOnNavigation: true,
       disableClose: false,
       data,
+    });
+  };
+
+  public logoutModal = () => {
+    const dialogRef = this.dialog.open(LogoutModalComponent, {
+      width: '40%',
+      height: '30vh',
+      hasBackdrop: true,
+      disableClose: false,
     });
   };
 }

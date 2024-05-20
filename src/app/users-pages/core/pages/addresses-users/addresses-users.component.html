@@ -1,1 +1,16 @@
-<p>addresses-users works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Addresses History</h2>
+    </div>
+  </div>
+  <div class="row" *ngIf="adresses$ | async as addressList">
+    <div class="col">
+      <div class="row" *ngFor="let item of addressList">
+        <div class="col">
+          <app-user-addresses-list [item]="item"></app-user-addresses-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

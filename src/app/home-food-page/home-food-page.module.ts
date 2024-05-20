@@ -14,6 +14,7 @@ import { FoodPromoSectionComponent } from './components/food-promo-section/food-
 import { AuthModule } from '../auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth.guards';
+import { AdminAuthGuard } from '../core/auth-owner.guards';
 
 const routes: Routes = [
   {
@@ -21,7 +22,6 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeFoodPageComponent,
   },
-
   {
     path: '',
     pathMatch: 'full',
@@ -49,6 +49,14 @@ const routes: Routes = [
         (m) => m.UsersPagesModule
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'OwnerDashboard',
+    loadChildren: () =>
+      import('./../food-admin-pages/food-admin-pages.module').then(
+        (m) => m.FoodAdminPagesModule
+      ),
+    canActivate: [AdminAuthGuard],
   },
 ];
 

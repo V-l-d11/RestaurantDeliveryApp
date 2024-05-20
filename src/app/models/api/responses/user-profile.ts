@@ -8,7 +8,7 @@ export interface UserProfile {
   role: USER_ROLE;
   oders: any;
   favorites: RestaurantDto[];
-  adresses: Address;
+  adresses: Address[];
 }
 export enum USER_ROLE {
   ROLE_CUSTOMER,

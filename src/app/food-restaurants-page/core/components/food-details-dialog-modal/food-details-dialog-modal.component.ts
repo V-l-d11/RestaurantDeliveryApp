@@ -69,7 +69,6 @@ export class FoodDetailsDialogModalComponent implements OnInit {
     this.isAuth.subscribe((el) => (this.authentificate = el));
     const token = localStorage.getItem('token');
     if (token) {
-      console.log(this.form.value, 'FORM');
       this.store$.dispatch(addItemToCard({ item: this.form.value }));
       this.router.navigate(['/foodapp/userDashboard']);
     } else {

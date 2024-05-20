@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { OderRequest } from 'src/app/models/api/requests/oder-request';
+import { Address } from 'src/app/models/api/responses/Restaurant-response';
 import { OderResponse } from 'src/app/models/api/responses/oder-response';
 
 export const createOder = createAction(
@@ -27,4 +28,10 @@ export const getOderHistorySucess = createAction(
 export const getOderHistoryFailed = createAction(
   '[User Panel] get oder history failed',
   props<{ serverError: string }>()
+);
+
+export const addActiveAddress = createAction(
+  ///???
+  '[User Panel] get active Address',
+  props<{ obj: Address }>()
 );
