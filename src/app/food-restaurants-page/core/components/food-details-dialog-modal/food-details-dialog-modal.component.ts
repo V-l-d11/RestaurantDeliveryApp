@@ -4,10 +4,13 @@ import { getIngridientsCategoriesRestaurant } from '../../store+/actions/restaur
 import { getIngridientsCategory } from '../../store+/selectors/restaurant-selectors';
 import { Observable } from 'rxjs';
 import { ingridientsCategory } from 'src/app/models/api/responses/ingridients-category-from-restaurant';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { CombineFoodDialog } from 'src/app/models/combineInterfaces/combineDialogFood';
-import { isAuth } from 'src/app/auth/core/store/selectors/food-auth-selectors';
+import {
+  getAccessToken,
+  isAuth,
+} from 'src/app/auth/core/store/selectors/food-auth-selectors';
 import { AuthDialogModalsService } from 'src/app/auth/core/services/food-dialog-modal-services/auth-dialog-modals.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { addItemToCard } from 'src/app/users-pages/core/store+/actions/user-panel-actions';
@@ -29,6 +32,7 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   constructor(
     private store$: Store,
     @Inject(MAT_DIALOG_DATA) public data: CombineFoodDialog,
+    private dialogRef: MatDialogRef<FoodDetailsDialogModalComponent>,
     private loaginService: AuthDialogModalsService,
     private router: Router
   ) {
@@ -66,12 +70,15 @@ export class FoodDetailsDialogModalComponent implements OnInit {
 
   addToBascet() {
     this.isAuth = this.store$.select(isAuth);
-    this.isAuth.subscribe((el) => (this.authentificate = el));
-    const token = localStorage.getItem('token');
-    if (token) {
+    this.isAuth.subscribe((isAuthenticated) => {
+      this.authentificate = isAuthenticated;
+    });
+    if (this.authentificate) {
+      this.dialogRef.close();
       this.store$.dispatch(addItemToCard({ item: this.form.value }));
       this.router.navigate(['/foodapp/userDashboard']);
     } else {
+      this.dialogRef.close();
       this.loaginService.loginModaldialog();
     }
   }

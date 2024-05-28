@@ -27,7 +27,10 @@ export const getAccessToken = createSelector(
   (authData) => authData.token
 );
 
-export const isAuth = createSelector(getFeature, (authData) => !!authData);
+export const isAuth = createSelector(
+  getFeature,
+  (authData) => !!authData.authData.token
+);
 
 export const getOwnerEmail = createSelector(getFeature, (state) => state.email);
 

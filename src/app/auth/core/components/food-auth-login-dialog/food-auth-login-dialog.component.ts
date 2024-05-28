@@ -4,6 +4,7 @@ import { FoodAuthServiceService } from '../../services/food-auth-service.service
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/actions/food-auth-actions';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-food-auth-login-dialog',
@@ -14,7 +15,7 @@ export class FoodAuthLoginDialogComponent implements OnInit {
   form!: FormGroup;
 
   constructor(
-    private auth: FoodAuthServiceService,
+    private dialogRef: MatDialogRef<FoodAuthLoginDialogComponent>,
     private router: Router,
     private store$: Store
   ) {}
@@ -30,9 +31,9 @@ export class FoodAuthLoginDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit');
     //  if (this.form.valid) {
     this.store$.dispatch(login(this.form.value));
+    this.dialogRef.close();
     this.router.navigate(['/foodapp/userDashboard']);
     // }
   }

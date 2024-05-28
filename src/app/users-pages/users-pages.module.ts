@@ -39,7 +39,6 @@ import { FoodAuthEffects } from '../auth/core/store/effects/food-auth.effects';
 const routes: Routes = [
   {
     path: '',
-
     component: DashboardPageComponent,
     children: [
       { path: 'favorites', component: FavoritesUsersComponent },

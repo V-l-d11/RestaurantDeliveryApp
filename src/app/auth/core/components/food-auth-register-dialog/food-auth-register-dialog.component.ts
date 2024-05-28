@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { register } from '../../store/actions/food-auth-actions';
+import { MatDialogRef } from '@angular/material/dialog';
 
 interface Role {
   value: string;
@@ -22,7 +23,10 @@ export class FoodAuthRegisterDialogComponent implements OnInit {
     { value: 'ROLE_CUSTOMER', viewValue: 'Customer' },
   ];
 
-  constructor(private store$: Store) {}
+  constructor(
+    private store$: Store,
+    private dialogRef: MatDialogRef<FoodAuthRegisterDialogComponent>
+  ) {}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -36,7 +40,7 @@ export class FoodAuthRegisterDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Submit');
+    this.dialogRef.close();
     this.store$.dispatch(register(this.form.value));
   }
 

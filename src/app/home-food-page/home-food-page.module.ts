@@ -34,7 +34,6 @@ const routes: Routes = [
         (m) => m.FoodSearchPageModule
       ),
   },
-
   {
     path: 'RestaurantSearch',
     loadChildren: () =>
@@ -57,6 +56,13 @@ const routes: Routes = [
         (m) => m.FoodAdminPagesModule
       ),
     canActivate: [AdminAuthGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./../owner-pages/owner-pages.module').then(
+        (m) => m.OwnerPagesModule
+      ),
   },
 ];
 

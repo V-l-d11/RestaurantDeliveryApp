@@ -16,14 +16,14 @@ interface Restaurant {
     fullName: string;
     email: string;
     role: string;
-    favorites: any[]; // здесь может быть определен другой тип
+    favorites: any[];
     addresses: Address[];
   };
   name: string;
   description: string;
   cuisineType: string;
   address: Address;
-  contactInformation: string | null; // возможно null
+  contactInformation: string | null;
   openingHours: string;
   images: string[];
   registrationDate: string;
