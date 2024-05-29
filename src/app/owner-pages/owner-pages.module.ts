@@ -10,6 +10,7 @@ import { OwnerDetailsComponent } from './core/pages/ower-details/ower-details.co
 import { OwnerContainerComponent } from './core/pages/owner-container/owner-container.component';
 import { OwnerDashboardService } from './services/api-owner-dashboard-service/owner-dashboard.service';
 import { OwnerFoodService } from './services/api-owner-food-service/owner-food.service';
+import { OwnerOdersService } from './services/api-owner-oders-service/owner-oders.service';
 
 const routes: Routes = [
   {
@@ -37,6 +38,6 @@ const routes: Routes = [
     OwnerDetailsComponent,
   ],
   imports: [CommonModule],
-  providers: [OwnerDashboardService, OwnerFoodService],
+  providers: [OwnerDashboardService, OwnerFoodService, OwnerOdersService],
 })
 export class OwnerPagesModule {}
