@@ -20,6 +20,7 @@ import { RestaurantCustomerReducer } from './food-restaurants-page/core/store+/r
 import { BascetReducer } from './users-pages/core/store+/reducers/user-bascet-reducer';
 import { OdersReducerUser } from './users-pages/core/store+/reducers/oder-users-reducer';
 import { UserProfilesReducer } from './users-pages/core/store+/reducers/user-profile-reducer';
+import { OwnerDashboardReducer } from './owner-pages/store+/reducers/owner-dashboard-reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,6 +39,7 @@ import { UserProfilesReducer } from './users-pages/core/store+/reducers/user-pro
       bascet: BascetReducer,
       oders: OdersReducerUser,
       profiles: UserProfilesReducer,
+      ownerDashboard: OwnerDashboardReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),

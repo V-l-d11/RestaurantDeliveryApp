@@ -25,21 +25,4 @@ export class OwnerDashboardService {
       { id: restaurantId }
     );
   }
-
-  updateRestaurant(
-    item: AdminCreateRestaurantRequest
-  ): Observable<AdminRestaurantResponse> {
-    return this.http.put<AdminRestaurantResponse>(
-      `${this.BASE_URL}/${item.id}`,
-      { req: item, id: item.id }
-    );
-  }
-
-  createRestaurant(
-    item: AdminCreateRestaurantRequest
-  ): Observable<AdminRestaurantResponse> {
-    return this.http.post<AdminRestaurantResponse>(`${this.BASE_URL}`, {
-      req: item,
-    });
-  }
 }

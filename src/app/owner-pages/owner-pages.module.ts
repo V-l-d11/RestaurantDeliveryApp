@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { OwnerDashboardPageComponent } from './core/pages/owner-dashboard-page/owner-dashboard-page.component';
 import { OwnerOdersComponent } from './core/pages/owner-oders/owner-oders.component';
 import { OwnerMenuComponent } from './core/pages/owner-menu/owner-menu.component';
@@ -11,6 +11,12 @@ import { OwnerContainerComponent } from './core/pages/owner-container/owner-cont
 import { OwnerDashboardService } from './services/api-owner-dashboard-service/owner-dashboard.service';
 import { OwnerFoodService } from './services/api-owner-food-service/owner-food.service';
 import { OwnerOdersService } from './services/api-owner-oders-service/owner-oders.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import {
+  OWNER_DASHBOARD_FEATURE_NAME,
+  OwnerDashboardReducer,
+} from './store+/reducers/owner-dashboard-reducer';
 
 const routes: Routes = [
   {
@@ -37,7 +43,13 @@ const routes: Routes = [
     OwnerEventsComponent,
     OwnerDetailsComponent,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature(OWNER_DASHBOARD_FEATURE_NAME, OwnerDashboardReducer),
+  ],
   providers: [OwnerDashboardService, OwnerFoodService, OwnerOdersService],
 })
 export class OwnerPagesModule {}
