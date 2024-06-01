@@ -6,7 +6,7 @@ export interface DashboardState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
-  restaurant: AdminRestaurantResponse | null;
+  restaurant: OwnerRestaurantBase | null;
 }
 
 export const OWNER_DASHBOARD_FEATURE_NAME = 'owner-dashboard';
@@ -36,5 +36,25 @@ export const OwnerDashboardReducer = createReducer(
     loading: false,
     loaded: true,
     serverError,
-  }))
+  })),
+  on(restaurantActions.updateRestaurantStatus, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(restaurantActions.updateRestaurantStatusSucess, (state, { item }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    restaurant: item,
+  })),
+  on(
+    restaurantActions.updateRestaurantStatusFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
+  )
 );

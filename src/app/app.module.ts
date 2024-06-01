@@ -21,6 +21,8 @@ import { BascetReducer } from './users-pages/core/store+/reducers/user-bascet-re
 import { OdersReducerUser } from './users-pages/core/store+/reducers/oder-users-reducer';
 import { UserProfilesReducer } from './users-pages/core/store+/reducers/user-profile-reducer';
 import { OwnerDashboardReducer } from './owner-pages/store+/reducers/owner-dashboard-reducer';
+import { OwnerRestaurantReducer } from './owner-pages/store+/reducers/owner-restaurant-reducer';
+import { OwnerOdersReducer } from './owner-pages/store+/reducers/owner-oders-reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -40,6 +42,8 @@ import { OwnerDashboardReducer } from './owner-pages/store+/reducers/owner-dashb
       oders: OdersReducerUser,
       profiles: UserProfilesReducer,
       ownerDashboard: OwnerDashboardReducer,
+      ownerRestaurant: OwnerRestaurantReducer,
+      ownerOders: OwnerOdersReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),

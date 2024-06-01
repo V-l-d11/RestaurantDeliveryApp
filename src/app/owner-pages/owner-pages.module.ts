@@ -17,6 +17,15 @@ import {
   OWNER_DASHBOARD_FEATURE_NAME,
   OwnerDashboardReducer,
 } from './store+/reducers/owner-dashboard-reducer';
+import { OwnerSideNavMenuComponent } from './core/components/owner-side-nav-menu/owner-side-nav-menu.component';
+import {
+  OWNER_RESTAURANT_FEATURE_NAME,
+  OwnerRestaurantReducer,
+} from './store+/reducers/owner-restaurant-reducer';
+import {
+  OWNER_ODERS_FEATURE_NAME,
+  OwnerOdersReducer,
+} from './store+/reducers/owner-oders-reducer';
 
 const routes: Routes = [
   {
@@ -42,6 +51,7 @@ const routes: Routes = [
     OwnerFoodCategoryComponent,
     OwnerEventsComponent,
     OwnerDetailsComponent,
+    OwnerSideNavMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -49,6 +59,11 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(OWNER_DASHBOARD_FEATURE_NAME, OwnerDashboardReducer),
+    StoreModule.forFeature(
+      OWNER_RESTAURANT_FEATURE_NAME,
+      OwnerRestaurantReducer
+    ),
+    StoreModule.forFeature(OWNER_ODERS_FEATURE_NAME, OwnerOdersReducer),
   ],
   providers: [OwnerDashboardService, OwnerFoodService, OwnerOdersService],
 })

@@ -30,7 +30,7 @@ export const getOwnerRestaurant = createAction(
 
 export const getOwnerRestaurantSucess = createAction(
   OwnerDashboardTypes.CREATE_OWNER_RESTAURANT_SUCESS,
-  props<{ item: AdminRestaurantResponse }>()
+  props<{ item: OwnerRestaurantBase }>()
 );
 
 export const getOwnerRestaurantFailed = createAction(
@@ -40,7 +40,7 @@ export const getOwnerRestaurantFailed = createAction(
 
 export const createOnwerRestaurant = createAction(
   OwnerDashboardTypes.CREATE_OWNER_RESTAURANT,
-  props<{ item: AdminCreateRestaurantRequest }>()
+  props<{ item: OwnerRestaurantBase }>()
 );
 
 export const createOnwerRestaurantSucess = createAction(
