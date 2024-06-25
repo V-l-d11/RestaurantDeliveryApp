@@ -1,1 +1,12 @@
-<p>owner-side-nav-menu works!</p>
+<div class="container">
+  <div class="row" *ngFor="let route of routes">
+    <div class="col d-flex justify-content-center">
+      <span
+        [class.active]="activateRoute === route.path"
+        (click)="setActivateRoute(route.path)"
+      >
+        {{ route.label }}
+      </span>
+    </div>
+  </div>
+</div>

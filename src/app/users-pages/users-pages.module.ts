@@ -15,8 +15,6 @@ import {
 } from './core/store+/reducers/user-bascet-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BascetEffects } from './core/store+/effects/user-bascet-effects';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { CardItemBascetComponent } from './core/components/card-item-bascet/card-item-bascet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {

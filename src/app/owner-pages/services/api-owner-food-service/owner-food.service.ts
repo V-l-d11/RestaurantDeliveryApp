@@ -8,7 +8,9 @@ import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 export class OwnerFoodService {
   BASE_URL = 'http://localhost:8080/api/admin/food';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('Owner Food Service Created');
+  }
 
   createFood(food: AdminCreateFoodRequest): Observable<OwnerFoodBase> {
     return this.http.post<OwnerFoodBase>(`${this.BASE_URL}`, { req: food });

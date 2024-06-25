@@ -6,7 +6,9 @@ import { AdminRestaurantResponse } from 'src/app/models/api/responses/admin/admi
 
 @Injectable()
 export class OwnerDashboardService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('OwnerDashboardService created');
+  }
   BASE_URL = 'http://localhost:8080/api/admin/restaurants';
 
   getRestaurant(): Observable<AdminRestaurantResponse> {

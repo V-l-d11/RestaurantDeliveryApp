@@ -7,7 +7,9 @@ import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 export class OwnerOdersService {
   BASE_URL = 'http://localhost:8080/api/admin/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('Owner Oders Service Created');
+  }
 
   getOderHistory(
     oderId: number,

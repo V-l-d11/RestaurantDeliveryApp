@@ -49,18 +49,18 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  // {
+  //   path: 'OwnerDashboard',
+  //   loadChildren: () =>
+  //     import('./../food-admin-pages/food-admin-pages.module').then(
+  //       (m) => m.FoodAdminPagesModule
+  //     ),
+  //   canActivate: [AdminAuthGuard],
+  // },
   {
-    path: 'OwnerDashboard',
+    path: 'owner',
     loadChildren: () =>
-      import('./../food-admin-pages/food-admin-pages.module').then(
-        (m) => m.FoodAdminPagesModule
-      ),
-    canActivate: [AdminAuthGuard],
-  },
-  {
-    path: 'admin',
-    loadChildren: () =>
-      import('./../owner-pages/owner-pages.module').then(
+      import('./../../app/owner-pages/owner-pages.module').then(
         (m) => m.OwnerPagesModule
       ),
   },

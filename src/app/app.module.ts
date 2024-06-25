@@ -23,6 +23,9 @@ import { UserProfilesReducer } from './users-pages/core/store+/reducers/user-pro
 import { OwnerDashboardReducer } from './owner-pages/store+/reducers/owner-dashboard-reducer';
 import { OwnerRestaurantReducer } from './owner-pages/store+/reducers/owner-restaurant-reducer';
 import { OwnerOdersReducer } from './owner-pages/store+/reducers/owner-oders-reducer';
+import { OwnerPagesModule } from './owner-pages/owner-pages.module';
+import { UsersPagesModule } from './users-pages/users-pages.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,6 +35,8 @@ import { OwnerOdersReducer } from './owner-pages/store+/reducers/owner-oders-red
     SharedModule,
     HomeFoodPageModule,
     MatDialogModule,
+    OwnerPagesModule,
+    UsersPagesModule,
     FoodSearchPageModule,
     FoodRestaurantsPageModule,
     StoreModule.forRoot({

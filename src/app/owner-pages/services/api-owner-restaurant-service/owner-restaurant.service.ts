@@ -11,7 +11,9 @@ import { User } from 'src/app/models/baseModals/user';
 export class OwnerRestaurantService {
   BASE_URL = 'http://localhost:8080//api/admin/restaurants';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('OwnerRestaunratService Created');
+  }
 
   createRestaurant(
     item: AdminCreateRestaurantRequest

@@ -32,12 +32,13 @@ const routes: Routes = [
     path: '',
     component: OwnerContainerComponent,
     children: [
-      { path: 'dashboard', component: OwnerDashboardPageComponent },
+      { path: 'dashboardOwner', component: OwnerDashboardPageComponent },
       { path: 'oders', component: OwnerOdersComponent },
       { path: 'menu', component: OwnerMenuComponent },
       { path: 'foodCategory', component: OwnerFoodCategoryComponent },
       { path: 'events', component: OwnerEventsComponent },
       { path: 'details', component: OwnerDetailsComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboardOwner' },
     ],
   },
 ];
