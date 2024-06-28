@@ -41,10 +41,6 @@ export class OwnerRestaurantService {
     );
   }
 
-  findRestaurantByUserId(): Observable<OwnerRestaurantBase> {
-    return this.http.get<OwnerRestaurantBase>(`${this.BASE_URL}/user`);
-  }
-
   getOwnerProfile(): Observable<User> {
     return this.http.get<User>(`/api/users/profile`);
   }

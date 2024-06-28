@@ -26,6 +26,12 @@ import {
   OWNER_ODERS_FEATURE_NAME,
   OwnerOdersReducer,
 } from './store+/reducers/owner-oders-reducer';
+import {
+  OWNER_PROFILES_FEATURE_NAME,
+  OwnerProfilesReducer,
+} from './store+/reducers/owner-profiles-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { OwnerDashboardEffects } from './store+/effects/owner-dashboard-efects';
 
 const routes: Routes = [
   {
@@ -65,7 +71,10 @@ const routes: Routes = [
       OwnerRestaurantReducer
     ),
     StoreModule.forFeature(OWNER_ODERS_FEATURE_NAME, OwnerOdersReducer),
+    StoreModule.forFeature(OWNER_PROFILES_FEATURE_NAME, OwnerProfilesReducer),
+    EffectsModule.forFeature([OwnerDashboardEffects]),
   ],
+
   providers: [OwnerDashboardService, OwnerFoodService, OwnerOdersService],
 })
 export class OwnerPagesModule {}

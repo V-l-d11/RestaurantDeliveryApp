@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AdminCreateRestaurantRequest } from 'src/app/models/api/requests/admin/create-restaurant-request';
 import { AdminRestaurantResponse } from 'src/app/models/api/responses/admin/admin-restaurant';
+import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerbase';
 
 @Injectable()
 export class OwnerDashboardService {
@@ -26,5 +27,9 @@ export class OwnerDashboardService {
       `${this.BASE_URL}/${restaurantId}/status`,
       { id: restaurantId }
     );
+  }
+
+  findRestaurantByUserId(): Observable<OwnerRestaurantBase> {
+    return this.http.get<OwnerRestaurantBase>(`${this.BASE_URL}/user`);
   }
 }
