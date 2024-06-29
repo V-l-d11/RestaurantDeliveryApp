@@ -32,7 +32,9 @@ import {
 } from './store+/reducers/owner-profiles-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { OwnerDashboardEffects } from './store+/effects/owner-dashboard-efects';
-
+import { OwnerDashboardCardRestaurantComponent } from './core/components/owner-dashboard-card-restaurant/owner-dashboard-card-restaurant.component';
+import { DateTransformPipe } from './pipes/date-transform.pipe';
+import { MatIconModule } from '@angular/material/icon';
 const routes: Routes = [
   {
     path: '',
@@ -59,9 +61,12 @@ const routes: Routes = [
     OwnerEventsComponent,
     OwnerDetailsComponent,
     OwnerSideNavMenuComponent,
+    OwnerDashboardCardRestaurantComponent,
+    DateTransformPipe,
   ],
   imports: [
     CommonModule,
+    MatIconModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes),

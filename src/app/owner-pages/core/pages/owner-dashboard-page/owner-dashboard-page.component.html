@@ -1,1 +1,10 @@
-<p>owner-dashboard-page works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <h2>Restaurant Name</h2>
+  </div>
+  <div class="row">
+    <app-owner-dashboard-card-restaurant
+      [restInfo]="restaurantInfo$"
+    ></app-owner-dashboard-card-restaurant>
+  </div>
+</div>

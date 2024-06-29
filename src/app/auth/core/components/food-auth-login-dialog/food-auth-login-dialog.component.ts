@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { login } from '../../store/actions/food-auth-actions';
 import { MatDialogRef } from '@angular/material/dialog';
+import { AuthDialogModalsService } from '../../services/food-dialog-modal-services/auth-dialog-modals.service';
 
 @Component({
   selector: 'app-food-auth-login-dialog',
@@ -16,6 +17,7 @@ export class FoodAuthLoginDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<FoodAuthLoginDialogComponent>,
+    private dialogService: AuthDialogModalsService,
     private router: Router,
     private store$: Store
   ) {}
@@ -38,5 +40,8 @@ export class FoodAuthLoginDialogComponent implements OnInit {
     // }
   }
 
-  redirectToRegister() {}
+  redirectToRegister() {
+    this.dialogRef.close();
+    this.dialogService.RegisterModaldialog();
+  }
 }

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="box" *ngIf="restInfo | async as info">
+    <div class="row row-main d-flex justify-content-between">
+      <div class="col-5">
+        <h3 class="h3-title">Restaurant</h3>
+      </div>
+      <div class="col-1">
+        <button (click)="editRestaurantInfo()" class="btn-edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ul>
+          <li>
+            <span>Restaurant Name:</span> <span>{{ info.name }}</span>
+          </li>
+          <li>
+            <span>Owner:</span> <span>{{ info.owner }}</span>
+          </li>
+          <li>
+            <span>Cuisine Type:</span> <span>{{ info.cuisineType }}</span>
+          </li>
+          <li>
+            <span>Date Registration:</span>
+            <span>{{ info.registrationDate | dateTransform }}</span>
+          </li>
+          <li>
+            <span>Opening Hours:</span> <span>{{ info.openingHours }}</span>
+          </li>
+          <li>
+            <span>Status:</span>
+            <span>
+              <button
+                class="btn-status"
+                [ngStyle]="{ 'background-color': info.open ? 'green' : 'red' }"
+              >
+                {{ info.open ? "Open" : "Closed" }}
+              </button>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
