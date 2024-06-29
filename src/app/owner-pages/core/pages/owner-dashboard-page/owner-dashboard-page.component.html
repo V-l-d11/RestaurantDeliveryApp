@@ -7,4 +7,16 @@
       [restInfo]="restaurantInfo$"
     ></app-owner-dashboard-card-restaurant>
   </div>
+  <div class="row">
+    <div class="col-6">
+      <app-owner-dashboard-address-restaurant-card
+        [address]="restaurantAddress$"
+      ></app-owner-dashboard-address-restaurant-card>
+    </div>
+    <div class="col-6">
+      <app-owner-dashboard-contact-retaurant-card
+        [contactInfo]="restaurantContactinfo$"
+      ></app-owner-dashboard-contact-retaurant-card>
+    </div>
+  </div>
 </div>

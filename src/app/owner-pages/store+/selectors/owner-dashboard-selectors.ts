@@ -35,3 +35,13 @@ export const getRestaurantInfo = createSelector(getFeature, (state) => {
       }
     : null;
 });
+
+export const getAddressRestaurant = createSelector(getFeature, (state) => {
+  const restaurant = state.restaurant;
+  return restaurant ? restaurant.address : null;
+});
+
+export const getContactInfoRestaurant = createSelector(getFeature, (state) => {
+  const restaurant = state.restaurant;
+  return restaurant ? restaurant.contactInformathion : null;
+});

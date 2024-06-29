@@ -35,6 +35,8 @@ import { OwnerDashboardEffects } from './store+/effects/owner-dashboard-efects';
 import { OwnerDashboardCardRestaurantComponent } from './core/components/owner-dashboard-card-restaurant/owner-dashboard-card-restaurant.component';
 import { DateTransformPipe } from './pipes/date-transform.pipe';
 import { MatIconModule } from '@angular/material/icon';
+import { OwnerDashboardAddressRestaurantCardComponent } from './core/components/owner-dashboard-address-restaurant-card/owner-dashboard-address-restaurant-card.component';
+import { OwnerDashboardContactRetaurantCardComponent } from './core/components/owner-dashboard-contact-retaurant-card/owner-dashboard-contact-retaurant-card.component';
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +65,8 @@ const routes: Routes = [
     OwnerSideNavMenuComponent,
     OwnerDashboardCardRestaurantComponent,
     DateTransformPipe,
+    OwnerDashboardAddressRestaurantCardComponent,
+    OwnerDashboardContactRetaurantCardComponent,
   ],
   imports: [
     CommonModule,
