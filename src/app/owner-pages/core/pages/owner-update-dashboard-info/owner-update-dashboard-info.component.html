@@ -1,0 +1,154 @@
+<div class="container-fluid" *ngIf="restaurantData$ | async as data">
+  <div class="row">
+    <div class="col">
+      <h3 class="h3-main">Edit Restaurant Information</h3>
+    </div>
+  </div>
+
+  <div class="box img-area">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <div>
+            <img src="./../../../../../assets/images/imgAdd.png" />
+          </div>
+        </div>
+        <div class="col">
+          <button>Add Images</button>
+        </div>
+      </div>
+
+      <div class="box info-area">
+        <div class="row">
+          <div class="col">
+            <h4 class="info-title">Restaurant Information</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col inf-block">
+            <input class="inf-inpt" placeholder="Name" [value]="data.name" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-block">
+            <input
+              class="inf-inpt"
+              placeholder="cuisineType"
+              [value]="data.cuisineType"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-block">
+            <input
+              class="inf-inpt"
+              placeholder="opiningHours"
+              [value]="data.openingHours"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-block">
+            <input
+              class="inf-inpt"
+              placeholder="registration"
+              [value]="data.registristrationDate"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-block">
+            <textarea
+              class="info-area"
+              placeholder="description"
+              [value]="data.description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="box address-area">
+        <div class="row">
+          <div class="col">
+            <h4>Adress</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input placeholder="street" [value]="data.address.street" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input placeholder="city" [value]="data.address.city" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input placeholder="state" [value]="data.address.state" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input placeholder="zipCode" [value]="data.address.zipCode" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input placeholder="country" [value]="data.address.country" />
+          </div>
+        </div>
+      </div>
+
+      <div class="box contact-area">
+        <div class="row">
+          <div class="col">
+            <h4>Contact Information</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input
+              placeholder="email"
+              [value]="data.contactInformathion.email"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input
+              placeholder="mobile"
+              [value]="data.contactInformathion.mobile"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input
+              placeholder="twitter"
+              [value]="data.contactInformathion.twitter"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <input
+              placeholder="instagram"
+              [value]="data.contactInformathion.instagram"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

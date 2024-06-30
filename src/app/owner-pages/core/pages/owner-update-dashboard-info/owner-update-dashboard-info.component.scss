@@ -1,0 +1,58 @@
+$font-size-input: 15px;
+$font-family: Jost;
+$padding-area: 20px 42px 20px 42px;
+$padding-inpt: 10px 20px 10px 0px;
+$padding-inpt-inside: 10px 15px 10px 15px;
+.box {
+  margin-top: 2%;
+  width: 100%;
+  background: #ffffff;
+  opacity: 0.95;
+  border: 1px solid #0000002b;
+  box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.h3-main {
+  font-size: 30px;
+}
+
+.img-area {
+  padding: 20px 46px 20px 46px;
+  .info-area {
+    padding: $padding-area;
+    .info-title {
+      font-size: 26px;
+    }
+    .inf-block {
+      padding: $padding-inpt;
+      .inf-inpt {
+        width: 95%;
+        height: 50px;
+        border-radius: 5px;
+        border-color: #00000060;
+        padding: $padding-inpt-inside;
+        font-family: $font-family;
+        color: #000000ab;
+      }
+      .info-area {
+        width: 70%;
+        height: 90px;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: none;
+      }
+    }
+  }
+
+  .address-area {
+    padding: $padding-area;
+  }
+
+  .contact-area {
+    padding: $padding-area;
+  }
+}

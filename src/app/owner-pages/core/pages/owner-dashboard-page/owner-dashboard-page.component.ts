@@ -8,6 +8,7 @@ import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner
 import {
   getAddressRestaurant,
   getContactInfoRestaurant,
+  getNameRestaurant,
   getRestaurantInfo,
 } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 
@@ -20,6 +21,7 @@ export class OwnerDashboardPageComponent implements OnInit {
   restaurantInfo$!: Observable<OwnerRestaurantInfo | null>;
   restaurantAddress$!: Observable<AddressBase | null>;
   restaurantContactinfo$!: Observable<ContactInformation | null>;
+  restaurantName$!: Observable<string | null>;
 
   constructor(private store$: Store) {
     this.store$.dispatch(findRestaurant());
@@ -29,5 +31,6 @@ export class OwnerDashboardPageComponent implements OnInit {
     this.restaurantInfo$ = this.store$.select(getRestaurantInfo);
     this.restaurantAddress$ = this.store$.select(getAddressRestaurant);
     this.restaurantContactinfo$ = this.store$.select(getContactInfoRestaurant);
+    this.restaurantName$ = this.store$.select(getNameRestaurant);
   }
 }

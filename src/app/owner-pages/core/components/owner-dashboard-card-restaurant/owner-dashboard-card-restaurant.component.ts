@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OwnerRestaurantInfo } from 'src/app/models/storeModels/selectorsModels/owner-restaurant-info';
 
@@ -11,9 +12,11 @@ export class OwnerDashboardCardRestaurantComponent implements OnInit {
   @Input()
   restInfo!: Observable<OwnerRestaurantInfo | null>;
 
-  constructor() {}
+  constructor(private route: Router) {}
 
-  editRestaurantInfo() {}
+  editRestaurantInfo() {
+    this.route.navigate(['/foodapp/owner/editRestaurnatInfo']);
+  }
 
   ngOnInit(): void {
     console.log(this.restInfo, 'Rest Info in OnINit');

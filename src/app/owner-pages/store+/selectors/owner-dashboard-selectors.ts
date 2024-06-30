@@ -45,3 +45,8 @@ export const getContactInfoRestaurant = createSelector(getFeature, (state) => {
   const restaurant = state.restaurant;
   return restaurant ? restaurant.contactInformathion : null;
 });
+
+export const getNameRestaurant = createSelector(getFeature, (state) => {
+  const restaurnat = state.restaurant;
+  return restaurnat ? restaurnat.name : null;
+});

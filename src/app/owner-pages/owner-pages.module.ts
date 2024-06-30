@@ -37,12 +37,17 @@ import { DateTransformPipe } from './pipes/date-transform.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { OwnerDashboardAddressRestaurantCardComponent } from './core/components/owner-dashboard-address-restaurant-card/owner-dashboard-address-restaurant-card.component';
 import { OwnerDashboardContactRetaurantCardComponent } from './core/components/owner-dashboard-contact-retaurant-card/owner-dashboard-contact-retaurant-card.component';
+import { OwnerUpdateDashboardInfoComponent } from './core/pages/owner-update-dashboard-info/owner-update-dashboard-info.component';
 const routes: Routes = [
   {
     path: '',
     component: OwnerContainerComponent,
     children: [
       { path: 'dashboardOwner', component: OwnerDashboardPageComponent },
+      {
+        path: 'editRestaurnatInfo',
+        component: OwnerUpdateDashboardInfoComponent,
+      },
       { path: 'oders', component: OwnerOdersComponent },
       { path: 'menu', component: OwnerMenuComponent },
       { path: 'foodCategory', component: OwnerFoodCategoryComponent },
@@ -67,6 +72,7 @@ const routes: Routes = [
     DateTransformPipe,
     OwnerDashboardAddressRestaurantCardComponent,
     OwnerDashboardContactRetaurantCardComponent,
+    OwnerUpdateDashboardInfoComponent,
   ],
   imports: [
     CommonModule,

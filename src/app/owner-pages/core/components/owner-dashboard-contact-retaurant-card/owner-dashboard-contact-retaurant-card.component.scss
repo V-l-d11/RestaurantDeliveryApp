@@ -5,6 +5,7 @@ $font-family: Jost;
   box-sizing: border-box;
   margin-left: 2%;
   width: 94%;
+
   .box {
     margin-top: 2%;
     width: 100%;
@@ -13,7 +14,7 @@ $font-family: Jost;
     border: 1px solid #000000;
     box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.06);
     border-radius: 20px;
-
+    height: 275px;
     .row-main {
       padding-top: 2%;
       text-align: left;
