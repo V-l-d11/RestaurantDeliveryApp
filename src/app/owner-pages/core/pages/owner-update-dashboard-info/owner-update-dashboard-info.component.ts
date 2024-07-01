@@ -4,7 +4,10 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AdminRestaurantResponse } from 'src/app/models/api/responses/admin/admin-restaurant';
 import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerbase';
-import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
+import {
+  findRestaurant,
+  updateOwerRestaurant,
+} from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 import { getRestaurantAll } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 
 @Component({
@@ -21,7 +24,24 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
     this.restaurantData$ = this.store$.select(getRestaurantAll);
   }
 
-  onSubmit() {}
+  clearInput(controlName: string): void {
+    this.form.get(controlName)?.setValue('');
+  }
+  restoreInput(controlName: string, originalValue: string): void {
+    if (!this.form.get(controlName)?.value) {
+      this.form.get(controlName)?.setValue(originalValue);
+    }
+  }
+
+  onSubmit() {
+    console.log('Click');
+    if (this.form.valid) {
+      console.log(this.form.value.id, 'IIIIDDD');
+      console.log(this.form.value, 'This form form valid ______----_________');
+      this.store$.dispatch(updateOwerRestaurant({ item: this.form.value }));
+    }
+    console.log('No');
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -69,7 +89,13 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
     });
 
     this.restaurantData$.subscribe((data) => {
+      console.log(data?.images, 'Images HAHH');
       if (data) {
+        const imagesArray = this.form.get('images') as FormArray;
+        imagesArray.clear();
+        data.images.forEach((image: string) => {
+          imagesArray.push(new FormControl(image));
+        });
         this.form.patchValue({
           id: data.id,
           name: data.name,
@@ -94,5 +120,30 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
         });
       }
     });
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    console.log(file, 'File');
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imagesArray = this.form.get('images') as FormArray;
+        imagesArray.push(new FormControl(reader.result as string));
+        console.log(imagesArray.value, 'Images Array');
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  removeImage(index: number): void {
+    const imagesArray = this.form.get('images') as FormArray;
+    imagesArray.removeAt(index);
+    console.log(imagesArray.value, 'Images Array after removal');
+  }
+
+  hasError(controlName: string, errorName: string): boolean {
+    const control = this.form.get(controlName);
+    return control ? control.hasError(errorName) && control.touched : false;
   }
 }

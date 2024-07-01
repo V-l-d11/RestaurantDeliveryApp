@@ -7,14 +7,36 @@
 
   <div class="box img-area">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="row">
-        <div class="col">
-          <div>
-            <img src="./../../../../../assets/images/imgAdd.png" />
-          </div>
+      <div class="row d-flex justify-content-start">
+        <div class="col-2">
+          <img
+            src="./../../../../../assets/images/imgAdd.png"
+            (click)="fileInput.click()"
+          />
+          <input
+            type="file"
+            #fileInput
+            (change)="onFileSelected($event)"
+            style="display: none"
+          />
         </div>
-        <div class="col">
-          <button>Add Images</button>
+
+        <div
+          class="col-2 position-relative"
+          *ngFor="let image of form.get('images')!.value; let i = index"
+        >
+          <img
+            [src]="image"
+            [alt]="'Image ' + (i + 1)"
+            class="image-thumbnail"
+          />
+          <button
+            type="button"
+            class="btn btn-deleted btn-danger"
+            (click)="removeImage(i)"
+          >
+            -
+          </button>
         </div>
       </div>
 
@@ -26,127 +48,345 @@
         </div>
         <div class="row">
           <div class="col inf-block">
-            <input class="inf-inpt" placeholder="Name" [value]="data.name" />
+            <input
+              (focus)="clearInput('name')"
+              (blur)="restoreInput('name', data.name)"
+              class="inf-inpt"
+              placeholder="Name"
+              formControlName="name"
+              [value]="data.name"
+            />
+            <div *ngIf="hasError('name', 'required')" class="text-danger">
+              Name is required
+            </div>
+            <div *ngIf="hasError('name', 'minlength')" class="text-danger">
+              Name must be at least 4 characters long
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col inf-block">
             <input
+              (focus)="clearInput('cuisineType')"
+              (blur)="restoreInput('cuisineType', data.cuisineType)"
               class="inf-inpt"
               placeholder="cuisineType"
+              formControlName="cuisineType"
               [value]="data.cuisineType"
             />
+            <div
+              *ngIf="hasError('cuisineType', 'required')"
+              class="text-danger"
+            >
+              Cuisine Type is required
+            </div>
+            <div
+              *ngIf="hasError('cuisineType', 'minlength')"
+              class="text-danger"
+            >
+              Cuisine Type must be at least 3 characters long
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col inf-block">
             <input
+              (focus)="clearInput('opiningHours')"
+              (blur)="restoreInput('opiningHours', data.openingHours)"
               class="inf-inpt"
               placeholder="opiningHours"
+              formControlName="opiningHours"
               [value]="data.openingHours"
             />
+            <div
+              *ngIf="hasError('opiningHours', 'required')"
+              class="text-danger"
+            >
+              Opening Hours are required
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col inf-block">
             <input
+              (focus)="clearInput('register')"
+              (blur)="restoreInput('register', data.registristrationDate)"
               class="inf-inpt"
               placeholder="registration"
-              [value]="data.registristrationDate"
+              formControlName="register"
+              [value]="data.registristrationDate | dateTransform"
             />
+            <div *ngIf="hasError('register', 'required')" class="text-danger">
+              Registration Date is required
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col inf-block">
             <textarea
+              (focus)="clearInput('description')"
+              (blur)="restoreInput('description', data.description)"
               class="info-area"
               placeholder="description"
+              formControlName="description"
               [value]="data.description"
             ></textarea>
+            <div
+              *ngIf="hasError('description', 'required')"
+              class="text-danger"
+            >
+              Description is required
+            </div>
+            <div
+              *ngIf="hasError('description', 'minlength')"
+              class="text-danger"
+            >
+              Description must be at least 1 character long
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="box address-area">
+      <div class="box info-area" formGroupName="address">
         <div class="row">
           <div class="col">
-            <h4>Adress</h4>
+            <h4 class="info-title">Adress</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col">
-            <input placeholder="street" [value]="data.address.street" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <input placeholder="city" [value]="data.address.city" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <input placeholder="state" [value]="data.address.state" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <input placeholder="zipCode" [value]="data.address.zipCode" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <input placeholder="country" [value]="data.address.country" />
-          </div>
-        </div>
-      </div>
-
-      <div class="box contact-area">
-        <div class="row">
-          <div class="col">
-            <h4>Contact Information</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
+          <div class="col inf-address">
             <input
+              (focus)="clearInput('address.street')"
+              (blur)="restoreInput('address.street', data.address.street)"
+              class="inf-inpt"
+              placeholder="street"
+              formControlName="street"
+              [value]="data.address.street"
+            />
+            <div
+              *ngIf="hasError('address.street', 'required')"
+              class="text-danger"
+            >
+              Street is required
+            </div>
+            <div
+              *ngIf="hasError('address.street', 'minlength')"
+              class="text-danger"
+            >
+              Street must be at least 3 characters long
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-address">
+            <input
+              (focus)="clearInput('address.city')"
+              (blur)="restoreInput('address.city', data.address.city)"
+              class="inf-inpt"
+              placeholder="city"
+              formControlName="city"
+              [value]="data.address.city"
+            />
+            <div
+              *ngIf="hasError('address.city', 'required')"
+              class="text-danger"
+            >
+              City is required
+            </div>
+            <div
+              *ngIf="hasError('address.city', 'minlength')"
+              class="text-danger"
+            >
+              City must be at least 3 characters long
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-address">
+            <input
+              (focus)="clearInput('address.state')"
+              (blur)="restoreInput('address.state', data.address.state)"
+              class="inf-inpt"
+              placeholder="state"
+              formControlName="state"
+              [value]="data.address.state"
+            />
+            <div
+              *ngIf="hasError('address.state', 'required')"
+              class="text-danger"
+            >
+              State is required
+            </div>
+            <div
+              *ngIf="hasError('address.state', 'minlength')"
+              class="text-danger"
+            >
+              State must be at least 3 characters long
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-address">
+            <input
+              (focus)="clearInput('address.zipCode')"
+              (blur)="restoreInput('address.zipCode', data.address.zipCode)"
+              class="inf-inpt"
+              placeholder="zipCode"
+              formControlName="zipCode"
+              [value]="data.address.zipCode"
+            />
+            <div
+              *ngIf="hasError('address.zipCode', 'required')"
+              class="text-danger"
+            >
+              Zip Code is required
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col inf-address">
+            <input
+              (focus)="clearInput('address.country')"
+              (blur)="restoreInput('address.country', data.address.country)"
+              class="inf-inpt"
+              placeholder="country"
+              formControlName="country"
+              [value]="data.address.country"
+            />
+            <div
+              *ngIf="hasError('address.country', 'required')"
+              class="text-danger"
+            >
+              Country is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box info-area" formGroupName="contactInformathion">
+        <div class="row">
+          <div class="col">
+            <h4 class="info-title">Contact Information</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col inf-block">
+            <input
+              (focus)="clearInput('contactInformathion.email')"
+              (blur)="
+                restoreInput(
+                  'contactInformathion.email',
+                  data.contactInformathion.email
+                )
+              "
+              class="inf-inpt"
               placeholder="email"
+              formControlName="email"
               [value]="data.contactInformathion.email"
             />
+            <div
+              *ngIf="hasError('contactInformathion.email', 'required')"
+              class="text-danger"
+            >
+              Email is required
+            </div>
+            <div
+              *ngIf="hasError('contactInformathion.email', 'minlength')"
+              class="text-danger"
+            >
+              Email must be at least 4 characters long
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col inf-block">
             <input
+              (focus)="clearInput('contactInformathion.mobile')"
+              (blur)="
+                restoreInput(
+                  'contactInformathion.mobile',
+                  data.contactInformathion.mobile
+                )
+              "
+              class="inf-inpt"
               placeholder="mobile"
+              formControlName="mobile"
               [value]="data.contactInformathion.mobile"
             />
+            <div
+              *ngIf="hasError('contactInformathion.mobile', 'required')"
+              class="text-danger"
+            >
+              Mobile number is required
+            </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="col">
+          <div class="col inf-block">
             <input
+              (focus)="clearInput('contactInformathion.twitter')"
+              (blur)="
+                restoreInput(
+                  'contactInformathion.twitter',
+                  data.contactInformathion.twitter
+                )
+              "
+              class="inf-inpt"
               placeholder="twitter"
+              formControlName="twitter"
               [value]="data.contactInformathion.twitter"
             />
+            <div
+              *ngIf="hasError('contactInformathion.twitter', 'required')"
+              class="text-danger"
+            >
+              Twitter handle is required
+            </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="col">
+          <div class="col inf-block">
             <input
+              (focus)="clearInput('contactInformathion.instagram')"
+              (blur)="
+                restoreInput(
+                  'contactInformathion.instagram',
+                  data.contactInformathion.instagram
+                )
+              "
+              class="inf-inpt"
               placeholder="instagram"
+              formControlName="instagram"
               [value]="data.contactInformathion.instagram"
             />
+            <div
+              *ngIf="hasError('contactInformathion.instagram', 'required')"
+              class="text-danger"
+            >
+              Instagram handle is required
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="row btn-section">
+        <div class="col-2">
+          <button (click)="onSubmit()" class="btn-submit">
+            Save Information
+          </button>
+        </div>
+        <div class="col-3">
+          <button class="btn-submit btn-exit">Go Back</button>
         </div>
       </div>
     </form>

@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerbase';
 import * as restaurantActions from './../actions/actions-owner-retsuarant';
+import { AdminCreateRestaurantRequest } from 'src/app/models/api/requests/admin/create-restaurant-request';
 
 export interface OwnerRestaurantState {
   loading: boolean;
@@ -8,6 +9,7 @@ export interface OwnerRestaurantState {
   serverError: string;
   restaurantStatus: boolean;
   restaurant: OwnerRestaurantBase | null;
+  updateRestaurant: AdminCreateRestaurantRequest | null;
 }
 
 export const OWNER_RESTAURANT_FEATURE_NAME = 'owner-restaurant-page';
@@ -18,6 +20,7 @@ export const initalState: OwnerRestaurantState = {
   serverError: '',
   restaurantStatus: false,
   restaurant: null,
+  updateRestaurant: null,
 };
 
 export const OwnerRestaurantReducer = createReducer(
@@ -68,7 +71,7 @@ export const OwnerRestaurantReducer = createReducer(
     ...state,
     loading: false,
     loaded: true,
-    restaurant: item,
+    updateRestaurant: item,
   })),
   on(
     restaurantActions.updateOwnerRestaurantFailed,

@@ -38,6 +38,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { OwnerDashboardAddressRestaurantCardComponent } from './core/components/owner-dashboard-address-restaurant-card/owner-dashboard-address-restaurant-card.component';
 import { OwnerDashboardContactRetaurantCardComponent } from './core/components/owner-dashboard-contact-retaurant-card/owner-dashboard-contact-retaurant-card.component';
 import { OwnerUpdateDashboardInfoComponent } from './core/pages/owner-update-dashboard-info/owner-update-dashboard-info.component';
+import { OwnerRestaurantEffects } from './store+/effects/owner-restaurant-effects';
+import { OwnerRestaurantService } from './services/api-owner-restaurant-service/owner-restaurant.service';
 const routes: Routes = [
   {
     path: '',
@@ -87,9 +89,13 @@ const routes: Routes = [
     ),
     StoreModule.forFeature(OWNER_ODERS_FEATURE_NAME, OwnerOdersReducer),
     StoreModule.forFeature(OWNER_PROFILES_FEATURE_NAME, OwnerProfilesReducer),
-    EffectsModule.forFeature([OwnerDashboardEffects]),
+    EffectsModule.forFeature([OwnerDashboardEffects, OwnerRestaurantEffects]),
   ],
-
-  providers: [OwnerDashboardService, OwnerFoodService, OwnerOdersService],
+  providers: [
+    OwnerDashboardService,
+    OwnerFoodService,
+    OwnerOdersService,
+    OwnerRestaurantService,
+  ],
 })
 export class OwnerPagesModule {}

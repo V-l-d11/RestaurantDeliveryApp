@@ -20,6 +20,6 @@ export class OwnerDashboardCardRestaurantComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.restInfo, 'Rest Info in OnINit');
-    this.restInfo.subscribe((el) => console.log(el, 'element'));
+    this.restInfo.subscribe((el) => console.log(el, 'elementINFORMATION'));
   }
 }

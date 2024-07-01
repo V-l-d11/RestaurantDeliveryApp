@@ -75,7 +75,7 @@ export const updateOwerRestaurant = createAction(
 
 export const updateOwnerRestaurantSucess = createAction(
   OwnerDashboardTypes.UPDATE_OWNER_RESTAURANT_SUCESS,
-  props<{ item: OwnerRestaurantBase }>()
+  props<{ item: AdminCreateRestaurantRequest }>()
 );
 
 export const updateOwnerRestaurantFailed = createAction(

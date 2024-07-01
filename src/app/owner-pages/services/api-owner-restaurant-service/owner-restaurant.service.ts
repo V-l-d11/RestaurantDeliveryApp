@@ -5,27 +5,26 @@ import { AdminCreateRestaurantRequest } from 'src/app/models/api/requests/admin/
 import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerbase';
 import { User } from 'src/app/models/baseModals/user';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class OwnerRestaurantService {
-  BASE_URL = 'http://localhost:8080//api/admin/restaurants';
+  BASE_URL = 'http://localhost:8080/api/admin/restaurants';
 
-  constructor(private http: HttpClient) {
-    console.log('OwnerRestaunratService Created');
-  }
+  constructor(private http: HttpClient) {}
 
   createRestaurant(
     item: AdminCreateRestaurantRequest
   ): Observable<OwnerRestaurantBase> {
     return this.http.post<OwnerRestaurantBase>(`${this.BASE_URL}`, { item });
   }
+
   updateRestaurant(
     item: AdminCreateRestaurantRequest
-  ): Observable<OwnerRestaurantBase> {
-    return this.http.put<OwnerRestaurantBase>(`${this.BASE_URL}/${item.id}`, {
-      item,
-    });
+  ): Observable<AdminCreateRestaurantRequest> {
+    console.log(item, 'Item into service');
+    return this.http.put<AdminCreateRestaurantRequest>(
+      `${this.BASE_URL}/${item.id}`,
+      item
+    );
   }
 
   deleteRestaurant(restaurantId: number): Observable<string> {
