@@ -22,8 +22,8 @@ export class OwnerDashboardService {
 
   updateRestaurantStatus(
     restaurantId: number
-  ): Observable<AdminRestaurantResponse> {
-    return this.http.put<AdminRestaurantResponse>(
+  ): Observable<OwnerRestaurantBase> {
+    return this.http.put<OwnerRestaurantBase>(
       `${this.BASE_URL}/${restaurantId}/status`,
       { id: restaurantId }
     );

@@ -40,6 +40,9 @@ import { OwnerDashboardContactRetaurantCardComponent } from './core/components/o
 import { OwnerUpdateDashboardInfoComponent } from './core/pages/owner-update-dashboard-info/owner-update-dashboard-info.component';
 import { OwnerRestaurantEffects } from './store+/effects/owner-restaurant-effects';
 import { OwnerRestaurantService } from './services/api-owner-restaurant-service/owner-restaurant.service';
+import { OwnerDialogAskingComponent } from './core/components/owner-dialog-asking/owner-dialog-asking.component';
+import { OwnerDialogServiceService } from './services/owner-dialog-service/owner-dialog-service.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 const routes: Routes = [
   {
     path: '',
@@ -75,10 +78,12 @@ const routes: Routes = [
     OwnerDashboardAddressRestaurantCardComponent,
     OwnerDashboardContactRetaurantCardComponent,
     OwnerUpdateDashboardInfoComponent,
+    OwnerDialogAskingComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes),
@@ -89,7 +94,11 @@ const routes: Routes = [
     ),
     StoreModule.forFeature(OWNER_ODERS_FEATURE_NAME, OwnerOdersReducer),
     StoreModule.forFeature(OWNER_PROFILES_FEATURE_NAME, OwnerProfilesReducer),
-    EffectsModule.forFeature([OwnerDashboardEffects, OwnerRestaurantEffects]),
+    EffectsModule.forFeature([
+      OwnerDashboardEffects,
+      OwnerRestaurantEffects,
+      OwnerDialogServiceService,
+    ]),
   ],
   providers: [
     OwnerDashboardService,

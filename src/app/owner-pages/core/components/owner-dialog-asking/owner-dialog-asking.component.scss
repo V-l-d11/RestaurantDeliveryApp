@@ -1,0 +1,31 @@
+.box {
+  margin-top: 18%;
+  .main-title {
+    font-size: 19px;
+    font-family: Jost;
+    font-weight: 500;
+  }
+
+  .btn-section {
+    margin-top: 5%;
+    .btn-acess {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px 10px 20px;
+      background-color: rgb(208, 70, 70);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .btn-conform {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px 10px 20px;
+      background-color: rgb(10, 10, 10);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+}

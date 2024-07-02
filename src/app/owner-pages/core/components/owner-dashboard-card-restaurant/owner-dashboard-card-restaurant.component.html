@@ -33,6 +33,7 @@
             <span>Status:</span>
             <span>
               <button
+                (click)="updateRestaurantStatus()"
                 class="btn-status"
                 [ngStyle]="{ 'background-color': info.open ? 'green' : 'red' }"
               >

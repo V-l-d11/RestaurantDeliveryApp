@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AdminRestaurantResponse } from 'src/app/models/api/responses/admin/admin-restaurant';
 import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerbase';
+import { OwnerDialogServiceService } from 'src/app/owner-pages/services/owner-dialog-service/owner-dialog-service.service';
 import {
   findRestaurant,
   updateOwerRestaurant,
@@ -19,7 +20,10 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
   form!: FormGroup;
   restaurantData$: Observable<OwnerRestaurantBase | null>;
 
-  constructor(private store$: Store) {
+  constructor(
+    private store$: Store,
+    private dialogService: OwnerDialogServiceService
+  ) {
     this.store$.dispatch(findRestaurant());
     this.restaurantData$ = this.store$.select(getRestaurantAll);
   }
@@ -36,9 +40,16 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
   onSubmit() {
     console.log('Click');
     if (this.form.valid) {
-      console.log(this.form.value.id, 'IIIIDDD');
-      console.log(this.form.value, 'This form form valid ______----_________');
-      this.store$.dispatch(updateOwerRestaurant({ item: this.form.value }));
+      this.dialogService.askingForEditRestaurantInfo().subscribe((result) => {
+        if (result) {
+          console.log(this.form.value.id, 'IIIIDDD');
+          console.log(
+            this.form.value,
+            'This form form valid ______----_________'
+          );
+          this.store$.dispatch(updateOwerRestaurant({ item: this.form.value }));
+        }
+      });
     }
     console.log('No');
   }

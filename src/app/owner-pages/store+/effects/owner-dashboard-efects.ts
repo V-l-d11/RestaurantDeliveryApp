@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { OwnerDashboardService } from '../../services/api-owner-dashboard-service/owner-dashboard.service';
 import * as ownerRestaurantActions from './../actions/actions-owner-retsuarant';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +31,33 @@ export class OwnerDashboardEffects {
             )
           )
         )
+      )
+    )
+  );
+
+  updateRestaurantStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ownerRestaurantActions.updateRestaurantStatus),
+      switchMap((action) =>
+        this.ownerDashboardService
+          .updateRestaurantStatus(action.restaurantId)
+          .pipe(
+            map((response) =>
+              ownerRestaurantActions.updateRestaurantStatusSucess({
+                item: response,
+              })
+            ),
+            tap(() => {
+              this.store$.dispatch(ownerRestaurantActions.findRestaurant());
+            }),
+            catchError((error) =>
+              of(
+                ownerRestaurantActions.updateOwnerRestaurantFailed({
+                  serverError: error.massage,
+                })
+              )
+            )
+          )
       )
     )
   );
