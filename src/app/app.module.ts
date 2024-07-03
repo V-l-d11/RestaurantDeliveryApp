@@ -26,7 +26,7 @@ import { OwnerOdersReducer } from './owner-pages/store+/reducers/owner-oders-red
 import { OwnerPagesModule } from './owner-pages/owner-pages.module';
 import { UsersPagesModule } from './users-pages/users-pages.module';
 import { OwnerProfilesReducer } from './owner-pages/store+/reducers/owner-profiles-reducer';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -37,6 +37,7 @@ import { OwnerProfilesReducer } from './owner-pages/store+/reducers/owner-profil
     HomeFoodPageModule,
     MatDialogModule,
     OwnerPagesModule,
+    BrowserAnimationsModule,
     UsersPagesModule,
     FoodSearchPageModule,
     FoodRestaurantsPageModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AdminRestaurantResponse } from 'src/app/models/api/responses/admin/admin-restaurant';
@@ -22,6 +23,7 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
 
   constructor(
     private store$: Store,
+    private router: Router,
     private dialogService: OwnerDialogServiceService
   ) {
     this.store$.dispatch(findRestaurant());
@@ -42,6 +44,7 @@ export class OwnerUpdateDashboardInfoComponent implements OnInit {
     if (this.form.valid) {
       this.dialogService.askingForEditRestaurantInfo().subscribe((result) => {
         if (result) {
+          this.router.navigate(['/foodapp/owner/dashboardOwner']);
           console.log(this.form.value.id, 'IIIIDDD');
           console.log(
             this.form.value,

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { OwnerRestaurantInfo } from 'src/app/models/storeModels/selectorsModels/owner-restaurant-info';
+import { OwnerDialogServiceService } from 'src/app/owner-pages/services/owner-dialog-service/owner-dialog-service.service';
 import { updateRestaurantStatus } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 
 @Component({
@@ -15,7 +16,11 @@ export class OwnerDashboardCardRestaurantComponent implements OnInit {
   restInfo!: Observable<OwnerRestaurantInfo | null>;
   restaurantId!: number;
 
-  constructor(private route: Router, private store$: Store) {}
+  constructor(
+    private route: Router,
+    private store$: Store,
+    private dialogService: OwnerDialogServiceService
+  ) {}
 
   editRestaurantInfo() {
     this.route.navigate(['/foodapp/owner/editRestaurnatInfo']);
@@ -25,6 +30,7 @@ export class OwnerDashboardCardRestaurantComponent implements OnInit {
     this.store$.dispatch(
       updateRestaurantStatus({ restaurantId: this.restaurantId })
     );
+    this.dialogService.openSnackBar('Status Sucessfuli changed!');
   }
 
   ngOnInit(): void {
