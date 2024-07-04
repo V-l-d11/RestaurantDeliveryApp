@@ -13,6 +13,7 @@ import { OwnerFoodService } from './services/api-owner-food-service/owner-food.s
 import { OwnerOdersService } from './services/api-owner-oders-service/owner-oders.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { MatTableModule } from '@angular/material/table';
 import {
   OWNER_DASHBOARD_FEATURE_NAME,
   OwnerDashboardReducer,
@@ -43,6 +44,14 @@ import { OwnerRestaurantService } from './services/api-owner-restaurant-service/
 import { OwnerDialogAskingComponent } from './core/components/owner-dialog-asking/owner-dialog-asking.component';
 import { OwnerDialogServiceService } from './services/owner-dialog-service/owner-dialog-service.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OwnerManuItemTableComponent } from './core/components/owner-manu-item-table/owner-manu-item-table.component';
+import { OwnerCategoriesTableComponent } from './core/components/owner-categories-table/owner-categories-table.component';
+import {
+  OwnerCategoriesFoodReduce,
+  OWNER_CATEGORIES_FOOD_NAME,
+} from './store+/reducers/owner-categories-food';
+import { CategoryFoodService } from './services/api-owner-category-food-service/category-food.service';
+import { OwnerCategoryFoodEffects } from './store+/effects/owner-category-food-effects';
 
 const routes: Routes = [
   {
@@ -80,10 +89,13 @@ const routes: Routes = [
     OwnerDashboardContactRetaurantCardComponent,
     OwnerUpdateDashboardInfoComponent,
     OwnerDialogAskingComponent,
+    OwnerManuItemTableComponent,
+    OwnerCategoriesTableComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
+    MatTableModule,
     MatSnackBarModule,
     ReactiveFormsModule,
     FormsModule,
@@ -95,10 +107,15 @@ const routes: Routes = [
     ),
     StoreModule.forFeature(OWNER_ODERS_FEATURE_NAME, OwnerOdersReducer),
     StoreModule.forFeature(OWNER_PROFILES_FEATURE_NAME, OwnerProfilesReducer),
+    StoreModule.forFeature(
+      OWNER_CATEGORIES_FOOD_NAME,
+      OwnerCategoriesFoodReduce
+    ),
     EffectsModule.forFeature([
       OwnerDashboardEffects,
       OwnerRestaurantEffects,
       OwnerDialogServiceService,
+      OwnerCategoryFoodEffects,
     ]),
   ],
   providers: [
@@ -106,6 +123,7 @@ const routes: Routes = [
     OwnerFoodService,
     OwnerOdersService,
     OwnerRestaurantService,
+    CategoryFoodService,
   ],
 })
 export class OwnerPagesModule {}

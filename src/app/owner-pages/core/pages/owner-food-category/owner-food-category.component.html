@@ -1,1 +1,12 @@
-<p>owner-food-category works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Categories</h4>
+    </div>
+  </div>
+  <div class="row">
+    <app-owner-categories-table
+      [categories]="categories$"
+    ></app-owner-categories-table>
+  </div>
+</div>

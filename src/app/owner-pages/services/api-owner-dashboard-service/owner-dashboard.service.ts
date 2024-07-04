@@ -7,9 +7,7 @@ import { OwnerRestaurantBase } from 'src/app/models/baseModals/restaurantOwnerba
 
 @Injectable()
 export class OwnerDashboardService {
-  constructor(private http: HttpClient) {
-    console.log('OwnerDashboardService created');
-  }
+  constructor(private http: HttpClient) {}
   BASE_URL = 'http://localhost:8080/api/admin/restaurants';
 
   getRestaurant(): Observable<AdminRestaurantResponse> {

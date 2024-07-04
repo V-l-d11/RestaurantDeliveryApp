@@ -27,6 +27,7 @@ import { OwnerPagesModule } from './owner-pages/owner-pages.module';
 import { UsersPagesModule } from './users-pages/users-pages.module';
 import { OwnerProfilesReducer } from './owner-pages/store+/reducers/owner-profiles-reducer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OwnerCategoriesFoodReduce } from './owner-pages/store+/reducers/owner-categories-food';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -52,6 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       ownerRestaurant: OwnerRestaurantReducer,
       ownerOders: OwnerOdersReducer,
       ownerProfiles: OwnerProfilesReducer,
+      ownerCategoriesFood: OwnerCategoriesFoodReduce,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),
