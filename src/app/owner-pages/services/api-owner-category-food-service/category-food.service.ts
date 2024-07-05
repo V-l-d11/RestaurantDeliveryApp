@@ -10,12 +10,18 @@ export class CategoryFoodService {
   constructor(private http: HttpClient) {}
 
   createCategoryFood(category: Category): Observable<Category> {
-    return this.http.post<Category>(`${this.BASE_URL}/admin/category`, {
-      category,
-    });
+    console.log(category, 'SERVISE');
+    return this.http.post<Category>(
+      `${this.BASE_URL}/admin/category`,
+      category
+    );
   }
 
   getCategoriesFood(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.BASE_URL}/category/restaurant`);
+  }
+
+  deleteCategoryFood(id: number): Observable<number> {
+    return this.http.delete<number>(`${this.BASE_URL}/admin/category/${id}`);
   }
 }

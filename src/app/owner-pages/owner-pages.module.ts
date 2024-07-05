@@ -52,6 +52,7 @@ import {
 } from './store+/reducers/owner-categories-food';
 import { CategoryFoodService } from './services/api-owner-category-food-service/category-food.service';
 import { OwnerCategoryFoodEffects } from './store+/effects/owner-category-food-effects';
+import { OwnerDialogCrateCategoryFoodComponent } from './core/components/owner-dialog-crate-category-food/owner-dialog-crate-category-food.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,7 @@ const routes: Routes = [
     OwnerDialogAskingComponent,
     OwnerManuItemTableComponent,
     OwnerCategoriesTableComponent,
+    OwnerDialogCrateCategoryFoodComponent,
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,9 @@ export enum OwnerFoodCategoryTypes {
   GET_OWNER_CATEGORY_FOOD = '[Owner Panel] get category food',
   GET_OWNER_CATEGORY_FOOD_SUCESS = '[Owner Panel] get category food sucess',
   GET_OWNER_CATEGORY_FOOD_FAILED = '[Owner Panel] get category food failed',
+  DELETE_OWNER_CATEGORY_FOOD = '[Owner Panel] delete category food',
+  DELETE_OWNER_CATEGORY_FOOD_SUCESS = '[Owner Panel] delete category food sucess',
+  DELETE_OWNER_CATEGORY_FOOD_FAILED = '[Owner Panel] delete category food failed',
 }
 
 export const getOwnerCategoryFood = createAction(
@@ -35,6 +38,20 @@ export const createOwnerCategorySucess = createAction(
 );
 
 export const createOwnerCategoryFailed = createAction(
+  OwnerFoodCategoryTypes.CREATE_OWNER_CATEGORY_FOOD_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const deleteOwnerCategoryFood = createAction(
+  OwnerFoodCategoryTypes.DELETE_OWNER_CATEGORY_FOOD,
+  props<{ id: number }>()
+);
+
+export const deleteOwnerCategoryFoodSucess = createAction(
+  OwnerFoodCategoryTypes.DELETE_OWNER_CATEGORY_FOOD_SUCESS,
+  props<{ id: number }>()
+);
+export const deleteOwnerCategoryFoodFailed = createAction(
   OwnerFoodCategoryTypes.CREATE_OWNER_CATEGORY_FOOD_FAILED,
   props<{ serverError: string }>()
 );

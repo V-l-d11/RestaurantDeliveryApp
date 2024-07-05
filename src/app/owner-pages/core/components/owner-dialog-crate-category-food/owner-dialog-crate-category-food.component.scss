@@ -1,0 +1,33 @@
+.main-title {
+  margin-top: 4%;
+  font-size: 19px;
+  font-family: Jost;
+}
+.form {
+  margin-top: 5%;
+  label {
+    font-size: 15px;
+    font-family: Jost;
+  }
+  .inpt-name {
+    width: 100%;
+    height: 40px;
+  }
+  .inpt-name::placeholder {
+    font-size: 14px;
+    font-family: Jost;
+    color: rgba(0, 0, 0, 0.369);
+  }
+  .btn-section {
+    margin-top: 4%;
+    .btn-submit {
+      border: none;
+      background-color: rgb(252, 71, 71);
+      color: #fff;
+      font-size: 15px;
+      font-family: Jost;
+      padding: 10px 20px 10px 20px;
+      border-radius: 8px;
+    }
+  }
+}

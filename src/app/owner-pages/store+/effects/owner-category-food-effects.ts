@@ -54,4 +54,24 @@ export class OwnerCategoryFoodEffects {
       )
     )
   );
+
+  $deleteCategoryFood = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CategoryActions.deleteOwnerCategoryFood),
+      switchMap((action) =>
+        this.categoryService.deleteCategoryFood(action.id).pipe(
+          map((response) =>
+            CategoryActions.deleteOwnerCategoryFoodSucess({ id: response })
+          ),
+          catchError((error) =>
+            of(
+              CategoryActions.deleteOwnerCategoryFoodFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 }

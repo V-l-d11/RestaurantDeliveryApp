@@ -6,7 +6,7 @@ export interface CategoriesFoodState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
-  categories: Category[] | null;
+  categories: Category[];
   category: Category | null;
 }
 
@@ -16,7 +16,7 @@ export const initalState: CategoriesFoodState = {
   loading: false,
   loaded: true,
   serverError: '',
-  categories: null,
+  categories: [],
   category: null,
 };
 
@@ -56,5 +56,25 @@ export const OwnerCategoriesFoodReduce = createReducer(
     loaded: true,
     loading: false,
     serverError,
-  }))
+  })),
+  on(categoryActions.deleteOwnerCategoryFood, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(categoryActions.deleteOwnerCategoryFoodSucess, (state, { id }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    categories: state.categories.filter((category) => category.id !== id),
+  })),
+  on(
+    categoryActions.deleteOwnerCategoryFoodFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
+  )
 );

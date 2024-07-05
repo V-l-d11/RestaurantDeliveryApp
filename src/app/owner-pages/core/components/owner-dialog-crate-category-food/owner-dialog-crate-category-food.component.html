@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col d-flex justify-content-center main-title">
+      <h4>Create New Category</h4>
+    </div>
+  </div>
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row d-flex justify-content-center">
+      <div class="col">
+        <label for="name">Name Category Food:</label>
+        <input
+          placeholder="Name"
+          class="inpt-name"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col d-flex justify-content-center btn-section">
+        <button class="btn-submit" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
