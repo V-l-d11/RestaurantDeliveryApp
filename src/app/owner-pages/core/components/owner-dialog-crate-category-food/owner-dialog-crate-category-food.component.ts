@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { OwnerDialogServiceService } from 'src/app/owner-pages/services/owner-dialog-service/owner-dialog-service.service';
 import {
@@ -16,13 +17,16 @@ export class OwnerDialogCrateCategoryFoodComponent implements OnInit {
   form!: FormGroup;
   constructor(
     private store$: Store,
-    private dialog: OwnerDialogServiceService
+    private dialog: OwnerDialogServiceService,
+    public dialogRef: MatDialogRef<OwnerDialogCrateCategoryFoodComponent>
   ) {}
 
   onSubmit() {
     if (this.form.valid) {
       console.log(this.form.value, 'Form Category Food Value');
       this.store$.dispatch(createOwnerCategoryFood({ item: this.form.value }));
+      this.dialogRef.close();
+      this.dialog.openSnackBar('Category create Sucessufyli!', 3000);
     }
   }
 

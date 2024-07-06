@@ -4,11 +4,11 @@
       <h4>Categories</h4>
     </div>
     <div class="col">
-      <button (click)="createCategory()">Add Category</button>
+      <button class="btn-add" (click)="createCategory()">Add Category</button>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row table-section">
     <app-owner-categories-table
       [categories]="categories$"
     ></app-owner-categories-table>
