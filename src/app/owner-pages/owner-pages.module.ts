@@ -53,6 +53,11 @@ import {
 import { CategoryFoodService } from './services/api-owner-category-food-service/category-food.service';
 import { OwnerCategoryFoodEffects } from './store+/effects/owner-category-food-effects';
 import { OwnerDialogCrateCategoryFoodComponent } from './core/components/owner-dialog-crate-category-food/owner-dialog-crate-category-food.component';
+import { OwnerIngridientsPageComponent } from './core/pages/owner-ingridients-page/owner-ingridients-page.component';
+import {
+  OWNER_IGRIDIENTS_FEATURE_NAME,
+  OwnerIngridientsReducer,
+} from './store+/reducers/owner-ingridients-reducer';
 
 const routes: Routes = [
   {
@@ -93,6 +98,7 @@ const routes: Routes = [
     OwnerManuItemTableComponent,
     OwnerCategoriesTableComponent,
     OwnerDialogCrateCategoryFoodComponent,
+    OwnerIngridientsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -112,6 +118,10 @@ const routes: Routes = [
     StoreModule.forFeature(
       OWNER_CATEGORIES_FOOD_NAME,
       OwnerCategoriesFoodReduce
+    ),
+    StoreModule.forFeature(
+      OWNER_IGRIDIENTS_FEATURE_NAME,
+      OwnerIngridientsReducer
     ),
     EffectsModule.forFeature([
       OwnerDashboardEffects,
