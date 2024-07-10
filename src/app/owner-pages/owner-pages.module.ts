@@ -58,6 +58,12 @@ import {
   OWNER_IGRIDIENTS_FEATURE_NAME,
   OwnerIngridientsReducer,
 } from './store+/reducers/owner-ingridients-reducer';
+import { OwnerIngridientsEffects } from './store+/effects/owner-ingridients-effects';
+import { OwnerSingleIngridCategoryComponent } from './core/components/owner-single-ingrid-category/owner-single-ingrid-category.component';
+import { OwnerIngridietnsCategoryListComponent } from './core/components/owner-ingridietns-category-list/owner-ingridietns-category-list.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
+import { OwnerDialogAddIngridCategoryComponent } from './core/components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
 
 const routes: Routes = [
   {
@@ -68,6 +74,10 @@ const routes: Routes = [
       {
         path: 'editRestaurnatInfo',
         component: OwnerUpdateDashboardInfoComponent,
+      },
+      {
+        path: 'ingridients',
+        component: OwnerIngridientsPageComponent,
       },
       { path: 'oders', component: OwnerOdersComponent },
       { path: 'menu', component: OwnerMenuComponent },
@@ -99,12 +109,17 @@ const routes: Routes = [
     OwnerCategoriesTableComponent,
     OwnerDialogCrateCategoryFoodComponent,
     OwnerIngridientsPageComponent,
+    OwnerSingleIngridCategoryComponent,
+    OwnerIngridietnsCategoryListComponent,
+    OwnerDialogAddIngridCategoryComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatTableModule,
     MatSnackBarModule,
+    MatChipsModule,
+    MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes),
@@ -128,6 +143,7 @@ const routes: Routes = [
       OwnerRestaurantEffects,
       OwnerDialogServiceService,
       OwnerCategoryFoodEffects,
+      OwnerIngridientsEffects,
     ]),
   ],
   providers: [

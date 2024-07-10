@@ -25,7 +25,7 @@ export enum OwnerDashboardTypes {
 }
 
 export const getOwnerRestaurant = createAction(
-  OwnerDashboardTypes.GET_OWNER_RESTAURANT_FAILED
+  OwnerDashboardTypes.GET_OWNER_RESTUARNT
 );
 
 export const getOwnerRestaurantSucess = createAction(

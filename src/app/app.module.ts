@@ -29,6 +29,7 @@ import { OwnerProfilesReducer } from './owner-pages/store+/reducers/owner-profil
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwnerCategoriesFoodReduce } from './owner-pages/store+/reducers/owner-categories-food';
 import { OwnerIngridientsReducer } from './owner-pages/store+/reducers/owner-ingridients-reducer';
+import { MatChipsModule } from '@angular/material/chips';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -41,6 +42,7 @@ import { OwnerIngridientsReducer } from './owner-pages/store+/reducers/owner-ing
     OwnerPagesModule,
     BrowserAnimationsModule,
     UsersPagesModule,
+    MatChipsModule,
     FoodSearchPageModule,
     FoodRestaurantsPageModule,
     StoreModule.forRoot({

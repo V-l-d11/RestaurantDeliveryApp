@@ -6,6 +6,7 @@ import { GetRestaurantIngridCategoryResponse } from 'src/app/models/api/response
 import { IngridientsItemBase } from 'src/app/models/baseModals/ingridientsItemBase';
 
 export enum OwnerIngridientsTypes {
+  LOAD_OWNER_INGRIDIENTS_ALL = '[Owner Panel] Load Ingridients all',
   CREATE_OWNER_INGRIDIENTS_CATEGORY = '[Owner Panel] create ingridients category',
   CREATE_OWNER_INGRIDIENTS_CATEGORY_SUCESS = '[Owner Panel] create ingridients category sucess',
   CREATE_OWNER_INGRIDIENTS_CATEGORY_FAILED = '[Owner Panel] create ingridients category failed',
@@ -21,7 +22,17 @@ export enum OwnerIngridientsTypes {
   GET_OWNER_RESTAURANT_INGRIDIENTS_CATEGORY = '[Owner Panel] get ingridients categories from restaurant',
   GET_OWNER_RESTAURANT_INGRIDIENTS_CATEGORY_SUCESS = '[Owner Panel] get ingridients categories from restaurant sucess',
   GET_OWNER_RESTAURANT_INGRIDIENTS_CATEGORY_FAILED = '[Owner Panel] get ingridients categories from restaurant failed',
+  DELETE_OWNER_INGRIDIENT_CATEGORY = '[Owner Panel] delete ingridient category',
+  DELETE_OWNER_INGRIDIENT_CATEGORY_SUCESS = '[Owner Panel] delete ingridient category sucess',
+  DELETE_OWNER_INGRIDIENT_CATEGORY_FAILED = '[Owner Panel] delete ingridient category failed',
+  DELETE_OWNER_INGRIDIENT_ITEM = '[Owner Panel] delete ingridient item',
+  DELETE_OWNER_INGRIDIENT_ITEM_SUCESS = '[Owner Panel] delete ingridient item sucess',
+  DELETE_OWNER_INGRIDIENT_ITEM_FAILED = '[Owner Panel] delete ingridient item failed',
 }
+
+export const loadIngridientsAll = createAction(
+  OwnerIngridientsTypes.LOAD_OWNER_INGRIDIENTS_ALL
+);
 
 export const createOwnerIngridCategoty = createAction(
   OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY,
@@ -95,5 +106,35 @@ export const getRestaurantIgridCategorySucess = createAction(
 
 export const getRestaurantIgridCategoryFailed = createAction(
   OwnerIngridientsTypes.GET_OWNER_RESTAURANT_INGRIDIENTS_CATEGORY_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const deleteIngridientCategory = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_CATEGORY,
+  props<{ id: number }>()
+);
+
+export const deleteIngridientCategorySucess = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_CATEGORY_SUCESS,
+  props<{ id: number }>()
+);
+
+export const deleteIngridientCategoryFailed = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_CATEGORY_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const deleteIngridientItem = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_ITEM,
+  props<{ id: number }>()
+);
+
+export const deleteIngridientItemSucess = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_ITEM_SUCESS,
+  props<{ id: number }>()
+);
+
+export const deleteIngridientItemFailed = createAction(
+  OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_ITEM_FAILED,
   props<{ serverError: string }>()
 );

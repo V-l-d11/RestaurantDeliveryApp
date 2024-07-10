@@ -1,1 +1,25 @@
-<p>owner-ingridients-page works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="main-title">Ingridients List</h4>
+    </div>
+  </div>
+  <div class="row btn-section">
+    <div class="col-2">
+      <button>Add Category</button>
+    </div>
+    <div class="col-2">
+      <button>Add Ingridient</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="box" *ngIf="ingridCategories$ | async as categories">
+      <div class="row" *ngFor="let i of categories">
+        <app-owner-single-ingrid-category
+          class="igrid-component"
+          [category]="i"
+        ></app-owner-single-ingrid-category>
+      </div>
+    </div>
+  </div>
+</div>

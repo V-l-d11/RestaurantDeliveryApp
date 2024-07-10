@@ -1,0 +1,55 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span class="ingrid-base">Ingridient Category: </span>
+      </mat-panel-title>
+      <mat-panel-title>
+        <span class="category-title">{{ category.name }}</span>
+      </mat-panel-title>
+      <mat-panel-title>
+        <button
+          class="btn-delete-category"
+          (click)="deleteIngridientCategory(category.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="ingridients" *ngFor="let i of category.ingredients">
+      <div class="row">
+        <div class="col-2">
+          <span class="drop-base"> -</span>
+        </div>
+        <div class="col-2">
+          <span class="ingrid-name">{{ i.name }}</span>
+        </div>
+        <div class="col-2">
+          <button
+            class="btn-stoke"
+            [ngClass]="{ 'btn-green': i.inStoke, 'btn-red': !i.inStoke }"
+          >
+            {{ i.inStoke ? "in stock" : "out of stock" }}
+          </button>
+        </div>
+        <div class="col-2">
+          <span class="price"> {{ i.price }}$</span>
+        </div>
+        <div class="col-3">
+          <button
+            class="btn-ingrid-delete"
+            (click)="deleteIngridientItem(i.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+  </mat-expansion-panel>
+</mat-accordion>

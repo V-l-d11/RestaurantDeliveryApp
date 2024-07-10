@@ -50,3 +50,8 @@ export const getNameRestaurant = createSelector(getFeature, (state) => {
   const restaurnat = state.restaurant;
   return restaurnat ? restaurnat.name : null;
 });
+
+export const getRestaurantId = createSelector(
+  getFeature,
+  (state) => state.restaurant?.id || 0
+);

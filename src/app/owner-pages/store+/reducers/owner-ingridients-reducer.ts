@@ -58,5 +58,50 @@ export const OwnerIngridientsReducer = createReducer(
     loaded: true,
     loading: false,
     ingridItem: items,
-  }))
+  })),
+  on(ingridientsActions.deleteIngridientCategory, (state) => ({
+    ...state,
+    loading: true,
+    loaded: false,
+  })),
+  on(ingridientsActions.deleteIngridientCategorySucess, (state, { id }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    ingridCategory: state.ingridCategory.filter(
+      (category) => category.id != id
+    ),
+  })),
+  on(
+    ingridientsActions.deleteIngridientCategoryFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
+  ),
+  on(ingridientsActions.deleteIngridientItem, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(ingridientsActions.deleteIngridientItemSucess, (state, { id }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    ingridCategory: state.ingridCategory.map((category) => ({
+      ...category,
+      ingredients: category.ingredients.filter((item) => item.id !== id),
+    })),
+  })),
+  on(
+    ingridientsActions.deleteIngridientItemFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
+  )
 );

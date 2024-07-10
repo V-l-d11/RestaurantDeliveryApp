@@ -1,0 +1,57 @@
+$font-family: Jost;
+$font-size-titles: 19px;
+$font-size-base: 18px;
+
+.ingridients {
+  padding-top: 15px;
+}
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+.category-title {
+  font-size: $font-size-titles;
+  font-family: $font-family;
+}
+
+.ingrid-base {
+  font-size: $font-size-base;
+  font-family: $font-family;
+  font-weight: 400;
+}
+
+.ingrid-name {
+  font-size: $font-size-base;
+  font-family: $font-family;
+  color: #000;
+  font-weight: 500;
+}
+.price {
+  font-size: $font-size-base;
+  font-family: $font-family;
+  font-weight: 400;
+}
+.drop-base {
+  font-size: $font-size-base;
+}
+
+.btn-stoke {
+  font-size: 16px;
+  font-family: $font-family;
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+}
+.btn-green {
+  background-color: rgb(78, 143, 78);
+}
+.btn-ingrid-delete {
+  border: none;
+  background: transparent;
+}
+
+.btn-delete-category {
+  margin-left: 20px;
+  border: none;
+  background: transparent;
+}
