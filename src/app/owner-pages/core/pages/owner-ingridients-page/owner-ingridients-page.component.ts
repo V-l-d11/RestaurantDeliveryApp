@@ -16,6 +16,8 @@ import {
   getIngridCategory,
   getIngridients,
 } from 'src/app/owner-pages/store+/selectors/owner-ingridients-selectors';
+import { OwnerDialogAddIngridCategoryComponent } from '../../components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
+import { OwnerDialogServiceService } from 'src/app/owner-pages/services/owner-dialog-service/owner-dialog-service.service';
 
 @Component({
   selector: 'app-owner-ingridients-page',
@@ -27,8 +29,15 @@ export class OwnerIngridientsPageComponent implements OnInit {
   ingridItems$!: Observable<IngridientsItem[]>;
   restaurantId$!: Observable<number | null>;
   id!: number;
-  constructor(private store$: Store) {
+  constructor(
+    private store$: Store,
+    private dialog: OwnerDialogServiceService
+  ) {
     this.store$.dispatch(loadIngridientsAll());
+  }
+
+  addIngridientCategory() {
+    this.dialog.addIngridientCategory();
   }
 
   ngOnInit(): void {

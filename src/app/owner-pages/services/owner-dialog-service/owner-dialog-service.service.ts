@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { OwnerDialogAskingComponent } from '../../core/components/owner-dialog-asking/owner-dialog-asking.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OwnerDialogCrateCategoryFoodComponent } from '../../core/components/owner-dialog-crate-category-food/owner-dialog-crate-category-food.component';
+import { OwnerDialogAddIngridCategoryComponent } from '../../core/components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
 @Injectable()
 export class OwnerDialogServiceService {
   private dialogRef: MatDialogRef<any> | undefined;
@@ -29,6 +30,16 @@ export class OwnerDialogServiceService {
       disableClose: false,
     });
     return dialogRef.afterClosed();
+  };
+
+  public addIngridientCategory = () => {
+    const dialogRef = this.dialog.open(OwnerDialogAddIngridCategoryComponent, {
+      width: '60%',
+      height: '80vh',
+      hasBackdrop: true,
+      closeOnNavigation: true,
+      disableClose: false,
+    });
   };
 
   openSnackBar(massage: string, duration: number = 1000) {

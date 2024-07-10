@@ -28,6 +28,9 @@ export enum OwnerIngridientsTypes {
   DELETE_OWNER_INGRIDIENT_ITEM = '[Owner Panel] delete ingridient item',
   DELETE_OWNER_INGRIDIENT_ITEM_SUCESS = '[Owner Panel] delete ingridient item sucess',
   DELETE_OWNER_INGRIDIENT_ITEM_FAILED = '[Owner Panel] delete ingridient item failed',
+  CREATE_OWNER_INGRIDIENTS_CATEGORY_WTH_INGRIDIENTS = '[Owner Panel] create ingridients category with ingridients',
+  CREATE_OWNER_INGRIDIENTS_CATEGORY_WTH_INGRIDIENTS_SUCESS = '[Owner Panel] create ingridients category with ingridients sucess',
+  CREATE_OWNER_INGRIDIENTS_CATEGORY_WTH_INGRIDIENTS_FAILED = '[Owner Panel] create ingridients category with ingridients failed',
 }
 
 export const loadIngridientsAll = createAction(
@@ -136,5 +139,20 @@ export const deleteIngridientItemSucess = createAction(
 
 export const deleteIngridientItemFailed = createAction(
   OwnerIngridientsTypes.DELETE_OWNER_INGRIDIENT_ITEM_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const createIngridientsCategoryWth = createAction(
+  OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY,
+  props<{ item: createIngridCategRequest }>()
+);
+
+export const createIngridientsCategoryWthSucess = createAction(
+  OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY_SUCESS,
+  props<{ item: createIngridnetCategoryResponse[] }>()
+);
+
+export const createIngridientsCategoryWthFailed = createAction(
+  OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY_FAILED,
   props<{ serverError: string }>()
 );
