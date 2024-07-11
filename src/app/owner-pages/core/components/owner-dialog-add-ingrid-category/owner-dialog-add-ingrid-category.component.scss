@@ -1,0 +1,132 @@
+$main-title-size: 38px;
+$font-family: Jost;
+$border-radius: 8px;
+.container {
+  padding-left: 2%;
+  .main-section {
+    margin-top: 3%;
+    .main-title {
+      font-family: $font-family;
+      font-size: $main-title-size;
+      font-weight: 500;
+    }
+  }
+
+  .section-name-category {
+    margin-top: 2%;
+    .inpt-name-category {
+      width: 70%;
+      padding: 8px 10px 8px 10px;
+      border: 10px;
+      font-family: $font-family;
+      border: 0.5px solid #464646;
+      border-radius: 8px;
+    }
+    .inpt-name-category::placeholder {
+      border-radius: 8px;
+      font-size: 17px;
+      font-family: $font-family;
+    }
+  }
+
+  .add-section {
+    margin-top: 3%;
+    .btn-add {
+      border: none;
+      background-color: transparent;
+      color: #000;
+      font-family: $font-family;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    hr {
+      padding-top: 5px;
+      margin-top: 5px;
+      width: 50%;
+    }
+  }
+
+  .sections-adding-ingridients {
+    margin-top: 2%;
+    .title-secondery {
+      font-family: $font-family;
+      font-size: 18px;
+      font-weight: 400;
+      color: #000;
+    }
+    .inpt-add-ingridients {
+      width: 70%;
+      border-radius: 8px;
+      margin-top: 2%;
+      border: 0.5px solid #7c7c7c6d;
+      padding: 20px 30px 20px 30px;
+      .inpt-field {
+        border-radius: $border-radius;
+        border: 0.5px solid #686868;
+        padding: 8px 10px 8px 10px;
+        margin-top: 2%;
+        width: 90%;
+      }
+    }
+
+    .btn-section-next {
+      margin-top: 2%;
+      .btn-add-sections {
+        border: none;
+        font-family: $font-family;
+        border-radius: $border-radius;
+        background-color: #5555550a;
+        padding: 5px 6px 5px 6px;
+      }
+      .btn-delete-section {
+        border: none;
+        font-family: $font-family;
+        color: #131313;
+        border-radius: $border-radius;
+        font-family: $font-family;
+        background-color: rgba(228, 102, 102, 0.151);
+        padding: 5px 6px 5px 6px;
+      }
+    }
+  }
+
+  .btn-section {
+    margin-top: 4%;
+    .btn-send {
+      border: none;
+      color: #fff;
+      background-color: rgb(233, 75, 75);
+      border-radius: 8px;
+      font-family: $font-family;
+      font-size: 17px;
+      padding: 8px 12px 8px 12px;
+    }
+  }
+
+  .preview-section {
+    margin-top: 3%;
+    .main-prev-title {
+      font-size: 19px;
+      font-family: $font-family;
+      font-weight: 500;
+    }
+    .sp-category {
+      font-family: $font-family;
+      font-size: 16px;
+    }
+    .form-name-category {
+      padding-left: 10px;
+      font-family: $font-family;
+      font-size: 17px;
+      font-weight: 500;
+    }
+    .ingridients-section-filed {
+      margin-top: 10px;
+      .ingridint-title {
+        font-size: 19px;
+        font-family: $font-family;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -1,37 +1,112 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h4>Add Ingridient Category</h4>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <input />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-2">Add Ingridient</div>
-    <div class="col-1">
-      <mat-icon>add</mat-icon>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="box">
-      <div class="row">
-        <div class="col">
-          <input placeholder="name" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <input placeholder="Price" />
-        </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row main-section">
+      <div class="col">
+        <h4 class="main-title">Create Ingridient Category</h4>
       </div>
     </div>
-  </div>
 
-  <div class="row preview-section"></div>
+    <div class="row section-name-category">
+      <div class="col d-flex justify-content-start">
+        <input
+          class="inpt-name-category"
+          placeholder="Name Category"
+          formControlName="name"
+        />
+      </div>
+    </div>
+
+    <div class="row add-section" *ngIf="sections.length === 0">
+      <div class="col">
+        <button class="btn-add" type="button" (click)="addNewSection()">
+          Add Ingridient
+        </button>
+        <hr />
+      </div>
+    </div>
+
+    <div class="sections-adding-ingridients" formArrayName="sections">
+      <div
+        class="add-ingridient"
+        *ngFor="let section of sections.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="inpt-add-ingridients">
+          <div class="row">
+            <div class="col">
+              <h6 class="title-secondery">Ingridient</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input
+                class="inpt-field"
+                type="text"
+                formControlName="name"
+                placeholder="Name Ingridients"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input
+                class="inpt-field"
+                type="text"
+                formControlName="price"
+                placeholder="Price"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row btn-section-next">
+          <div class="col">
+            <button
+              class="btn-add-sections"
+              type="button"
+              (click)="addNewSection()"
+            >
+              Add Next Ingridient
+            </button>
+          </div>
+          <div class="col">
+            <button
+              class="btn-delete-section"
+              type="button"
+              (click)="removeSection(i)"
+            >
+              Delete Ingridient
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-section">
+      <h3 class="main-prev-title">Preview:</h3>
+      <div>
+        <span class="sp-category">Category Name:</span>
+        <span class="form-name-category">{{ form.value.name }}</span>
+      </div>
+      <div *ngFor="let section of form.value.sections; let i = index">
+        <div class="ingridients-section-filed">
+          <span class="ingridint-title">Ingridient {{ i + 1 }}:</span>
+          <div class="ingrid-name-prewiev">
+            <span class="sp-category">Ingridient Name:</span>
+            <span class="form-name-category"> {{ section.name }} </span>
+          </div>
+          <div class="ingrid-price-preview">
+            <span class="sp-category">Price:</span>
+            <span class="form-name-category"> {{ section.price }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row btn-section">
+      <div class="col">
+        <button class="btn-send" type="submit">Отправить</button>
+      </div>
+    </div>
+  </form>
 </div>
