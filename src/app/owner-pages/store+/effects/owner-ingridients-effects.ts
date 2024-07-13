@@ -28,6 +28,28 @@ export class OwnerIngridientsEffects {
     private dialog: OwnerDialogServiceService
   ) {}
 
+  createCategoryWthIngridients$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ingridientsActions.createIngridientsCategoryWth),
+      switchMap((actions) =>
+        this.ingridientsService.createCategoryWthIngridients(actions.item).pipe(
+          map((response) =>
+            ingridientsActions.createIngridientsCategoryWthSucess({
+              item: response,
+            })
+          ),
+          catchError((error) =>
+            of(
+              ingridientsActions.createIngridientsCategoryWthFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
   loadAllIngridients$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ingridientsActions.loadIngridientsAll),

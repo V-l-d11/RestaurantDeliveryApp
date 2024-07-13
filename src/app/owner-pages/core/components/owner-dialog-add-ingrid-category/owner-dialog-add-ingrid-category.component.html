@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div class="row add-section" *ngIf="sections.length === 0">
+    <div class="row add-section" *ngIf="ingredients.length === 0">
       <div class="col">
         <button class="btn-add" type="button" (click)="addNewSection()">
           Add Ingridient
@@ -25,10 +25,10 @@
       </div>
     </div>
 
-    <div class="sections-adding-ingridients" formArrayName="sections">
+    <div class="sections-adding-ingridients" formArrayName="ingredients">
       <div
         class="add-ingridient"
-        *ngFor="let section of sections.controls; let i = index"
+        *ngFor="let section of ingredients.controls; let i = index"
         [formGroupName]="i"
       >
         <div class="inpt-add-ingridients">
@@ -88,7 +88,7 @@
         <span class="sp-category">Category Name:</span>
         <span class="form-name-category">{{ form.value.name }}</span>
       </div>
-      <div *ngFor="let section of form.value.sections; let i = index">
+      <div *ngFor="let section of form.value.ingredients; let i = index">
         <div class="ingridients-section-filed">
           <span class="ingridint-title">Ingridient {{ i + 1 }}:</span>
           <div class="ingrid-name-prewiev">

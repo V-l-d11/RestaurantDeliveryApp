@@ -5,6 +5,7 @@ import { OwnerDialogAskingComponent } from '../../core/components/owner-dialog-a
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OwnerDialogCrateCategoryFoodComponent } from '../../core/components/owner-dialog-crate-category-food/owner-dialog-crate-category-food.component';
 import { OwnerDialogAddIngridCategoryComponent } from '../../core/components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
+import { OwnerDialogAddIngridientItemComponent } from '../../core/components/owner-dialog-add-ingridient-item/owner-dialog-add-ingridient-item.component';
 @Injectable()
 export class OwnerDialogServiceService {
   private dialogRef: MatDialogRef<any> | undefined;
@@ -36,6 +37,16 @@ export class OwnerDialogServiceService {
     const dialogRef = this.dialog.open(OwnerDialogAddIngridCategoryComponent, {
       width: '60%',
       height: '80vh',
+      hasBackdrop: true,
+      closeOnNavigation: true,
+      disableClose: false,
+    });
+  };
+
+  public addIngridientItem = () => {
+    const dialogRef = this.dialog.open(OwnerDialogAddIngridientItemComponent, {
+      width: '50%',
+      height: '40vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,

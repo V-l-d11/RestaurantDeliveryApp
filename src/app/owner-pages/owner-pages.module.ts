@@ -64,6 +64,8 @@ import { OwnerIngridietnsCategoryListComponent } from './core/components/owner-i
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { OwnerDialogAddIngridCategoryComponent } from './core/components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
+import { OwnerDialogAddIngridientItemComponent } from './core/components/owner-dialog-add-ingridient-item/owner-dialog-add-ingridient-item.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   {
@@ -112,11 +114,13 @@ const routes: Routes = [
     OwnerSingleIngridCategoryComponent,
     OwnerIngridietnsCategoryListComponent,
     OwnerDialogAddIngridCategoryComponent,
+    OwnerDialogAddIngridientItemComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatTableModule,
+    MatSelectModule,
     MatSnackBarModule,
     MatChipsModule,
     MatExpansionModule,

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-start">
+      <h4 class="main-title">Add Ingridient</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 inpt-section d-flex justify-content-start">
+      <input class="inpt" placeholder="Name" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 inpt-section d-flex justify-content-start">
+      <input class="inpt" placeholder="Price" />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-start">
+    <div class="col-12 select-section">
+      <mat-select
+        placeholder="Choose Ingridient Category"
+        class="select"
+        [(ngModel)]="selectedValue"
+        name="food"
+      >
+        <mat-option
+          *ngFor="let category of categories | async"
+          [value]="category.id"
+        >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+  <div class="row btn-section">
+    <div class="col">
+      <button class="btn-add">Create Ingirident</button>
+    </div>
+  </div>
+</div>

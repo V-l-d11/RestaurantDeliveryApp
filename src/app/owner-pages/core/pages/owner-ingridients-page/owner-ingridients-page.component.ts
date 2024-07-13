@@ -35,11 +35,12 @@ export class OwnerIngridientsPageComponent implements OnInit {
   ) {
     this.store$.dispatch(loadIngridientsAll());
   }
-
   addIngridientCategory() {
     this.dialog.addIngridientCategory();
   }
-
+  addIngridientItem() {
+    this.dialog.addIngridientItem();
+  }
   ngOnInit(): void {
     this.ingridCategories$ = this.store$.select(getIngridCategory);
     this.ingridItems$ = this.store$.select(getIngridients);

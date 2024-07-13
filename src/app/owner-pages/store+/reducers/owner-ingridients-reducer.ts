@@ -103,5 +103,30 @@ export const OwnerIngridientsReducer = createReducer(
       loading: false,
       serverError,
     })
+  ),
+  on(ingridientsActions.createIngridientsCategoryWth, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(
+    ingridientsActions.createIngridientsCategoryWthSucess,
+    (state, { item }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      ingridCategory: state.ingridCategory
+        ? [...state.ingridCategory, item]
+        : [item],
+    })
+  ),
+  on(
+    ingridientsActions.createIngridientsCategoryWthFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
   )
 );

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CreateCategoryWthIngridients } from 'src/app/models/api/requests/admin/create-category-wth-ingridients-request';
 import { CreateIngridItemRequest } from 'src/app/models/api/requests/admin/create-ingridients-item-request';
 import { createIngridCategRequest } from 'src/app/models/api/requests/admin/create-ingrieitns-category-request';
 import { createIngridnetCategoryResponse } from 'src/app/models/api/responses/admin/admin-create-ingridient-category-response';
@@ -61,5 +62,16 @@ export class OwnerIngridientsService {
 
   deleteIngridientItem(id: number) {
     return this.http.delete(`${this.BASE_URL}/${id}`);
+  }
+
+  createCategoryWthIngridients(
+    item: CreateCategoryWthIngridients
+  ): Observable<GetRestaurantIngridCategoryResponse> {
+    console.log(item);
+    console.log(item, 'ITEMINTO SERVICE');
+    return this.http.post<GetRestaurantIngridCategoryResponse>(
+      `${this.BASE_URL}/category/ingridients/add`,
+      item
+    );
   }
 }

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { CreateCategoryWthIngridients } from 'src/app/models/api/requests/admin/create-category-wth-ingridients-request';
 import { CreateIngridItemRequest } from 'src/app/models/api/requests/admin/create-ingridients-item-request';
 import { createIngridCategRequest } from 'src/app/models/api/requests/admin/create-ingrieitns-category-request';
 import { createIngridnetCategoryResponse } from 'src/app/models/api/responses/admin/admin-create-ingridient-category-response';
@@ -144,12 +145,12 @@ export const deleteIngridientItemFailed = createAction(
 
 export const createIngridientsCategoryWth = createAction(
   OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY,
-  props<{ item: createIngridCategRequest }>()
+  props<{ item: CreateCategoryWthIngridients }>()
 );
 
 export const createIngridientsCategoryWthSucess = createAction(
   OwnerIngridientsTypes.CREATE_OWNER_INGRIDIENTS_CATEGORY_SUCESS,
-  props<{ item: createIngridnetCategoryResponse[] }>()
+  props<{ item: GetRestaurantIngridCategoryResponse }>()
 );
 
 export const createIngridientsCategoryWthFailed = createAction(
