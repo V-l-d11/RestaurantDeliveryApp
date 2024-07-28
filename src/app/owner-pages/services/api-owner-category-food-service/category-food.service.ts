@@ -10,7 +10,6 @@ export class CategoryFoodService {
   constructor(private http: HttpClient) {}
 
   createCategoryFood(category: Category): Observable<Category> {
-    console.log(category, 'SERVISE');
     return this.http.post<Category>(
       `${this.BASE_URL}/admin/category`,
       category

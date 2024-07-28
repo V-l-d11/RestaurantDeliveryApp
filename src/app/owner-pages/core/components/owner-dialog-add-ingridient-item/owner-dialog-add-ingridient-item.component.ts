@@ -1,42 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GetRestaurantIngridCategoryResponse } from 'src/app/models/api/responses/admin/get-restaurnat-igrid-category-response';
+import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 import { getIngridCategory } from 'src/app/owner-pages/store+/selectors/owner-ingridients-selectors';
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
-interface Car {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-owner-dialog-add-ingridient-item',
   templateUrl: './owner-dialog-add-ingridient-item.component.html',
   styleUrls: ['./owner-dialog-add-ingridient-item.component.scss'],
 })
-export class OwnerDialogAddIngridientItemComponent {
+export class OwnerDialogAddIngridientItemComponent implements OnInit {
+  form!: FormGroup;
+  restaurantId$!: Observable<number>;
   selectedValue: string = 'Ingridient Category';
-  selectedCar!: string;
   categories!: Observable<GetRestaurantIngridCategoryResponse[]>;
 
   constructor(private store$: Store) {
     this.categories = this.store$.select(getIngridCategory);
+    console.log('Hello world');
   }
 
-  foods: Food[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
-  ];
+  onSubmit() {}
 
-  cars: Car[] = [
-    { value: 'volvo', viewValue: 'Volvo' },
-    { value: 'saab', viewValue: 'Saab' },
-    { value: 'mercedes', viewValue: 'Mercedes' },
-  ];
+  onCategoryChange(categoryId: string) {
+    this.form.patchValue({ categoryId });
+  }
+
+  ngOnInit(): void {
+    this.restaurantId$ = this.store$.select(getRestaurantId);
+
+    this.form = new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      categoryId: new FormControl(null, [Validators.required]),
+      restaurantId: new FormControl(null, [Validators.required]),
+      price: new FormControl(null, [Validators.required]),
+    });
+
+    this.restaurantId$.subscribe((el) => {
+      this.form.patchValue({ restaurantId: el });
+    });
+
+    this.form.get('categoryId')?.valueChanges.subscribe((value) => {
+      this.form.patchValue({ categoryId: this.selectedValue });
+    });
+  }
 }

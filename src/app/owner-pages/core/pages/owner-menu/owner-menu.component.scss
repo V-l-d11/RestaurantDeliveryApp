@@ -1,0 +1,25 @@
+$font-family: Jost;
+h4,
+h6 {
+  font-family: $font-family;
+  font-size: 26px;
+}
+h6 {
+  margin-top: 1%;
+  font-size: 18px;
+}
+.categories-section {
+  margin-top: 1%;
+  .category-box {
+    margin-left: 2%;
+    background-color: rgb(255, 104, 104);
+    border-radius: 8px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    font-family: $font-family;
+    cursor: pointer;
+    color: #fff;
+  }
+}
