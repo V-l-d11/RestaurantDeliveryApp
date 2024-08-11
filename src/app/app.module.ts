@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwnerCategoriesFoodReduce } from './owner-pages/store+/reducers/owner-categories-food';
 import { OwnerIngridientsReducer } from './owner-pages/store+/reducers/owner-ingridients-reducer';
 import { MatChipsModule } from '@angular/material/chips';
+import { OwnerMenuFoodReducer } from './owner-pages/store+/reducers/owner-food-reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -58,6 +59,7 @@ import { MatChipsModule } from '@angular/material/chips';
       ownerProfiles: OwnerProfilesReducer,
       ownerCategoriesFood: OwnerCategoriesFoodReduce,
       ownerIngridients: OwnerIngridientsReducer,
+      ownerMenuFood: OwnerMenuFoodReducer,
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: false }),

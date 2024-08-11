@@ -1,12 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col-1">
       <h4>Menu</h4>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <h6>Food Category</h6>
+
+    <div class="col-2">
+      <button (click)="addItemRedirect()" class="btn-item">+Add Item</button>
     </div>
   </div>
 
@@ -14,8 +13,44 @@
     class="categories-section row d-flex justify-content-start"
     *ngIf="$categoriesFood | async as categories"
   >
-    <div *ngFor="let category of categories" class="col-1 category-box">
+    <div
+      *ngFor="let category of categories"
+      class="col-1 category-box"
+      (click)="onSelectCategory(category.name)"
+    >
       <span>{{ category.name }}</span>
     </div>
+
+    <div class="col-1 category-box" (click)="onSelectCategory(null)">
+      <span>All</span>
+    </div>
+    <div class="col">
+      <button class="btn-added-items category-box">+ Add Category</button>
+    </div>
   </div>
+
+  <div class="row filter-section">
+    <div class="col">
+      <button class="btn btn-filters" (click)="toggleFilters()">Filters</button>
+    </div>
+  </div>
+
+  <div class="row radio-section" *ngIf="showFilters">
+    <mat-radio-group
+      aria-labelledby="example-radio-group-label"
+      class="radio-group"
+      [(ngModel)]="favoriteSeason"
+    >
+      <mat-radio-button
+        class="radio-btns"
+        *ngFor="let season of arr"
+        [value]="season"
+        (change)="onFilterChange()"
+      >
+        {{ season }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <app-owner-menu-filters-food-section></app-owner-menu-filters-food-section>
 </div>

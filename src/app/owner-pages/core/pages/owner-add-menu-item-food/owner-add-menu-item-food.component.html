@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>Add Menu Item</h4>
+    </div>
+  </div>
+
+  <div class="box">
+    <form [formGroup]="form" (ngSubmit)="ngSubmit()">
+      <div class="row">
+        <div class="col">
+          <input placeholder="Name" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <textarea placeholder="Description"></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input placeholder="Price" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <input placeholder="Category" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

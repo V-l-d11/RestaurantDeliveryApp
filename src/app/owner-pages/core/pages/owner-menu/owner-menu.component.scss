@@ -8,8 +8,23 @@ h6 {
   margin-top: 1%;
   font-size: 18px;
 }
+
+.btn-item {
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-family: $font-family;
+  border-radius: 7px;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 5px 7px 5px 7px;
+}
+.btn-item:hover {
+  background-color: #fff;
+  color: #ff5e5e;
+}
 .categories-section {
-  margin-top: 1%;
+  margin-top: 2%;
   .category-box {
     margin-left: 2%;
     background-color: rgb(255, 104, 104);
@@ -21,5 +36,29 @@ h6 {
     font-family: $font-family;
     cursor: pointer;
     color: #fff;
+  }
+
+  .btn-added-items {
+    border: 0.5px solid #000;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #474747;
+  }
+}
+
+.filter-section {
+  margin-top: 1.5%;
+  margin-left: 0.25%;
+  .btn-filters {
+    background-color: transparent;
+    font-family: $font-family;
+    color: #000;
+    border: 0.5px solid #000;
+  }
+}
+.radio-section {
+  margin-top: 2%;
+  .radio-btns {
+    margin-left: 10px;
   }
 }

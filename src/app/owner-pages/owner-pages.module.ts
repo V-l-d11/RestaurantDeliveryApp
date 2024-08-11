@@ -66,6 +66,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { OwnerDialogAddIngridCategoryComponent } from './core/components/owner-dialog-add-ingrid-category/owner-dialog-add-ingrid-category.component';
 import { OwnerDialogAddIngridientItemComponent } from './core/components/owner-dialog-add-ingridient-item/owner-dialog-add-ingridient-item.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import {
+  OWNER_MENU_FOOD_NAME,
+  OwnerMenuFoodReducer,
+} from './store+/reducers/owner-food-reducer';
+import { OwnerMenuFoodEffects } from './store+/effects/owner-menu-food-effects';
+import { OwnerMenuFiltersFoodSectionComponent } from './core/components/owner-menu-filters-food-section/owner-menu-filters-food-section.component';
+import { OwnerMenuFilterCardComponent } from './core/components/owner-menu-filter-card/owner-menu-filter-card.component';
+import { OwnerAddMenuItemFoodComponent } from './core/pages/owner-add-menu-item-food/owner-add-menu-item-food.component';
 
 const routes: Routes = [
   {
@@ -86,6 +95,10 @@ const routes: Routes = [
       { path: 'foodCategory', component: OwnerFoodCategoryComponent },
       { path: 'events', component: OwnerEventsComponent },
       { path: 'details', component: OwnerDetailsComponent },
+      {
+        path: 'addItem',
+        component: OwnerAddMenuItemFoodComponent,
+      },
       { path: '', pathMatch: 'full', redirectTo: 'dashboardOwner' },
     ],
   },
@@ -115,6 +128,9 @@ const routes: Routes = [
     OwnerIngridietnsCategoryListComponent,
     OwnerDialogAddIngridCategoryComponent,
     OwnerDialogAddIngridientItemComponent,
+    OwnerMenuFiltersFoodSectionComponent,
+    OwnerMenuFilterCardComponent,
+    OwnerAddMenuItemFoodComponent,
   ],
   imports: [
     CommonModule,
@@ -123,6 +139,7 @@ const routes: Routes = [
     MatSelectModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatRadioModule,
     MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,
@@ -142,12 +159,14 @@ const routes: Routes = [
       OWNER_IGRIDIENTS_FEATURE_NAME,
       OwnerIngridientsReducer
     ),
+    StoreModule.forFeature(OWNER_MENU_FOOD_NAME, OwnerMenuFoodReducer),
     EffectsModule.forFeature([
       OwnerDashboardEffects,
       OwnerRestaurantEffects,
       OwnerDialogServiceService,
       OwnerCategoryFoodEffects,
       OwnerIngridientsEffects,
+      OwnerMenuFoodEffects,
     ]),
   ],
   providers: [
