@@ -1,33 +1,184 @@
-<div class="container">
+<div class="container box-container">
   <div class="row">
     <div class="col">
-      <h4>Add Menu Item</h4>
+      <h4 class="info-title-main">Add Menu Item</h4>
     </div>
   </div>
 
-  <div class="box">
+  <div class="">
     <form [formGroup]="form" (ngSubmit)="ngSubmit()">
-      <div class="row">
+      <div class="row box">
         <div class="col">
-          <input placeholder="Name" />
+          <input class="inf-inpt" formControlName="name" placeholder="Name" />
         </div>
       </div>
 
-      <div class="row">
+      <div class="row box">
         <div class="col">
-          <textarea placeholder="Description"></textarea>
+          <textarea
+            class="inf-inpt text-arr"
+            formControlName="description"
+            placeholder="Description"
+          ></textarea>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row box">
         <div class="col">
-          <input placeholder="Price" />
+          <input
+            class="inf-inpt pr-inf"
+            formControlName="price"
+            placeholder="Price"
+            type="number"
+          />
         </div>
       </div>
 
-      <div class="row">
+      <div class="row box">
         <div class="col">
-          <input placeholder="Category" />
+          <h4 class="sec-title">Please select category for your dish</h4>
+          <mat-form-field class="mt-select">
+            <mat-label>Categories</mat-label>
+            <mat-select formControlName="category" multiple>
+              <mat-option
+                *ngFor="let category of categories$ | async"
+                [value]="category.id"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="form.get('category')?.value.length">
+            <h5>Selected Categories:</h5>
+            <ul class="ui-category">
+              <li
+                class="category-item"
+                *ngFor="let categoryId of form.get('category')?.value"
+              >
+                {{ getCategoryNameById(categoryId) }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="box row">
+        <div class="col">
+          <h5 class="sec-title">Select Images for your dish</h5>
+        </div>
+      </div>
+      <div class="box row d-flex justify-content-start">
+        <div class="col-2">
+          <img
+            src="./../../../../../assets/images/imgAdd.png"
+            (click)="fileInput.click()"
+          />
+          <input
+            type="file"
+            #fileInput
+            (change)="onFileSelected($event)"
+            style="display: none"
+          />
+        </div>
+
+        <div
+          class="col-2 position-relative"
+          *ngFor="let image of form.get('images')!.value; let i = index"
+        >
+          <img
+            [src]="image"
+            [alt]="'Image ' + (i + 1)"
+            class="image-thumbnail"
+          />
+          <button
+            type="button"
+            class="btn btn-deleted btn-danger"
+            (click)="removeImage(i)"
+          >
+            -
+          </button>
+        </div>
+      </div>
+
+      <div class="box row">
+        <label id="example-radio-group-label"
+          >This dish must be Seasonal ?</label
+        >
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          formControlName="seasional"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let season of seasons"
+            [value]="season === 'Yes'"
+          >
+            {{ season }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="box row">
+        <label id="example-radio-group-label"
+          >This dish must be Vegetarian ?</label
+        >
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          formControlName="vegetarian"
+        >
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let season of seasons"
+            [value]="season === 'Yes'"
+          >
+            {{ season }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="box row">
+        <div class="col">
+          <h5 class="sec-title">
+            Please Select available ingridients for dish
+          </h5>
+        </div>
+      </div>
+
+      <div class="row box">
+        <div class="col">
+          <h4>Angular Material Select (Multiple Ingridients)</h4>
+          <mat-form-field>
+            <mat-label>Ingridients</mat-label>
+            <mat-select formControlName="ingridients" multiple>
+              <mat-option
+                *ngFor="let ingridient of ingridItems$ | async"
+                [value]="ingridient.id"
+              >
+                {{ ingridient.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="form.get('ingridients')?.value.length">
+            <h4>Selected Ingridients:</h4>
+            <ul>
+              <li *ngFor="let ingridientId of form.get('ingridients')?.value">
+                {{ getIngridientNameById(ingridientId) }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="box row">
+        <div class="col-1">
+          <button type="submit">Submit</button>
+        </div>
+        <div class="col-1">
+          <button type="button">Go Back</button>
         </div>
       </div>
     </form>

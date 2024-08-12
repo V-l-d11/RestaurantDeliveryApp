@@ -75,6 +75,7 @@ import { OwnerMenuFoodEffects } from './store+/effects/owner-menu-food-effects';
 import { OwnerMenuFiltersFoodSectionComponent } from './core/components/owner-menu-filters-food-section/owner-menu-filters-food-section.component';
 import { OwnerMenuFilterCardComponent } from './core/components/owner-menu-filter-card/owner-menu-filter-card.component';
 import { OwnerAddMenuItemFoodComponent } from './core/pages/owner-add-menu-item-food/owner-add-menu-item-food.component';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -140,6 +141,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatChipsModule,
     MatRadioModule,
+    MatButtonModule,
     MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,
