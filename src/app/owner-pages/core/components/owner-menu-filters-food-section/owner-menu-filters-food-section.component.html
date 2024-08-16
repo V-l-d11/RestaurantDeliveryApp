@@ -1,1 +1,5 @@
-<p>owner-menu-filters-food-section works!</p>
+<div *ngIf="foodArr | async as food">
+  <div *ngFor="let i of food">
+    <app-owner-menu-singl-card></app-owner-menu-singl-card>
+  </div>
+</div>
