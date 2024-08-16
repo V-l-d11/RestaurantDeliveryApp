@@ -12,7 +12,7 @@ import { OwnerDashboardService } from './services/api-owner-dashboard-service/ow
 import { OwnerFoodService } from './services/api-owner-food-service/owner-food.service';
 import { OwnerOdersService } from './services/api-owner-oders-service/owner-oders.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
 import {
   OWNER_DASHBOARD_FEATURE_NAME,
@@ -76,6 +76,7 @@ import { OwnerMenuFiltersFoodSectionComponent } from './core/components/owner-me
 import { OwnerMenuFilterCardComponent } from './core/components/owner-menu-filter-card/owner-menu-filter-card.component';
 import { OwnerAddMenuItemFoodComponent } from './core/pages/owner-add-menu-item-food/owner-add-menu-item-food.component';
 import { MatButtonModule } from '@angular/material/button';
+import { findRestaurant } from './store+/actions/actions-owner-retsuarant';
 
 const routes: Routes = [
   {
@@ -179,4 +180,8 @@ const routes: Routes = [
     CategoryFoodService,
   ],
 })
-export class OwnerPagesModule {}
+export class OwnerPagesModule {
+  constructor(private store$: Store) {
+    this.store$.dispatch(findRestaurant());
+  }
+}

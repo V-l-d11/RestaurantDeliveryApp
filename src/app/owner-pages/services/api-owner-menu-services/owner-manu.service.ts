@@ -27,6 +27,7 @@ export class OwnerManuService {
   }
 
   createFood(item: AdminCreateFoodRequest): Observable<OwnerFoodBase> {
-    return this.http.post<OwnerFoodBase>(`${this.BASE_URL}`, { item });
+    console.log(item, 'Item  into Service');
+    return this.http.post<OwnerFoodBase>(`${this.BASE_URL}`, item);
   }
 }

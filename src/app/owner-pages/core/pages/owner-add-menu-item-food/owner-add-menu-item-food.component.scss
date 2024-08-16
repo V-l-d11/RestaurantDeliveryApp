@@ -1,11 +1,12 @@
 $font-family: Jost;
-$font-size-titl: 30px;
+$font-size-titl: 35px;
 $border-radius: 5px;
 $border-color: #00000060;
 $padding-inpt-inside: 10px 15px 10px 15px;
 $padding-main-box: 20px 30px 20px 30px;
 
 .box-container {
+  margin-bottom: 8%;
   padding: $padding-main-box;
   margin-top: 2%;
   width: 100%;
@@ -14,6 +15,10 @@ $padding-main-box: 20px 30px 20px 30px;
   border: 1px solid #0000002b;
   box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.06);
   border-radius: 10px;
+
+  mat-form-field {
+    width: 30%;
+  }
 
   .info-title-main {
     font-family: $font-family;
@@ -71,5 +76,22 @@ $padding-main-box: 20px 30px 20px 30px;
     .ct-inf {
       width: 50%;
     }
+  }
+
+  .btn-add {
+    border: none;
+    border-radius: 8px;
+    font-family: $font-family;
+    width: 100px;
+    padding: 5px 15px 5px 15px;
+    color: #fff;
+    margin-bottom: 10%;
+  }
+  .btn-submit {
+    background-color: red;
+  }
+  .btn-back {
+    background-color: #000000;
+    margin-left: 25%;
   }
 }

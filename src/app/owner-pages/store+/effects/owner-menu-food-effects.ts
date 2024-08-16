@@ -3,14 +3,17 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { OwnerManuService } from '../../services/api-owner-menu-services/owner-manu.service';
 import * as menuActions from './../actions/actions-owner-manu';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap, tap } from 'rxjs';
 import * as restaurantActions from './../actions/actions-owner-retsuarant';
+import { OwnerDialogServiceService } from '../../services/owner-dialog-service/owner-dialog-service.service';
+
 @Injectable()
 export class OwnerMenuFoodEffects {
   constructor(
     private actions$: Actions,
     private store$: Store,
-    private ownerMenuFoodService: OwnerManuService
+    private ownerMenuFoodService: OwnerManuService,
+    private dialog: OwnerDialogServiceService
   ) {}
 
   // loadMenuFoodFilter$ = createEffect(() =>
@@ -70,6 +73,9 @@ export class OwnerMenuFoodEffects {
           map((response) =>
             menuActions.createOwnerFoodSucess({ item: response })
           ),
+          tap(() => {
+            this.dialog.openSnackBar('Food Sucessfyly added', 4000);
+          }),
           catchError((error) =>
             of(
               menuActions.createOwnerFoodFailed({ serverError: error.massage })
