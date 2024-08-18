@@ -1,18 +1,23 @@
 $font-family: Jost;
 $padding-btns: 5px 20px 5px 20px;
 $font-szie-btns: 15px;
+$padding-card: 15px 25px 15px 25px;
 
 .container {
-  width: 20%;
+  width: 400px;
   border: 0.5px solid #00000032;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.077);
+  padding: $padding-card;
 
   h5 {
     font-family: $font-family;
+    margin-top: 3%;
   }
   .sp-info {
     font-family: $font-family;
+    color: #0000008b;
+    text-decoration: underline;
   }
 
   .btn-card {
@@ -20,14 +25,27 @@ $font-szie-btns: 15px;
     font-family: $font-family;
     padding: $padding-btns;
     font-size: $font-szie-btns;
+    margin-bottom: 5%;
+    margin-top: 15%;
   }
   .btn-price {
-    background-color: red;
+    background-color: rgb(231, 160, 79);
     color: #fff;
     border: none;
   }
 
   .btn-status {
     border: none;
+  }
+
+  .btn-available {
+    border: 0.5px solid #99f66732;
+    background-color: transparent;
+  }
+
+  .btn-not-available {
+    border: none;
+    background-color: red;
+    color: #fff;
   }
 }

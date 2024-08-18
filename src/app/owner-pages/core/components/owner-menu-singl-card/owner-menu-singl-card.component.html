@@ -1,25 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <img />
+      <img src="{{ food.images[0] }}" alt="Menu Image" />
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <h5>Hello</h5>
+      <h5>{{ food.name }}</h5>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <span class="sp-info">Read more</span>
+      <span class="sp-info">Info more</span>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <button class="btn-card btn-price">Price</button>
+      <button class="btn-card btn-price">{{ food.price }}$</button>
     </div>
     <div class="col">
-      <button class="btn-card btn-status">Status</button>
+      <button
+        class="btn-card"
+        [ngClass]="food.available ? 'btn-available' : 'btn-not-available'"
+      >
+        {{ food.available ? "Available" : "Not Available" }}
+      </button>
     </div>
   </div>
 </div>

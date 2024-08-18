@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { OwnerFoodFilterRequest } from 'src/app/models/api/requests/admin/food-filter-request';
 import { Category } from 'src/app/models/baseModals/category';
+import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 import { getOwnerCategoryFood } from 'src/app/owner-pages/store+/actions/actions-owner-category-food';
 import { getOwnerFoodFilter } from 'src/app/owner-pages/store+/actions/actions-owner-manu';
 import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 import { getCategoriesFood } from 'src/app/owner-pages/store+/selectors/owner-category-food-selectors';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
+import { getFilterFood } from 'src/app/owner-pages/store+/selectors/owner-menu-food-selectors';
 
 @Component({
   selector: 'app-owner-menu',
@@ -22,11 +24,11 @@ export class OwnerMenuComponent implements OnInit {
   showFilters: boolean = false;
   restuarnatId$!: number;
   selectedCategory: string | null = null;
+  foodArr!: Observable<OwnerFoodBase[]>;
 
   constructor(private store$: Store, private router: Router) {
     this.store$.dispatch(getOwnerCategoryFood());
     this.store$.dispatch(findRestaurant());
-    this.loadInitialFoodItems();
   }
 
   addItemRedirect() {
@@ -37,11 +39,14 @@ export class OwnerMenuComponent implements OnInit {
     this.store$.select(getRestaurantId).subscribe((id) => {
       console.log(id, '____0000___');
       this.restuarnatId$ = id;
+      this.loadInitialFoodItems();
     });
     this.$categoriesFood = this.store$.select(getCategoriesFood);
+    this.foodArr = this.store$.select(getFilterFood);
   }
 
   loadInitialFoodItems(): void {
+    console.log('Hello');
     this.store$.dispatch(
       getOwnerFoodFilter({
         restaurantId: this.restuarnatId$,

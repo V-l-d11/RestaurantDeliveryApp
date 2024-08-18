@@ -77,6 +77,7 @@ import { OwnerMenuFilterCardComponent } from './core/components/owner-menu-filte
 import { OwnerAddMenuItemFoodComponent } from './core/pages/owner-add-menu-item-food/owner-add-menu-item-food.component';
 import { MatButtonModule } from '@angular/material/button';
 import { findRestaurant } from './store+/actions/actions-owner-retsuarant';
+import { OwnerMenuSinglCardComponent } from './core/components/owner-menu-singl-card/owner-menu-singl-card.component';
 
 const routes: Routes = [
   {
@@ -133,6 +134,7 @@ const routes: Routes = [
     OwnerMenuFiltersFoodSectionComponent,
     OwnerMenuFilterCardComponent,
     OwnerAddMenuItemFoodComponent,
+    OwnerMenuSinglCardComponent,
   ],
   imports: [
     CommonModule,

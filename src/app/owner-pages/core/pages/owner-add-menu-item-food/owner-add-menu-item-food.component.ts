@@ -112,6 +112,8 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
   }
 
   ngSubmit() {
+    console.log('Form Click');
+    console.log(this.form.value, 'Fafter Click  Form ');
     if (this.form.valid) {
       console.log('Form is Valid');
       this.store$.dispatch(createOwnerFood({ item: this.form.value }));

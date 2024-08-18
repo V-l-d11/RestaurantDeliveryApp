@@ -1,5 +1,11 @@
-<div *ngIf="foodArr | async as food">
+<div
+  class="d-flex flex-wrap gap-4 filtered-section"
+  *ngIf="foodArr | async as food"
+>
   <div *ngFor="let i of food">
-    <app-owner-menu-singl-card></app-owner-menu-singl-card>
+    <app-owner-menu-singl-card
+      class="card"
+      [food]="i"
+    ></app-owner-menu-singl-card>
   </div>
 </div>
