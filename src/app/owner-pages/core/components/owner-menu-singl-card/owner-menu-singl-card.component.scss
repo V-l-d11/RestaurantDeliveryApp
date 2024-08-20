@@ -29,8 +29,8 @@ $padding-card: 15px 25px 15px 25px;
     margin-top: 15%;
   }
   .btn-price {
-    background-color: rgb(231, 160, 79);
-    color: #fff;
+    background-color: rgba(213, 207, 199, 0.042);
+    color: #000;
     border: none;
   }
 
@@ -39,13 +39,13 @@ $padding-card: 15px 25px 15px 25px;
   }
 
   .btn-available {
-    border: 0.5px solid #99f66732;
+    border: 0.5px solid #7aee3b84;
     background-color: transparent;
   }
 
   .btn-not-available {
     border: none;
-    background-color: red;
+    background-color: rgba(245, 91, 91, 0.591);
     color: #fff;
   }
 }

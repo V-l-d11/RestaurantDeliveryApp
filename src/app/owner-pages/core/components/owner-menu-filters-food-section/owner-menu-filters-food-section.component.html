@@ -5,6 +5,7 @@
   <div *ngFor="let i of food">
     <app-owner-menu-singl-card
       class="card"
+      (clickAvailStatus)="clickUpdate.emit($event)"
       [food]="i"
     ></app-owner-menu-singl-card>
   </div>

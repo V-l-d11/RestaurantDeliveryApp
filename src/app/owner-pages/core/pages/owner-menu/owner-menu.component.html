@@ -53,6 +53,7 @@
   </div>
 
   <app-owner-menu-filters-food-section
+    (clickUpdate)="onUpdateStatusFood($event)"
     class="filtered-section"
     [foodArr]="foodArr"
   ></app-owner-menu-filters-food-section>

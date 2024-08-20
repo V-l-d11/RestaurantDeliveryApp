@@ -85,4 +85,46 @@ export class OwnerMenuFoodEffects {
       )
     )
   );
+
+  updateFoodStatusAvailable$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(menuActions.updateFoodAvailableStatus),
+      switchMap((action) =>
+        this.ownerMenuFoodService.updateFoodStatusAvailable(action.foodId).pipe(
+          map(
+            (response) =>
+              menuActions.updateFoodAvailableStatusSucess({ item: response }),
+            this.dialog.openSnackBar('Status Updated Sucessfully', 4000)
+          ),
+          catchError((error) =>
+            of(
+              menuActions.updateFoodAvailableStatusFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  deletFood$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(menuActions.deletedFood),
+      switchMap((action) =>
+        this.ownerMenuFoodService.deletFood(action.foodId).pipe(
+          map((response) =>
+            menuActions.deletedFoodSucess({ foodId: action.foodId })
+          ),
+          catchError((error) =>
+            of(
+              menuActions.deletedFoodFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 }

@@ -21,6 +21,7 @@
     <div class="col">
       <button
         class="btn-card"
+        (click)="updateStatus(food.id)"
         [ngClass]="food.available ? 'btn-available' : 'btn-not-available'"
       >
         {{ food.available ? "Available" : "Not Available" }}

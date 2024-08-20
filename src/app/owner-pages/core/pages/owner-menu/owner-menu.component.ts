@@ -6,7 +6,10 @@ import { OwnerFoodFilterRequest } from 'src/app/models/api/requests/admin/food-f
 import { Category } from 'src/app/models/baseModals/category';
 import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 import { getOwnerCategoryFood } from 'src/app/owner-pages/store+/actions/actions-owner-category-food';
-import { getOwnerFoodFilter } from 'src/app/owner-pages/store+/actions/actions-owner-manu';
+import {
+  getOwnerFoodFilter,
+  updateFoodAvailableStatus,
+} from 'src/app/owner-pages/store+/actions/actions-owner-manu';
 import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 import { getCategoriesFood } from 'src/app/owner-pages/store+/selectors/owner-category-food-selectors';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
@@ -89,5 +92,9 @@ export class OwnerMenuComponent implements OnInit {
     }
 
     return selectedFilters;
+  }
+
+  onUpdateStatusFood(foodId: number): void {
+    this.store$.dispatch(updateFoodAvailableStatus({ foodId }));
   }
 }

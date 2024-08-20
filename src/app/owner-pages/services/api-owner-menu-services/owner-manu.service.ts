@@ -30,4 +30,12 @@ export class OwnerManuService {
     console.log(item, 'Item  into Service');
     return this.http.post<OwnerFoodBase>(`${this.BASE_URL}`, item);
   }
+
+  updateFoodStatusAvailable(foodId: number): Observable<OwnerFoodBase> {
+    return this.http.put<OwnerFoodBase>(`${this.BASE_URL}/${foodId}`, {});
+  }
+
+  deletFood(foodId: number) {
+    return this.http.delete(`${this.BASE_URL}/${foodId}`);
+  }
 }

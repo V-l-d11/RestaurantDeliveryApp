@@ -47,3 +47,33 @@ export const createOwnerFoodFailed = createAction(
   OwnerMenuFoodTypes.CREATE_OWNER_FOOD_FAILED,
   props<{ serverError: string }>()
 );
+
+export const updateFoodAvailableStatus = createAction(
+  OwnerMenuFoodTypes.UPDATE_OWNER_FOOD_AVAIBILITY_STATUS,
+  props<{ foodId: number }>()
+);
+
+export const updateFoodAvailableStatusSucess = createAction(
+  OwnerMenuFoodTypes.UPDATE_OWNER_FOOD_AVAIBILITY_STATUS_SUCESS,
+  props<{ item: OwnerFoodBase }>()
+);
+
+export const updateFoodAvailableStatusFailed = createAction(
+  OwnerMenuFoodTypes.UPDATE_OWNER_FOOD_AVAIBILITY_STATUS_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const deletedFood = createAction(
+  OwnerMenuFoodTypes.DELETE_OWNER_FOOD,
+  props<{ foodId: number }>()
+);
+
+export const deletedFoodSucess = createAction(
+  OwnerMenuFoodTypes.DELETE_OWNER_FOOD_SUCESS,
+  props<{ foodId: number }>()
+);
+
+export const deletedFoodFailed = createAction(
+  OwnerMenuFoodTypes.DELETE_OWNER_FOOD_FAILED,
+  props<{ serverError: string }>()
+);

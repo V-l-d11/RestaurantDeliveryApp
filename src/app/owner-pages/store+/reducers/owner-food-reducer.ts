@@ -45,9 +45,47 @@ export const OwnerMenuFoodReducer = createReducer(
     ...state,
     loaded: true,
     loading: false,
-    filtersFood: state.filtersFood ? [...state.filtersFood, item] : [item],
+    filtersFood: state.filtersFood.map((food) =>
+      food.id === item.id ? { ...food, ...item } : food
+    ),
   })),
   on(menuActions.createOwnerFoodFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(menuActions.updateFoodAvailableStatus, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(menuActions.updateFoodAvailableStatusSucess, (state, { item }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    filtersFood: state.filtersFood.map((food) =>
+      food.id === item.id ? { ...food, available: item.available } : food
+    ),
+  })),
+  on(menuActions.updateFoodAvailableStatusFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(menuActions.deletedFood, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(menuActions.deletedFoodSucess, (state, { foodId }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    filtersFood: state.filtersFood.filter((el) => el.id !== foodId),
+  })),
+  on(menuActions.deletedFoodFailed, (state, { serverError }) => ({
     ...state,
     loaded: true,
     loading: false,

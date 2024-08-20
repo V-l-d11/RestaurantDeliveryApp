@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 
@@ -10,4 +10,7 @@ import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 export class OwnerMenuFiltersFoodSectionComponent {
   @Input()
   foodArr!: Observable<OwnerFoodBase[]>;
+
+  @Output()
+  clickUpdate = new EventEmitter<number>();
 }
