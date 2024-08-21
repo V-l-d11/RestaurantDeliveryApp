@@ -7,6 +7,7 @@ import { Category } from 'src/app/models/baseModals/category';
 import { OwnerFoodBase } from 'src/app/models/baseModals/foodOwnerBase';
 import { getOwnerCategoryFood } from 'src/app/owner-pages/store+/actions/actions-owner-category-food';
 import {
+  deletedFood,
   getOwnerFoodFilter,
   updateFoodAvailableStatus,
 } from 'src/app/owner-pages/store+/actions/actions-owner-manu';
@@ -14,11 +15,24 @@ import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner
 import { getCategoriesFood } from 'src/app/owner-pages/store+/selectors/owner-category-food-selectors';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 import { getFilterFood } from 'src/app/owner-pages/store+/selectors/owner-menu-food-selectors';
-
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 @Component({
   selector: 'app-owner-menu',
   templateUrl: './owner-menu.component.html',
   styleUrls: ['./owner-menu.component.scss'],
+  animations: [
+    trigger('slideDown', [
+      state('void', style({ height: '40px', opacity: 0, overflow: 'hidden' })),
+      state('*', style({ height: '*', opacity: 1, overflow: 'hidden' })),
+      transition('void <=> *', animate('300ms ease-in-out')),
+    ]),
+  ],
 })
 export class OwnerMenuComponent implements OnInit {
   $categoriesFood!: Observable<Category[]>;
@@ -28,6 +42,7 @@ export class OwnerMenuComponent implements OnInit {
   restuarnatId$!: number;
   selectedCategory: string | null = null;
   foodArr!: Observable<OwnerFoodBase[]>;
+  selectedName!: string | null;
 
   constructor(private store$: Store, private router: Router) {
     this.store$.dispatch(getOwnerCategoryFood());
@@ -59,6 +74,7 @@ export class OwnerMenuComponent implements OnInit {
   }
 
   onSelectCategory(category: string | null): void {
+    this.selectedName = category === null ? (category = 'All') : category;
     this.selectedCategory = category;
     this.dispatchFoodItems();
   }
@@ -96,5 +112,13 @@ export class OwnerMenuComponent implements OnInit {
 
   onUpdateStatusFood(foodId: number): void {
     this.store$.dispatch(updateFoodAvailableStatus({ foodId }));
+  }
+
+  deleteMenuItem(foodId: number): void {
+    this.store$.dispatch(deletedFood({ foodId }));
+  }
+
+  redirectToCategories() {
+    this.router.navigate(['/foodapp/owner/foodCategory']);
   }
 }

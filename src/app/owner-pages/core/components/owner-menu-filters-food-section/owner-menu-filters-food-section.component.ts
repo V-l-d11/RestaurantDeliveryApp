@@ -13,4 +13,7 @@ export class OwnerMenuFiltersFoodSectionComponent {
 
   @Output()
   clickUpdate = new EventEmitter<number>();
+
+  @Output()
+  deleteItem = new EventEmitter<number>();
 }

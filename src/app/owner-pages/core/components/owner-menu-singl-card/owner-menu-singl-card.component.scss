@@ -14,10 +14,23 @@ $padding-card: 15px 25px 15px 25px;
     font-family: $font-family;
     margin-top: 3%;
   }
+  h6 {
+    font-family: $font-family;
+    font-size: 19px;
+    color: #464646;
+  }
   .sp-info {
     font-family: $font-family;
     color: #0000008b;
     text-decoration: underline;
+  }
+
+  .shadow-section {
+    margin-top: 7%;
+    .p-desc {
+      font-family: $font-family;
+      font-size: 16px;
+    }
   }
 
   .btn-card {
@@ -48,4 +61,37 @@ $padding-card: 15px 25px 15px 25px;
     background-color: rgba(245, 91, 91, 0.591);
     color: #fff;
   }
+
+  .btn-del {
+    padding-top: 10px;
+    border: none;
+    background-color: transparent;
+    .icon-del {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .btn-editor-section {
+    margin-top: 2%;
+    .btn-edit {
+      border: none;
+      background-color: rgb(242, 222, 154);
+      border-radius: 8px;
+      font-family: $font-family;
+      font-size: 14px;
+      color: #000000;
+      padding: 5px 15px 5px 15px;
+    }
+  }
+}
+
+.menu-image {
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.row[ng-reflect-is-info-visible="true"] .menu-image {
+  transform: scale(1.05);
 }

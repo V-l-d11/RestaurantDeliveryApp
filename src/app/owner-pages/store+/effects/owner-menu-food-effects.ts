@@ -116,6 +116,9 @@ export class OwnerMenuFoodEffects {
           map((response) =>
             menuActions.deletedFoodSucess({ foodId: action.foodId })
           ),
+          tap(() => {
+            this.dialog.openSnackBar('Menu Item deleted Sucessfuly!', 4000);
+          }),
           catchError((error) =>
             of(
               menuActions.deletedFoodFailed({

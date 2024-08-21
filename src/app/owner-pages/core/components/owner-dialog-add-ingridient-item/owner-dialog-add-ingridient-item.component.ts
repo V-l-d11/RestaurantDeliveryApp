@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GetRestaurantIngridCategoryResponse } from 'src/app/models/api/responses/admin/get-restaurnat-igrid-category-response';
+import { createOwnerIngridItem } from 'src/app/owner-pages/store+/actions/actions-owner-ingridients';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 import { getIngridCategory } from 'src/app/owner-pages/store+/selectors/owner-ingridients-selectors';
 
@@ -14,7 +15,6 @@ import { getIngridCategory } from 'src/app/owner-pages/store+/selectors/owner-in
 export class OwnerDialogAddIngridientItemComponent implements OnInit {
   form!: FormGroup;
   restaurantId$!: Observable<number>;
-  selectedValue: string = 'Ingridient Category';
   categories!: Observable<GetRestaurantIngridCategoryResponse[]>;
 
   constructor(private store$: Store) {
@@ -22,7 +22,11 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
     console.log('Hello world');
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.form.valid) {
+      this.store$.dispatch(createOwnerIngridItem({ item: this.form.value }));
+    }
+  }
 
   onCategoryChange(categoryId: string) {
     this.form.patchValue({ categoryId });
@@ -38,12 +42,9 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
       price: new FormControl(null, [Validators.required]),
     });
 
+    // Подписка на restaurantId и обновление соответствующего поля формы
     this.restaurantId$.subscribe((el) => {
       this.form.patchValue({ restaurantId: el });
-    });
-
-    this.form.get('categoryId')?.valueChanges.subscribe((value) => {
-      this.form.patchValue({ categoryId: this.selectedValue });
     });
   }
 }

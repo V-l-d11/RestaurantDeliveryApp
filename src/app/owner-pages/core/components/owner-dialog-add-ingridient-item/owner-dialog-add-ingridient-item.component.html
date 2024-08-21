@@ -22,9 +22,8 @@
         <mat-select
           placeholder="Choose Ingridient Category"
           class="select"
-          [(ngModel)]="selectedValue"
+          formControlName="categoryId"
           (selectionChange)="onCategoryChange($event.value)"
-          name="food"
         >
           <mat-option
             *ngFor="let category of categories | async"
@@ -37,7 +36,9 @@
     </div>
     <div class="row btn-section">
       <div class="col">
-        <button type="submit" class="btn-add">Create Ingirident</button>
+        <button type="submit" (click)="onSubmit()" class="btn-add">
+          Create Ingirident
+        </button>
       </div>
     </div>
   </form>

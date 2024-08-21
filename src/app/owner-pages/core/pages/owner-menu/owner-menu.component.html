@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-1">
+    <div class="col-2">
       <h4>Menu</h4>
     </div>
 
@@ -16,16 +16,26 @@
     <div
       *ngFor="let category of categories"
       class="col-1 category-box"
+      [class.selected]="selectedCategory === category.name"
       (click)="onSelectCategory(category.name)"
     >
       <span>{{ category.name }}</span>
     </div>
 
-    <div class="col-1 category-box" (click)="onSelectCategory(null)">
+    <div
+      class="col-1 category-box"
+      [class.selected]="selectedCategory === null"
+      (click)="onSelectCategory(null)"
+    >
       <span>All</span>
     </div>
     <div class="col">
-      <button class="btn-added-items category-box">+ Add Category</button>
+      <button
+        class="btn-added-items category-box"
+        (click)="redirectToCategories()"
+      >
+        + Add Category
+      </button>
     </div>
   </div>
 
@@ -35,7 +45,7 @@
     </div>
   </div>
 
-  <div class="row radio-section" *ngIf="showFilters">
+  <div class="row radio-section" @slideDown *ngIf="showFilters">
     <mat-radio-group
       aria-labelledby="example-radio-group-label"
       class="radio-group"
@@ -52,8 +62,15 @@
     </mat-radio-group>
   </div>
 
+  <div class="row title-info-section">
+    <div class="col">
+      <h4>{{ selectedName }}</h4>
+    </div>
+  </div>
+
   <app-owner-menu-filters-food-section
     (clickUpdate)="onUpdateStatusFood($event)"
+    (deleteItem)="deleteMenuItem($event)"
     class="filtered-section"
     [foodArr]="foodArr"
   ></app-owner-menu-filters-food-section>

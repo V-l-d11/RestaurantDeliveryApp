@@ -5,15 +5,44 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-9">
       <h5>{{ food.name }}</h5>
+    </div>
+    <div class="col">
+      <button class="btn-del" (click)="deleteMenuItem(food.id)">
+        <mat-icon class="icon-del">delete</mat-icon>
+      </button>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <span class="sp-info">Info more</span>
+      <span class="sp-info" (click)="toggleInfo()">Info more</span>
     </div>
   </div>
+
+  <div class="row shadow-section" *ngIf="isInfoVisible" @slideDown>
+    <div class="col">
+      <h6>Description:</h6>
+      <p class="p-desc">{{ food.description }}</p>
+    </div>
+    <div class="row" *ngIf="food.ingredients.length != 0">
+      <div class="col">
+        <h6>Ingridients:</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div *ngFor="let i of food.ingredients" class="col">
+        {{ i.name }}
+      </div>
+    </div>
+
+    <div class="row btn-editor-section">
+      <div class="col">
+        <button class="btn-edit">Edit Information</button>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col">
       <button class="btn-card btn-price">{{ food.price }}$</button>
