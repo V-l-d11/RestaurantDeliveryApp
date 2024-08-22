@@ -20,7 +20,11 @@ export enum OwnerMenuFoodTypes {
 
 export const getOwnerFoodFilter = createAction(
   OwnerMenuFoodTypes.GET_OWNER_FOOD_FILTER,
-  props<{ restaurantId: number; filters: OwnerFoodFilterRequest[] }>()
+  props<{
+    restaurantId: number;
+    filters: OwnerFoodFilterRequest[];
+    categories: string[];
+  }>()
 );
 
 export const getOwnerFoodFilterSucess = createAction(

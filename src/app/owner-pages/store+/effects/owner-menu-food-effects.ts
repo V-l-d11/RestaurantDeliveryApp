@@ -46,7 +46,11 @@ export class OwnerMenuFoodEffects {
           ofType(menuActions.getOwnerFoodFilter), // Слушаем запрос на фильтрацию еды
           switchMap((filterAction) =>
             this.ownerMenuFoodService
-              .showMenuItems(action.item.id, filterAction.filters)
+              .showMenuItems(
+                action.item.id,
+                filterAction.filters,
+                filterAction.categories
+              )
               .pipe(
                 map((response) =>
                   menuActions.getOwnerFoodFilterSucess({ items: response })

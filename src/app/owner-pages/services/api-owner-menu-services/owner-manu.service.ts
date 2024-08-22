@@ -15,11 +15,31 @@ export class OwnerManuService {
 
   showMenuItems(
     restuarantId: number,
-    filters: OwnerFoodFilterRequest[]
+    filters: OwnerFoodFilterRequest[],
+    categories: string[]
   ): Observable<OwnerFoodBase[]> {
-    console.log(restuarantId, 'Restaurant Menu  Id restaurant Service');
     let params = new HttpParams();
-    filters.forEach((filter) => (params = params.set(filter, 'true')));
+
+    filters.forEach((filter) => {
+      if (filter === OwnerFoodFilterRequest.Vegetarian) {
+        params = params.append('vageterian', 'true');
+      }
+      if (filter === OwnerFoodFilterRequest.Seasonal) {
+        params = params.append('seasonal', 'true');
+      }
+      if (filter === OwnerFoodFilterRequest.NonVegetarian) {
+        params = params.append('nonveg', 'true');
+      }
+    });
+
+    categories.forEach((category) => {
+      params = params.append('foodCategory', category);
+    });
+
+    console.log(params.toString(), 'Params $$$$');
+    console.log(filters, 'Filters');
+    console.log(categories, 'Categories');
+
     return this.http.get<OwnerFoodBase[]>(
       `${this.BASE_URL}/restaurant/${restuarantId}`,
       { params }

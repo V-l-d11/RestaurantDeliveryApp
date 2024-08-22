@@ -19,12 +19,12 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
 
   constructor(private store$: Store) {
     this.categories = this.store$.select(getIngridCategory);
-    console.log('Hello world');
   }
 
   onSubmit() {
     if (this.form.valid) {
-      this.store$.dispatch(createOwnerIngridItem({ item: this.form.value }));
+      const formValue = { ...this.form.value, price: +this.form.value.price };
+      this.store$.dispatch(createOwnerIngridItem({ item: formValue }));
     }
   }
 
@@ -39,10 +39,12 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
       name: new FormControl(null, [Validators.required]),
       categoryId: new FormControl(null, [Validators.required]),
       restaurantId: new FormControl(null, [Validators.required]),
-      price: new FormControl(null, [Validators.required]),
+      price: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'),
+      ]),
     });
 
-    // Подписка на restaurantId и обновление соответствующего поля формы
     this.restaurantId$.subscribe((el) => {
       this.form.patchValue({ restaurantId: el });
     });

@@ -11,3 +11,7 @@
     ></app-owner-menu-singl-card>
   </div>
 </div>
+
+<div class="info-empty-section" *ngIf="(foodArr | async)?.length === 0">
+  <h5 class="empty-title">Nothing to show</h5>
+</div>

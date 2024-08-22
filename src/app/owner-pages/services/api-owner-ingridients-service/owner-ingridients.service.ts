@@ -28,7 +28,8 @@ export class OwnerIngridientsService {
   createIngridientItem(
     req: CreateIngridItemRequest
   ): Observable<IngridientsItemBase> {
-    return this.http.post<IngridientsItemBase>(`${this.BASE_URL}`, { req });
+    console.log(req, 'Request !');
+    return this.http.post<IngridientsItemBase>(`${this.BASE_URL}`, req);
   }
 
   updateIngridientStock(ingridientId: number): Observable<IngridientsItemBase> {

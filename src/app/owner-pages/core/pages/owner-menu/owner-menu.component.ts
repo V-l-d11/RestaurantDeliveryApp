@@ -55,7 +55,6 @@ export class OwnerMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.store$.select(getRestaurantId).subscribe((id) => {
-      console.log(id, '____0000___');
       this.restuarnatId$ = id;
       this.loadInitialFoodItems();
     });
@@ -64,11 +63,11 @@ export class OwnerMenuComponent implements OnInit {
   }
 
   loadInitialFoodItems(): void {
-    console.log('Hello');
     this.store$.dispatch(
       getOwnerFoodFilter({
         restaurantId: this.restuarnatId$,
         filters: [],
+        categories: [],
       })
     );
   }
@@ -76,22 +75,28 @@ export class OwnerMenuComponent implements OnInit {
   onSelectCategory(category: string | null): void {
     this.selectedName = category === null ? (category = 'All') : category;
     this.selectedCategory = category;
+    console.log('Selected Category', this.selectedCategory);
     this.dispatchFoodItems();
   }
 
   toggleFilters(): void {
     this.showFilters = !this.showFilters;
   }
-  onFilterChange(): void {
+  onFilterChange(el: string): void {
+    this.favoriteSeason = el;
     this.dispatchFoodItems();
   }
 
   dispatchFoodItems(): void {
     const filters = this.getFiltersFromSelection();
+    const categories: string[] = this.selectedCategory
+      ? [this.selectedCategory]
+      : [];
     this.store$.dispatch(
       getOwnerFoodFilter({
         restaurantId: this.restuarnatId$,
         filters: filters,
+        categories: categories,
       })
     );
   }
@@ -106,6 +111,7 @@ export class OwnerMenuComponent implements OnInit {
     } else if (this.favoriteSeason === 'Non Vegetarian') {
       selectedFilters.push(OwnerFoodFilterRequest.NonVegetarian);
     }
+    console.log(selectedFilters, 'Selected FOood ');
 
     return selectedFilters;
   }

@@ -55,7 +55,7 @@
         class="radio-btns"
         *ngFor="let season of arr"
         [value]="season"
-        (change)="onFilterChange()"
+        (change)="onFilterChange(season)"
       >
         {{ season }}
       </mat-radio-button>
