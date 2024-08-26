@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GetRestaurantIngridCategoryResponse } from 'src/app/models/api/responses/admin/get-restaurnat-igrid-category-response';
@@ -17,7 +19,10 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
   restaurantId$!: Observable<number>;
   categories!: Observable<GetRestaurantIngridCategoryResponse[]>;
 
-  constructor(private store$: Store) {
+  constructor(
+    private store$: Store,
+    private dialogRef: MatDialogRef<OwnerDialogAddIngridientItemComponent>
+  ) {
     this.categories = this.store$.select(getIngridCategory);
   }
 
@@ -25,6 +30,7 @@ export class OwnerDialogAddIngridientItemComponent implements OnInit {
     if (this.form.valid) {
       const formValue = { ...this.form.value, price: +this.form.value.price };
       this.store$.dispatch(createOwnerIngridItem({ item: formValue }));
+      this.dialogRef.close();
     }
   }
 

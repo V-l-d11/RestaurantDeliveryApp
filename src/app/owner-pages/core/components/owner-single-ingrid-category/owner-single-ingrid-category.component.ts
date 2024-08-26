@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { GetRestaurantIngridCategoryResponse } from 'src/app/models/api/responses/admin/get-restaurnat-igrid-category-response';
@@ -12,7 +12,7 @@ import {
   templateUrl: './owner-single-ingrid-category.component.html',
   styleUrls: ['./owner-single-ingrid-category.component.scss'],
 })
-export class OwnerSingleIngridCategoryComponent {
+export class OwnerSingleIngridCategoryComponent implements OnInit {
   panelOpenState = true;
   @Input()
   category!: GetRestaurantIngridCategoryResponse;
@@ -25,5 +25,9 @@ export class OwnerSingleIngridCategoryComponent {
 
   deleteIngridientCategory(id: number) {
     this.store$.dispatch(deleteIngridientCategory({ id }));
+  }
+
+  ngOnInit(): void {
+    console.log(this.category.ingredients, 'Ingridients Indsgfsdf');
   }
 }
