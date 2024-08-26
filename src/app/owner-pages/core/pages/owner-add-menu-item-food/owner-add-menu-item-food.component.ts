@@ -42,6 +42,7 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.store$.select(getCategoriesFood);
+    this.categories$.subscribe((el) => console.log(el, 'CCCCCCCCCC'));
     this.categories$.subscribe((el) => (this.categoriesList = el));
     this.ingridItems$ = this.store$.select(getIngridients);
     this.ingridItems$.subscribe((el) => (this.ingiridientsList = el));
@@ -112,10 +113,10 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
   }
 
   ngSubmit() {
-    console.log('Form Click');
     console.log(this.form.value, 'Fafter Click  Form ');
     if (this.form.valid) {
       console.log('Form is Valid');
+
       this.store$.dispatch(createOwnerFood({ item: this.form.value }));
       this.router.navigate(['/foodapp/owner/menu']);
     }

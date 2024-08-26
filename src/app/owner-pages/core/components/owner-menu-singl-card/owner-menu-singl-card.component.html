@@ -19,7 +19,6 @@
       <span class="sp-info" (click)="toggleInfo()">Info more</span>
     </div>
   </div>
-
   <div class="row shadow-section" *ngIf="isInfoVisible" @slideDown>
     <div class="col">
       <h6>Description:</h6>
@@ -30,19 +29,25 @@
         <h6>Ingridients:</h6>
       </div>
     </div>
-    <div class="row">
-      <div *ngFor="let i of food.ingredients" class="col">
-        {{ i.name }}
-      </div>
+    <div class="row igrid-section">
+      <ul *ngFor="let i of food.ingredients" class="row ingrid-list">
+        <li class="ingrid-item">
+          <span class="ingrid-sp">{{ i.name }}</span> - {{ i.price }}$
+          <button
+            class="btn-igrid btn-instock"
+            [ngClass]="i.inStoke ? 'btn-instock' : 'btn-not-stock'"
+          >
+            {{ i.inStoke ? "Available" : "Not in Stock" }}
+          </button>
+        </li>
+      </ul>
     </div>
-
     <div class="row btn-editor-section">
       <div class="col">
         <button class="btn-edit">Edit Information</button>
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col">
       <button class="btn-card btn-price">{{ food.price }}$</button>

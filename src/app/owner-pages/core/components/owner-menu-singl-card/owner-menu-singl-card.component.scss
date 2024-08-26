@@ -2,21 +2,19 @@ $font-family: Jost;
 $padding-btns: 5px 20px 5px 20px;
 $font-szie-btns: 15px;
 $padding-card: 15px 25px 15px 25px;
-
 .container {
   width: 400px;
   border: 0.5px solid #00000032;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.077);
   padding: $padding-card;
-
   h5 {
     font-family: $font-family;
     margin-top: 3%;
   }
   h6 {
     font-family: $font-family;
-    font-size: 19px;
+    font-size: 21px;
     color: #464646;
   }
   .sp-info {
@@ -32,7 +30,6 @@ $padding-card: 15px 25px 15px 25px;
       font-size: 16px;
     }
   }
-
   .btn-card {
     border-radius: 8px;
     font-family: $font-family;
@@ -46,22 +43,18 @@ $padding-card: 15px 25px 15px 25px;
     color: #000;
     border: none;
   }
-
   .btn-status {
     border: none;
   }
-
   .btn-available {
     border: 0.5px solid #7aee3b84;
     background-color: transparent;
   }
-
   .btn-not-available {
     border: none;
     background-color: rgba(245, 91, 91, 0.591);
     color: #fff;
   }
-
   .btn-del {
     padding-top: 10px;
     border: none;
@@ -72,9 +65,8 @@ $padding-card: 15px 25px 15px 25px;
       height: 20px;
     }
   }
-
   .btn-editor-section {
-    margin-top: 2%;
+    margin-top: 3%;
     .btn-edit {
       border: none;
       background-color: rgb(242, 222, 154);
@@ -86,12 +78,45 @@ $padding-card: 15px 25px 15px 25px;
     }
   }
 }
-
+.igrid-section {
+  background: #ffffff;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2%;
+  .ingrid-list {
+    margin-top: 1%;
+    width: 100%;
+    .ingrid-item {
+      font-family: $font-family;
+      font-size: 16px;
+      list-style-type: none;
+      .ingrid-sp {
+        color: #ffa75e;
+        font-weight: 600;
+      }
+      .btn-igrid {
+        margin-left: 40%;
+        border: 0.3px solid #00000044;
+        border-radius: 7px;
+        background-color: transparent;
+        font-family: $font-family;
+        font-size: 16px;
+        padding: 2px 4px 2px 4px;
+      }
+      .btn-instock {
+        border: 0.3px solid #c7ff79;
+        color: #8bd720;
+      }
+      .btn-not-available {
+        border: none;
+        color: rgb(251, 79, 79);
+      }
+    }
+  }
+}
 .menu-image {
   width: 100%;
   transition: transform 0.3s ease-in-out;
 }
-
 .row[ng-reflect-is-info-visible="true"] .menu-image {
   transform: scale(1.05);
 }
