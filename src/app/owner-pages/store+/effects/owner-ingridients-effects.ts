@@ -16,6 +16,7 @@ import {
 import { findRestaurant } from '../actions/actions-owner-retsuarant';
 import { getRestaurantId } from '../selectors/owner-dashboard-selectors';
 import * as restaurantActions from './../actions/actions-owner-retsuarant';
+import * as menuActions from './../actions/actions-owner-manu';
 
 @Injectable({
   providedIn: 'root',
@@ -203,11 +204,21 @@ export class OwnerIngridientsEffects {
   deleteIngridientItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ingridientsActions.deleteIngridientItem),
-      switchMap((action) =>
+      withLatestFrom(this.store$.select(getRestaurantId)),
+      switchMap(([action, restaurantId]) =>
         this.ingridientsService.deleteIngridientItem(action.id).pipe(
           map((response) =>
             ingridientsActions.deleteIngridientItemSucess({ id: action.id })
           ),
+          tap(() => {
+            this.store$.dispatch(
+              menuActions.getOwnerFoodFilter({
+                restaurantId: restaurantId,
+                filters: [],
+                categories: [],
+              })
+            );
+          }),
           tap(() =>
             this.dialog.openSnackBar(
               'Ingridient Item deleted Sucessfully',
@@ -217,7 +228,7 @@ export class OwnerIngridientsEffects {
           catchError((error) =>
             of(
               ingridientsActions.deleteIngridientItemFailed({
-                serverError: error.massage,
+                serverError: error.message,
               })
             )
           )

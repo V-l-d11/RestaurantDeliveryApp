@@ -61,7 +61,7 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
       restaurantid: new FormControl(null, [Validators.required]),
       vegetarian: new FormControl(false, [Validators.required]),
       seasonal: new FormControl(false, [Validators.required]),
-      ingredients: new FormControl(''),
+      ingredientIds: new FormControl(null),
     });
     this.restaurantId$.subscribe((el) => {
       this.store$.dispatch(getRestaurantIngridients({ restaurantId: el }));
@@ -95,19 +95,21 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
   }
 
   onIngridientsSelected(selectedIngridientsItem: number[]): void {
-    const currentIngridients = this.form.get('category')?.value || [];
-    const selectedIngridients = this.ingiridientsList.filter((cat) =>
-      selectedIngridientsItem.includes(cat.id)
-    );
+    const currentIngridients = this.form.get('ingredientIds')?.value || [];
+    console.log(currentIngridients, 'Current Ingridient');
+    const selectedIngridients = this.ingiridientsList
+      .filter((ingrid) => selectedIngridientsItem.includes(ingrid.id))
+      .map((el) => el.id);
+
     const hasDifference =
       selectedIngridients.length !== currentIngridients.length ||
       selectedIngridients.some(
-        (cat) => !currentIngridients.find((c: any) => c.id === cat.id)
+        (cat) => !currentIngridients.find((c: any) => c.id === cat)
       );
 
     if (hasDifference) {
       this.form
-        .get('ingredients')
+        .get('ingredientIds')
         ?.setValue(selectedIngridients, { emitEvent: false });
     }
   }
@@ -115,8 +117,6 @@ export class OwnerAddMenuItemFoodComponent implements OnInit {
   ngSubmit() {
     console.log(this.form.value, 'Fafter Click  Form ');
     if (this.form.valid) {
-      console.log('Form is Valid');
-
       this.store$.dispatch(createOwnerFood({ item: this.form.value }));
       this.router.navigate(['/foodapp/owner/menu']);
     }

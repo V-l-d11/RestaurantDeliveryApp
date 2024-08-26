@@ -7,7 +7,7 @@ export interface AdminCreateFoodRequest {
   restaurantId: number;
   vegetarian: boolean;
   seasional: boolean;
-  ingridients: AdminIngridientsItem[];
+  ingredientIds: number[];
 }
 
 export interface AdminCategory {

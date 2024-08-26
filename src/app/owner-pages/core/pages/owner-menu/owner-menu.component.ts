@@ -42,7 +42,6 @@ export class OwnerMenuComponent implements OnInit {
   restuarnatId$!: number;
   selectedCategory: string | null = null;
   foodArr!: Observable<OwnerFoodBase[]>;
-  selectedName!: string | null;
 
   constructor(private store$: Store, private router: Router) {
     this.store$.dispatch(getOwnerCategoryFood());
@@ -73,9 +72,7 @@ export class OwnerMenuComponent implements OnInit {
   }
 
   onSelectCategory(category: string | null): void {
-    this.selectedName = category === null ? (category = 'All') : category;
     this.selectedCategory = category;
-    console.log('Selected Category', this.selectedCategory);
     this.dispatchFoodItems();
   }
 
@@ -89,9 +86,11 @@ export class OwnerMenuComponent implements OnInit {
 
   dispatchFoodItems(): void {
     const filters = this.getFiltersFromSelection();
-    const categories: string[] = this.selectedCategory
-      ? [this.selectedCategory]
-      : [];
+    const categories: string[] =
+      this.selectedCategory && this.selectedCategory !== 'All'
+        ? [this.selectedCategory]
+        : [];
+
     this.store$.dispatch(
       getOwnerFoodFilter({
         restaurantId: this.restuarnatId$,
