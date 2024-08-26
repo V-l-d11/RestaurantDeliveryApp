@@ -17,7 +17,7 @@ export const getOwnerHistoryOders = createAction(
 
 export const getOwnerHistoryOdersSucess = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_HISTORY_SUCESS,
-  props<{ items: OwnerOderBase }>()
+  props<{ items: OwnerOderBase[] }>()
 );
 
 export const getOwnerHistoryFailed = createAction(
