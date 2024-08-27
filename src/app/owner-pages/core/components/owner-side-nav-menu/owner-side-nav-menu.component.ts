@@ -14,7 +14,7 @@ export class OwnerSideNavMenuComponent {
     { path: '/foodapp/owner/foodCategory', label: 'Category' },
     { path: '/foodapp/owner/ingridients', label: 'Ingridients' },
     { path: '/foodapp/owner/menu', label: 'Menu' },
-    { path: 'orders', label: 'Orders' },
+    { path: '/foodapp/owner/oders', label: 'Orders' },
     { path: 'statistics', label: 'Statistics' },
     { path: 'events', label: 'Events' },
   ];
