@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Oders</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1" *ngFor="let i of navLinks">
+      {{ i }}
+    </div>
+  </div>
+
+  <div class="row">
+    <app-owner-oders-table></app-owner-oders-table>
+  </div>
+</div>

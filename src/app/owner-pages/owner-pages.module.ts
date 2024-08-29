@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { OwnerDashboardPageComponent } from './core/pages/owner-dashboard-page/owner-dashboard-page.component';
-import { OwnerOdersComponent } from './core/pages/owner-oders/owner-oders.component';
 import { OwnerMenuComponent } from './core/pages/owner-menu/owner-menu.component';
 import { OwnerFoodCategoryComponent } from './core/pages/owner-food-category/owner-food-category.component';
 import { OwnerEventsComponent } from './core/pages/ower-events/ower-events.component';
@@ -78,6 +77,12 @@ import { OwnerAddMenuItemFoodComponent } from './core/pages/owner-add-menu-item-
 import { MatButtonModule } from '@angular/material/button';
 import { findRestaurant } from './store+/actions/actions-owner-retsuarant';
 import { OwnerMenuSinglCardComponent } from './core/components/owner-menu-singl-card/owner-menu-singl-card.component';
+import { OwnerOdersPageComponent } from './core/pages/owner-oders-page/owner-oders.component';
+import { OwnerOdersTableComponent } from './core/components/owner-oders-table/owner-oders-table.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes: Routes = [
   {
@@ -93,7 +98,7 @@ const routes: Routes = [
         path: 'ingridients',
         component: OwnerIngridientsPageComponent,
       },
-      { path: 'oders', component: OwnerOdersComponent },
+      { path: 'oders', component: OwnerOdersPageComponent },
       { path: 'menu', component: OwnerMenuComponent },
       { path: 'foodCategory', component: OwnerFoodCategoryComponent },
       { path: 'events', component: OwnerEventsComponent },
@@ -111,7 +116,7 @@ const routes: Routes = [
   declarations: [
     OwnerContainerComponent,
     OwnerDashboardPageComponent,
-    OwnerOdersComponent,
+    OwnerOdersPageComponent,
     OwnerMenuComponent,
     OwnerFoodCategoryComponent,
     OwnerEventsComponent,
@@ -135,8 +140,14 @@ const routes: Routes = [
     OwnerMenuFilterCardComponent,
     OwnerAddMenuItemFoodComponent,
     OwnerMenuSinglCardComponent,
+    OwnerOdersTableComponent,
   ],
   imports: [
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
     CommonModule,
     MatIconModule,
     MatTableModule,

@@ -54,5 +54,56 @@ export const OwnerOdersReducer = createReducer(
     loaded: true,
     loading: false,
     serverError,
+  })),
+  on(oderActions.deleteOder, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.deleteOderSucess, (state, { oderId }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    oders: state.oders.filter((el) => el.id !== oderId),
+  })),
+  on(oderActions.delteOderFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(oderActions.getOdersCreateAt, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.getOdersCreateAtSucess, (state, { items }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    oders: items,
+  })),
+  on(oderActions.getOdersCreateAtFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(oderActions.getOdersRangeDate, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.getOdersRangeDateSucess, (state, { items }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    oders: items,
+  })),
+  on(oderActions.getOdersRangeDateFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
   }))
 );
