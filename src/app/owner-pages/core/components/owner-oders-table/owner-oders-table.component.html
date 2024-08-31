@@ -2,7 +2,7 @@
   [dataSource]="dataSource"
   matSort
   multiTemplateDataRows
-  class="mat-elevation-z8"
+  class="container mat-elevation-z8"
 >
   <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
@@ -82,15 +82,115 @@
         class="example-element-detail"
         [@detailExpand]="expandedElement === row ? 'expanded' : 'collapsed'"
       >
-        <p><strong>Customer:</strong> {{ row.customer.fullName }}</p>
-        <p><strong>Order Status:</strong> {{ row.oderStatus }}</p>
-        <p>
-          <strong>Order Created At:</strong> {{ row.createAt | date : "short" }}
-        </p>
-        <p>
-          <strong>Order Total Price:</strong> {{ row.totalPrice | currency }}
-        </p>
-        <p><strong>Delivery Address:</strong> {{ row.deliveryAddress.city }}</p>
+        <div class="column">
+          <div class="row">
+            <div class="col">
+              <h5>Customer Details:</h5>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span>Full Name:</span>
+              </div>
+              <div class="col">
+                <p>{{ expandedElement?.customer?.fullName }}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <span>E-mail:</span>
+              </div>
+              <div class="col">
+                <p>{{ expandedElement?.customer?.email }}</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <span>Adresses:</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div
+                class="col"
+                *ngFor="let i of expandedElement?.customer?.adresses"
+              >
+                <ul>
+                  <li><span>State:</span> {{ i.state }}</li>
+                  <li><span>Country:</span> {{ i.country }}</li>
+                  <li><span>City:</span> {{ i.city }}</li>
+                  <li><span>Street:</span> {{ i.street }}</li>
+                  <li><span>ZipCode:</span> {{ i.zipCode }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="row">
+            <div class="col">
+              <h4>Oders Details:</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <span>Oder Status:</span>
+            </div>
+            <div class="col">
+              {{ expandedElement?.oderStatus }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <span>Delivery Address</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <ul>
+                <li>
+                  <span>Country:</span>
+                  {{ expandedElement?.deliveryAddress?.country }}
+                </li>
+                <li>
+                  <span>City:</span>
+                  {{ expandedElement?.deliveryAddress?.city }}
+                </li>
+                <li>
+                  <span>Street:</span>
+                  {{ expandedElement?.deliveryAddress?.street }}
+                </li>
+                <li>
+                  <span>ZipCountru:</span>
+                  {{ expandedElement?.deliveryAddress?.zipCode }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="row">
+            <div class="col">
+              <h4>Delivery Menu Items</h4>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span>Foods:</span>
+              </div>
+            </div>
+            <div *ngFor="let i of expandedElement?.items" class="row">
+              <div class="col">
+                <ul>
+                  <li><span>Food Name:</span> {{ i.food }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </mat-cell>
   </ng-container>

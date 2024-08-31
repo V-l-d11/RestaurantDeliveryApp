@@ -17,6 +17,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { User } from 'src/app/models/baseModals/user';
 
 @Component({
   selector: 'app-owner-oders-table',
@@ -75,11 +76,10 @@ export class OwnerOdersTableComponent implements AfterViewInit, OnInit {
     if (this.odersList) {
       this.odersList.subscribe({
         next: (orders) => {
-          console.log(orders, 'Orders');
           this.dataSource.data = orders;
         },
         error: (error) => {
-          console.error('Ошибка при получении заказов', error);
+          console.error('Error to recive odersList', error);
         },
       });
     }
