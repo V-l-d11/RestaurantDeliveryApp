@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { OwnerDashboardService } from '../../services/api-owner-dashboard-service/owner-dashboard.service';
 import * as ownerRestaurantActions from './../actions/actions-owner-retsuarant';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
+import * as odersActions from './../actions/actions-owner-oders';
 
 @Injectable({
   providedIn: 'root',

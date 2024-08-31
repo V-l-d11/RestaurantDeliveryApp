@@ -1,13 +1,14 @@
-table {
-  width: 100%;
+.example-element-detail {
+  overflow: hidden;
+  transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
+.example-element-row {
+  cursor: pointer;
 }
-
-td,
-th {
-  width: 25%;
+.example-expanded-row {
+  background-color: #f1f1f1;
+}
+.example-detail-row {
+  height: auto;
 }

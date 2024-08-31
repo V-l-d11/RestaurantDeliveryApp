@@ -83,6 +83,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { OwnerOdersEffects } from './store+/effects/owner-oders-effects';
 
 const routes: Routes = [
   {
@@ -143,6 +144,7 @@ const routes: Routes = [
     OwnerOdersTableComponent,
   ],
   imports: [
+    CommonModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
@@ -183,6 +185,7 @@ const routes: Routes = [
       OwnerCategoryFoodEffects,
       OwnerIngridientsEffects,
       OwnerMenuFoodEffects,
+      OwnerOdersEffects,
     ]),
   ],
   providers: [

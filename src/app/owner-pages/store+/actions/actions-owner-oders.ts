@@ -21,7 +21,7 @@ export enum OwnerOdersTypes {
 
 export const getOwnerHistoryOders = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_HISTORY,
-  props<{ oderStatus: string }>()
+  props<{ restaurantId: number; oderStatus?: string }>()
 );
 
 export const getOwnerHistoryOdersSucess = createAction(

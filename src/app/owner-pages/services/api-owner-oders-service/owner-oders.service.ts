@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
 @Injectable()
 export class OwnerOdersService {
@@ -12,14 +13,16 @@ export class OwnerOdersService {
   }
 
   getOderHistory(
-    oderId: number,
-    oder_status: string
-  ): Observable<OwnerOderBase> {
+    restaurantId: number,
+    oder_status?: string
+  ): Observable<PageableResponse<OwnerOderBase>> {
     let params = new HttpParams();
-    params = params.set('oder_status', oder_status);
-    return this.http.get<OwnerOderBase>(
-      `${this.BASE_URL}/oder/restaurant/${oderId}`,
-      { params }
+    if (oder_status) {
+      params = params.set('oder_status', oder_status);
+    }
+    return this.http.get<PageableResponse<OwnerOderBase>>(
+      `${this.BASE_URL}oder/restaurant/${restaurantId}`,
+      { params: params }
     );
   }
 

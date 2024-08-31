@@ -12,6 +12,9 @@
   </div>
 
   <div class="row">
-    <app-owner-oders-table></app-owner-oders-table>
+    <app-owner-oders-table
+      *ngIf="ordersLoaded"
+      [odersList]="odersList$"
+    ></app-owner-oders-table>
   </div>
 </div>

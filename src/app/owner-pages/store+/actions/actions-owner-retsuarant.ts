@@ -29,7 +29,7 @@ export const getOwnerRestaurant = createAction(
 );
 
 export const getOwnerRestaurantSucess = createAction(
-  OwnerDashboardTypes.CREATE_OWNER_RESTAURANT_SUCESS,
+  OwnerDashboardTypes.GET_OWNER_RESTUARNT_SUCESS,
   props<{ item: OwnerRestaurantBase }>()
 );
 
