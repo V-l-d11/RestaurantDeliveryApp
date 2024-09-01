@@ -1,0 +1,60 @@
+$font-family: Jost;
+
+.example-element-row {
+  cursor: pointer;
+}
+.example-expanded-row {
+  background-color: #f1f1f1;
+}
+.example-detail-row {
+  height: auto;
+}
+
+.example-element-detail {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.example-element-detail .column {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+h5 {
+  font-family: $font-family;
+  font-size: 18px;
+}
+h6 {
+  font-family: $font-family;
+  font-size: 16px;
+}
+span {
+  font-family: $font-family;
+  font-size: 15px;
+}
+
+.row {
+  padding: 0px;
+  margin: 0px;
+}
+.col-md-4 {
+  width: 27%;
+  span {
+    font-weight: 500;
+  }
+}
+
+.customer-adresses-section {
+  .customer-adresses-list {
+    li {
+      list-style: none;
+      span {
+        font-family: $font-family;
+        font-size: 15px;
+        font-weight: 550;
+      }
+    }
+  }
+}

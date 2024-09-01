@@ -84,6 +84,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { OwnerOdersEffects } from './store+/effects/owner-oders-effects';
+import { OwnerOdersDetailsTableLineComponent } from './core/components/owner-oders-details-table-line/owner-oders-details-table-line.component';
 
 const routes: Routes = [
   {
@@ -142,6 +143,7 @@ const routes: Routes = [
     OwnerAddMenuItemFoodComponent,
     OwnerMenuSinglCardComponent,
     OwnerOdersTableComponent,
+    OwnerOdersDetailsTableLineComponent,
   ],
   imports: [
     CommonModule,

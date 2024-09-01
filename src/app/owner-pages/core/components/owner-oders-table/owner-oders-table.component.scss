@@ -12,15 +12,3 @@
 .example-detail-row {
   height: auto;
 }
-
-.example-element-detail {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-}
-
-.example-element-detail .column {
-  flex: 1; /* Все колонки будут одинаковой ширины */
-  padding: 10px;
-  box-sizing: border-box;
-}

@@ -1,0 +1,148 @@
+<div class="container" *ngIf="oderElement">
+  <div class="example-element-detail">
+    <div class="column">
+      <div class="row">
+        <div class="col">
+          <h5>Customer Details:</h5>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <span>Full Name:</span>
+          </div>
+          <div class="col-5">
+            <p>{{ oderElement.customer.fullName }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <span>E-mail:</span>
+          </div>
+          <div class="col-5">
+            <p>{{ oderElement.customer.email }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h6>Adresses:</h6>
+          </div>
+        </div>
+
+        <div class="row">
+          <div
+            class="col customer-adresses-section"
+            *ngFor="let i of oderElement?.customer?.adresses"
+          >
+            <ul class="customer-adresses-list">
+              <li><span>State:</span> {{ i.state }}</li>
+              <li><span>Country:</span> {{ i.country }}</li>
+              <li><span>City:</span> {{ i.city }}</li>
+              <li><span>Street:</span> {{ i.street }}</li>
+              <li><span>ZipCode:</span> {{ i.zipCode }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="row">
+        <div class="col">
+          <h5>Oders Details:</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span>Oder Status:</span>
+        </div>
+        <div class="col">
+          {{ oderElement.oderStatus }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <span>Delivery Address</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <ul>
+            <li>
+              <span>Country:</span>
+              {{ oderElement.deliveryAddress.country }}
+            </li>
+            <li>
+              <span>City:</span>
+              {{ oderElement.deliveryAddress.city }}
+            </li>
+            <li>
+              <span>Street:</span>
+              {{ oderElement.deliveryAddress.street }}
+            </li>
+            <li>
+              <span>ZipCountru:</span>
+              {{ oderElement.deliveryAddress.zipCode }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="row">
+        <div class="col">
+          <h5>Delivery Menu Items</h5>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span>Foods:</span>
+          </div>
+        </div>
+        <div *ngFor="let i of oderElement?.items" class="row">
+          <div class="col">
+            <ul>
+              <li><span>Food Name:</span> {{ i.food.name }}</li>
+              <li><span>Single Price:</span> {{ i.food.price }}</li>
+              <li><span>Quantity:</span> {{ i.quantity }}</li>
+              <li><span>Final Price Item:</span> {{ i.totalPrice }}</li>
+              <li>
+                <span>Choosen Ingridients:</span>
+                <ul *ngFor="let igridient of i.ingredients">
+                  <li><span>Name:</span> {{ igridient }}</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span>Total Amount:</span>
+          </div>
+          <div class="col">
+            {{ oderElement.totalItem }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <span>Total Price:</span>
+          </div>
+          <div class="col">
+            {{ oderElement.totalPrice }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button>Constact</button>
+    </div>
+    <div class="col">
+      <button>Upload</button>
+    </div>
+  </div>
+</div>
