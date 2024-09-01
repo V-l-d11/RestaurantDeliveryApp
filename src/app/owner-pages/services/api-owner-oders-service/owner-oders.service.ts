@@ -35,4 +35,39 @@ export class OwnerOdersService {
       {}
     );
   }
+
+  delteOder(oderId: number): Observable<string> {
+    return this.http.delete<string>(`${this.BASE_URL}/oder`);
+  }
+
+  getOdersHistoryByDate(
+    createAt: string,
+    page?: number,
+    size?: number
+  ): Observable<PageableResponse<OwnerOderBase>> {
+    let params = new HttpParams();
+    params = params.append('createAt', createAt);
+    return this.http.get<PageableResponse<OwnerOderBase>>(
+      `${this.BASE_URL}/oder/date`,
+      {
+        params,
+      }
+    );
+  }
+
+  getOdersHistoryByRangeDate(
+    startDate: string,
+    endDate: string,
+    page?: number,
+    size?: number
+  ): Observable<PageableResponse<OwnerOderBase>> {
+    let params = new HttpParams();
+    params = params.append('startDate', startDate);
+    params.append('endDate', endDate);
+
+    return this.http.get<PageableResponse<OwnerOderBase>>(
+      `${this.BASE_URL}/oder/date-range`,
+      { params }
+    );
+  }
 }

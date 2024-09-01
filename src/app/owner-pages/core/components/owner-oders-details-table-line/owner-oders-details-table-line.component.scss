@@ -40,10 +40,18 @@ span {
   margin: 0px;
 }
 .col-md-4 {
-  width: 27%;
+  width: 30%;
   span {
     font-weight: 500;
   }
+}
+
+.shadow-column {
+  margin-right: 10px;
+  margin-left: 10px;
+  background: #ffffff;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .customer-adresses-section {
@@ -56,5 +64,44 @@ span {
         font-weight: 550;
       }
     }
+  }
+}
+.delivery-address-list {
+  li {
+    list-style-type: none;
+    span {
+      font-family: $font-family;
+      font-size: 16px;
+      font-weight: 550;
+    }
+  }
+}
+
+.btn-oder-status {
+  font-family: $font-family;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.oder-status-pandding {
+  background-color: rgb(247, 99, 99);
+}
+
+.oder-status-completed {
+  background-color: green;
+}
+
+.btn-section-end {
+  margin-top: 1%;
+  margin-bottom: 3%;
+  .btn-section-back {
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    border: none;
+    font-family: $font-family;
+    font-size: 14px;
+  }
+  .btn-contacts {
   }
 }

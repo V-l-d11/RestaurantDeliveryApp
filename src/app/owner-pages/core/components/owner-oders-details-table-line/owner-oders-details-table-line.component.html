@@ -1,6 +1,6 @@
 <div class="container" *ngIf="oderElement">
   <div class="example-element-detail">
-    <div class="column">
+    <div class="column shadow-column">
       <div class="row">
         <div class="col">
           <h5>Customer Details:</h5>
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column shadow-column">
       <div class="row">
         <div class="col">
           <h5>Oders Details:</h5>
@@ -54,21 +54,23 @@
       </div>
       <div class="row">
         <div class="col">
-          <span>Oder Status:</span>
+          <h6>Oder Status:</h6>
         </div>
         <div class="col">
-          {{ oderElement.oderStatus }}
+          <button class="btn-oder-status">
+            {{ oderElement.oderStatus }}
+          </button>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <span>Delivery Address</span>
+          <h6>Delivery Address</h6>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <ul>
+          <ul class="delivery-address-list">
             <li>
               <span>Country:</span>
               {{ oderElement.deliveryAddress.country }}
@@ -90,7 +92,7 @@
       </div>
     </div>
 
-    <div class="column">
+    <div class="column shadow-column">
       <div class="row">
         <div class="col">
           <h5>Delivery Menu Items</h5>
@@ -137,12 +139,12 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <button>Constact</button>
+  <div class="row btn-section-end">
+    <div class="col-2">
+      <button class="btn-section-back btn-contacts">Constact &#9742;</button>
     </div>
-    <div class="col">
-      <button>Upload</button>
+    <div class="col-2">
+      <button class="btn-section-back btn-upload">Upload &#128228;</button>
     </div>
   </div>
 </div>
