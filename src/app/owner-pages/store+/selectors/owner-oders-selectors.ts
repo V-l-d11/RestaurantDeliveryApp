@@ -16,3 +16,8 @@ export const getError = createSelector(
 );
 
 export const getOders = createSelector(getFeature, (state) => state.oders);
+
+export const getPrevioseName = createSelector(
+  getFeature,
+  (state) => state.previousDate
+);

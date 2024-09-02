@@ -6,6 +6,7 @@ export interface OwnerOdersState {
   loaded: boolean;
   serverError: string;
   oders: OwnerOderBase[];
+  previousDate: string | null;
 }
 
 export const OWNER_ODERS_FEATURE_NAME = 'owner-oders-page';
@@ -15,6 +16,7 @@ export const initalState: OwnerOdersState = {
   loaded: true,
   serverError: '',
   oders: [],
+  previousDate: null,
 };
 
 export const OwnerOdersReducer = createReducer(
@@ -72,16 +74,17 @@ export const OwnerOdersReducer = createReducer(
     loading: false,
     serverError,
   })),
-  on(oderActions.getOdersCreateAt, (state) => ({
+  on(oderActions.getOdersCreateAt, (state, { createAt }) => ({
     ...state,
     loaded: false,
     loading: true,
+    previousDate: createAt,
   })),
   on(oderActions.getOdersCreateAtSucess, (state, { items }) => ({
     ...state,
     loading: false,
     loaded: true,
-    oders: items,
+    //    oders: items,
   })),
   on(oderActions.getOdersCreateAtFailed, (state, { serverError }) => ({
     ...state,
@@ -101,6 +104,23 @@ export const OwnerOdersReducer = createReducer(
     oders: items,
   })),
   on(oderActions.getOdersRangeDateFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(oderActions.getOdersByCustomer, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.getOdersByCustomerSucess, (state, { items }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    oders: items,
+  })),
+  on(oderActions.getOdersByCustomerFailed, (state, { serverError }) => ({
     ...state,
     loaded: true,
     loading: false,

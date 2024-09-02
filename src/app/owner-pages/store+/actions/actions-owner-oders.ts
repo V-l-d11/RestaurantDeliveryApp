@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
 export enum OwnerOdersTypes {
   GET_OWNER_ODER_HISTORY = '[Owner panel] get oder history',
@@ -17,6 +18,9 @@ export enum OwnerOdersTypes {
   GET_OWNER_ODER_RANGE_DATE = '[Owner Panel] get owner oder range date',
   GET_OWNER_ODER_RANGE_DATE_SUCESS = '[Owner Panel] get owner oder range date sucess',
   GET_OWNER_ODER_RANGE_DATE_FAILED = '[Owner Panel] get owner oder range date failed',
+  GET_OWNER_ODER_BY_CUSTOMER = '[Owner Panel] get owner oder by customer',
+  GET_OWNER_ODER_BY_CUSTOMER_SUCESS = '[Owner Panel] get owner oder by customer sucess',
+  GET_OWNER_ODER_BY_CUSTOMER_FAILED = '[Owner Panel] get owner oder by customer failed',
 }
 
 export const getOwnerHistoryOders = createAction(
@@ -71,7 +75,7 @@ export const getOdersCreateAt = createAction(
 
 export const getOdersCreateAtSucess = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_DATE_CREATE_AT_SUCESS,
-  props<{ items: OwnerOderBase[] }>()
+  props<{ items: PageableResponse<OwnerOderBase> }>()
 );
 
 export const getOdersCreateAtFailed = createAction(
@@ -91,5 +95,20 @@ export const getOdersRangeDateSucess = createAction(
 
 export const getOdersRangeDateFailed = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_RANGE_DATE_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const getOdersByCustomer = createAction(
+  OwnerOdersTypes.GET_OWNER_ODER_BY_CUSTOMER,
+  props<{ fullName: string }>()
+);
+
+export const getOdersByCustomerSucess = createAction(
+  OwnerOdersTypes.GET_OWNER_ODER_BY_CUSTOMER_SUCESS,
+  props<{ items: OwnerOderBase[] }>()
+);
+
+export const getOdersByCustomerFailed = createAction(
+  OwnerOdersTypes.GET_OWNER_ODER_BY_CUSTOMER_FAILED,
   props<{ serverError: string }>()
 );

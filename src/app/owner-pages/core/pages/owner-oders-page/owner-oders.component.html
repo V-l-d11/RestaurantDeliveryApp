@@ -5,13 +5,30 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row row-search">
     <div class="col-1" *ngFor="let i of navLinks">
       {{ i }}
     </div>
   </div>
 
   <div class="row">
+    <div class="col">
+      <input placeholder="Customer Search" />
+    </div>
+    <div class="col">Filter Date:</div>
+    <div class="col">
+      <input placeholder="createAt" />
+    </div>
+    <div class="col">Date Range:</div>
+    <div class="col">
+      <input placeholder="Start Date" />
+    </div>
+    <div class="col">
+      <input placeholder="End Date" />
+    </div>
+  </div>
+
+  <div class="row row-table">
     <app-owner-oders-table
       *ngIf="ordersLoaded"
       [odersList]="odersList$"

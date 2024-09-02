@@ -70,4 +70,15 @@ export class OwnerOdersService {
       { params }
     );
   }
+
+  getOdersByCustomerFullName(
+    fullName: string
+  ): Observable<PageableResponse<OwnerOderBase>> {
+    let params = new HttpParams();
+    params = params.append('fullName', fullName);
+    return this.http.get<PageableResponse<OwnerOderBase>>(
+      `${this.BASE_URL}/oder/customer/`,
+      { params }
+    );
+  }
 }
