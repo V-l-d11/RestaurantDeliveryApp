@@ -3,7 +3,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { filter, switchMap, Observable, take } from 'rxjs';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
-import { getOwnerHistoryOders } from 'src/app/owner-pages/store+/actions/actions-owner-oders';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
+import {
+  getOdersByCustomer,
+  getOwnerHistoryOders,
+} from 'src/app/owner-pages/store+/actions/actions-owner-oders';
 import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
 import { getOders } from 'src/app/owner-pages/store+/selectors/owner-oders-selectors';
@@ -14,9 +18,10 @@ import { getOders } from 'src/app/owner-pages/store+/selectors/owner-oders-selec
   styleUrls: ['./owner-oders.component.scss'],
 })
 export class OwnerOdersPageComponent implements OnInit {
+  queryCustomerName!: string;
   navLinks: string[] = ['All', 'Pending', 'Completed', 'Failed'];
   resturantId$!: Observable<number>;
-  odersList$!: Observable<OwnerOderBase[]>;
+  odersList$!: Observable<PageableResponse<OwnerOderBase>>;
   ordersLoaded = false;
 
   constructor(private store$: Store, private router: Router) {
@@ -37,7 +42,7 @@ export class OwnerOdersPageComponent implements OnInit {
           this.store$.dispatch(getOwnerHistoryOders({ restaurantId }));
           return this.store$.select(getOders);
         }),
-        filter((orders) => orders.length > 0),
+        filter((orders) => orders.content.length > 0),
         take(1)
       )
       .subscribe((orders) => {
@@ -45,6 +50,14 @@ export class OwnerOdersPageComponent implements OnInit {
         this.odersList$ = this.store$.select(getOders);
         this.ordersLoaded = true;
       });
+  }
+
+  onInputCustomerChange(): void {
+    if (this.queryCustomerName.length >= 5) {
+      this.store$.dispatch(
+        getOdersByCustomer({ fullName: this.queryCustomerName })
+      );
+    }
   }
 
   onDateCreateAtFiltered(date: string) {}

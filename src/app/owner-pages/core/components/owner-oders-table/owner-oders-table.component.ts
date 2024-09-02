@@ -18,6 +18,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { User } from 'src/app/models/baseModals/user';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
 @Component({
   selector: 'app-owner-oders-table',
@@ -49,7 +50,7 @@ import { User } from 'src/app/models/baseModals/user';
   ],
 })
 export class OwnerOdersTableComponent implements AfterViewInit, OnInit {
-  @Input() odersList!: Observable<OwnerOderBase[]>;
+  @Input() odersList!: Observable<PageableResponse<OwnerOderBase>>;
   displayedColumns: string[] = [
     'number',
     'Customer',
@@ -76,7 +77,19 @@ export class OwnerOdersTableComponent implements AfterViewInit, OnInit {
     if (this.odersList) {
       this.odersList.subscribe({
         next: (orders) => {
-          this.dataSource.data = orders;
+          if (orders.content) {
+            this.dataSource.data = orders.content;
+
+            setTimeout(() => {
+              if (this.paginator) {
+                this.paginator.length = orders.totalElements;
+                this.paginator.pageSize = orders.size;
+              }
+              if (this.sort) {
+                this.dataSource.sort = this.sort;
+              }
+            });
+          }
         },
         error: (error) => {
           console.error('Error to recive odersList', error);

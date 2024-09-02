@@ -12,19 +12,27 @@
   </div>
 
   <div class="row">
-    <div class="col">
-      <input placeholder="Customer Search" />
-    </div>
-    <div class="col">Filter Date:</div>
-    <div class="col">
-      <input placeholder="createAt" />
-    </div>
-    <div class="col">Date Range:</div>
-    <div class="col">
-      <input placeholder="Start Date" />
+    <div class="col search-section">
+      <input
+        class="inpt-search"
+        type="text"
+        [(ngModel)]="queryCustomerName"
+        (ngModelChange)="onInputCustomerChange()"
+        placeholder="Customer Search"
+      />
     </div>
     <div class="col">
-      <input placeholder="End Date" />
+      <h6>Filter Date:</h6>
+    </div>
+    <div class="col search-section">
+      <input class="inpt-search" placeholder="createAt" />
+    </div>
+    <div class="col search-section"><h6>Date Range:</h6></div>
+    <div class="col search-section">
+      <input class="inpt-search" placeholder="Start Date" />
+    </div>
+    <div class="col search-section">
+      <input class="inpt-search" placeholder="End Date" />
     </div>
   </div>
 

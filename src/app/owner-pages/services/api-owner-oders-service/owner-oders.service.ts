@@ -77,7 +77,7 @@ export class OwnerOdersService {
     let params = new HttpParams();
     params = params.append('fullName', fullName);
     return this.http.get<PageableResponse<OwnerOderBase>>(
-      `${this.BASE_URL}/oder/customer/`,
+      `${this.BASE_URL}oder/customer/`,
       { params }
     );
   }

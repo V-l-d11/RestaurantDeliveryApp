@@ -30,7 +30,7 @@ export const getOwnerHistoryOders = createAction(
 
 export const getOwnerHistoryOdersSucess = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_HISTORY_SUCESS,
-  props<{ items: OwnerOderBase[] }>()
+  props<{ items: PageableResponse<OwnerOderBase> }>()
 );
 
 export const getOwnerHistoryFailed = createAction(
@@ -105,7 +105,7 @@ export const getOdersByCustomer = createAction(
 
 export const getOdersByCustomerSucess = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_BY_CUSTOMER_SUCESS,
-  props<{ items: OwnerOderBase[] }>()
+  props<{ items: PageableResponse<OwnerOderBase> }>()
 );
 
 export const getOdersByCustomerFailed = createAction(

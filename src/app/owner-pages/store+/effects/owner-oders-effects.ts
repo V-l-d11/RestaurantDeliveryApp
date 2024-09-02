@@ -36,7 +36,7 @@ export class OwnerOdersEffects {
           .pipe(
             map((response) =>
               odersActions.getOwnerHistoryOdersSucess({
-                items: response.content,
+                items: response,
               })
             ),
             catchError((error) =>
@@ -59,7 +59,7 @@ export class OwnerOdersEffects {
       switchMap((action) =>
         this.oderService.getOdersByCustomerFullName(action.fullName).pipe(
           map((response) =>
-            odersActions.getOdersByCustomerSucess({ items: response.content })
+            odersActions.getOdersByCustomerSucess({ items: response })
           ),
           catchError((error) =>
             of(

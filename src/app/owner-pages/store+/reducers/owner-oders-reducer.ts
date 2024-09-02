@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import * as oderActions from './../actions/actions-owner-oders';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 export interface OwnerOdersState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
-  oders: OwnerOderBase[];
+  oders: PageableResponse<OwnerOderBase>;
   previousDate: string | null;
 }
 
@@ -15,7 +16,26 @@ export const initalState: OwnerOdersState = {
   loading: false,
   loaded: true,
   serverError: '',
-  oders: [],
+  oders: {
+    content: [],
+    pageable: {
+      sort: { empty: true, sorted: false, unsorted: true },
+      offset: 0,
+      pageSize: 10,
+      pageNumber: 0,
+      paged: true,
+      unpaged: false,
+    },
+    totalElements: 0,
+    totalPages: 0,
+    size: 10,
+    number: 0,
+    sort: { empty: true, sorted: false, unsorted: true },
+    first: true,
+    last: true,
+    numberOfElements: 0,
+    empty: true,
+  },
   previousDate: null,
 };
 
@@ -43,14 +63,14 @@ export const OwnerOdersReducer = createReducer(
     loaded: false,
     loading: true,
   })),
-  on(oderActions.updateOwnerOderStatusSucess, (state, { item }) => ({
-    ...state,
-    loaded: true,
-    loading: false,
-    oders: state.oders.map((el) =>
-      el.id === item.id ? { ...el, oderStatus: item.oderStatus } : el
-    ),
-  })),
+  // on(oderActions.updateOwnerOderStatusSucess, (state, { item }) => ({
+  //   ...state,
+  //   loaded: true,
+  //   loading: false,
+  //   oders: state.oders.map((el) =>
+  //     el.id === item.id ? { ...el, oderStatus: item.oderStatus } : el
+  //   ),
+  // })),
   on(oderActions.updateOwnerOderStatusFailed, (state, { serverError }) => ({
     ...state,
     loaded: true,
@@ -66,7 +86,13 @@ export const OwnerOdersReducer = createReducer(
     ...state,
     loading: false,
     loaded: true,
-    oders: state.oders.filter((el) => el.id !== oderId),
+    oders: {
+      ...state.oders,
+      content:
+        state.oders instanceof Array
+          ? []
+          : state.oders.content.filter((el) => el.id !== oderId),
+    },
   })),
   on(oderActions.delteOderFailed, (state, { serverError }) => ({
     ...state,
@@ -84,7 +110,7 @@ export const OwnerOdersReducer = createReducer(
     ...state,
     loading: false,
     loaded: true,
-    //    oders: items,
+    oders: items,
   })),
   on(oderActions.getOdersCreateAtFailed, (state, { serverError }) => ({
     ...state,
@@ -101,7 +127,7 @@ export const OwnerOdersReducer = createReducer(
     ...state,
     loaded: true,
     loading: false,
-    oders: items,
+    //oders: items,
   })),
   on(oderActions.getOdersRangeDateFailed, (state, { serverError }) => ({
     ...state,
