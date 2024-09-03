@@ -25,14 +25,35 @@
       <h6>Filter Date:</h6>
     </div>
     <div class="col search-section">
-      <input class="inpt-search" placeholder="createAt" />
+      <input
+        class="inpt-search"
+        [(ngModel)]="queryFilterDate"
+        (ngModelChange)="onInputCreateAtChange()"
+        mask="0000-00-00"
+        placeholder="YYYY-MM-DD"
+        ngxMask
+      />
     </div>
     <div class="col search-section"><h6>Date Range:</h6></div>
     <div class="col search-section">
-      <input class="inpt-search" placeholder="Start Date" />
+      <input
+        class="inpt-search"
+        placeholder="Start Date"
+        [(ngModel)]="queryRangeDateStart"
+        (ngModelChange)="onInputRangeDateChange()"
+        mask="0000-00-00"
+        ngxMask
+      />
     </div>
     <div class="col search-section">
-      <input class="inpt-search" placeholder="End Date" />
+      <input
+        class="inpt-search"
+        placeholder="End Date"
+        [(ngModel)]="queryRangeDateEnd"
+        (ngModelChange)="onInputRangeDateChange()"
+        mask="0000-00-00"
+        ngxMask
+      />
     </div>
   </div>
 

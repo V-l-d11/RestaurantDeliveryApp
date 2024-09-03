@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
@@ -48,7 +49,7 @@ export class OwnerOdersService {
     let params = new HttpParams();
     params = params.append('createAt', createAt);
     return this.http.get<PageableResponse<OwnerOderBase>>(
-      `${this.BASE_URL}/oder/date`,
+      `${this.BASE_URL}oder/date`,
       {
         params,
       }
@@ -78,6 +79,17 @@ export class OwnerOdersService {
     params = params.append('fullName', fullName);
     return this.http.get<PageableResponse<OwnerOderBase>>(
       `${this.BASE_URL}oder/customer/`,
+      { params }
+    );
+  }
+
+  getOdersStatusSummary(
+    restaurantId: number
+  ): Observable<OrderStatusSummaryResponse> {
+    let params = new HttpParams();
+    params = params.append('restaurantId', restaurantId);
+    return this.http.get<OrderStatusSummaryResponse>(
+      `${this.BASE_URL}oder/status-summary`,
       { params }
     );
   }

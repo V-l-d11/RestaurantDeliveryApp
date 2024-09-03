@@ -85,6 +85,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { OwnerOdersEffects } from './store+/effects/owner-oders-effects';
 import { OwnerOdersDetailsTableLineComponent } from './core/components/owner-oders-details-table-line/owner-oders-details-table-line.component';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 const routes: Routes = [
   {
@@ -191,6 +192,7 @@ const routes: Routes = [
     ]),
   ],
   providers: [
+    provideNgxMask(),
     OwnerDashboardService,
     OwnerFoodService,
     OwnerOdersService,

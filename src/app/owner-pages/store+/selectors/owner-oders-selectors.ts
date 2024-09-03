@@ -21,3 +21,8 @@ export const getPrevioseName = createSelector(
   getFeature,
   (state) => state.previousDate
 );
+
+export const selectOdersStatusSummary = createSelector(
+  getFeature,
+  (state) => state.oderStatuses
+);

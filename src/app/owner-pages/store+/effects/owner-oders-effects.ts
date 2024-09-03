@@ -101,6 +101,26 @@ export class OwnerOdersEffects {
     this.actions$.pipe(ofType(odersActions.getOdersRangeDate))
   );
 
+  loadOdersStatusSummary$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(odersActions.getOdersStatusSummary),
+      switchMap((action) =>
+        this.oderService.getOdersStatusSummary(action.restaurantId).pipe(
+          map((response) =>
+            odersActions.getOdersStatusSummarySucess({ item: response })
+          ),
+          catchError((error) =>
+            of(
+              odersActions.getOdersStatusSammaryFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
   private isValidDate(date: string): boolean {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     return datePattern.test(date);

@@ -25,6 +25,7 @@
     "@ngrx/store-devtools": "^17.0.1",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
+    "ngx-mask": "^18.0.0",
     "ngx-slick-carousel": "^17.0.0",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",

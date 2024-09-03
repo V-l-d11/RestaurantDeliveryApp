@@ -2,12 +2,14 @@ import { createReducer, on } from '@ngrx/store';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import * as oderActions from './../actions/actions-owner-oders';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
+import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
 export interface OwnerOdersState {
   loading: boolean;
   loaded: boolean;
   serverError: string;
   oders: PageableResponse<OwnerOderBase>;
   previousDate: string | null;
+  oderStatuses: OrderStatusSummaryResponse | '';
 }
 
 export const OWNER_ODERS_FEATURE_NAME = 'owner-oders-page';
@@ -37,6 +39,7 @@ export const initalState: OwnerOdersState = {
     empty: true,
   },
   previousDate: null,
+  oderStatuses: '',
 };
 
 export const OwnerOdersReducer = createReducer(
@@ -147,6 +150,23 @@ export const OwnerOdersReducer = createReducer(
     oders: items,
   })),
   on(oderActions.getOdersByCustomerFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
+  })),
+  on(oderActions.getOdersStatusSummary, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.getOdersStatusSummarySucess, (state, { item }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    oderStatuses: item,
+  })),
+  on(oderActions.getOdersStatusSammaryFailed, (state, { serverError }) => ({
     ...state,
     loaded: true,
     loading: false,

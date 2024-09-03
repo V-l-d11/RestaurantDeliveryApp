@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
@@ -21,6 +22,9 @@ export enum OwnerOdersTypes {
   GET_OWNER_ODER_BY_CUSTOMER = '[Owner Panel] get owner oder by customer',
   GET_OWNER_ODER_BY_CUSTOMER_SUCESS = '[Owner Panel] get owner oder by customer sucess',
   GET_OWNER_ODER_BY_CUSTOMER_FAILED = '[Owner Panel] get owner oder by customer failed',
+  GET_OWNER_ODERS_STATUS_SUMMARY = '[Owner Panel] get owner oders summary status',
+  GET_OWNER_ODERS_STATUS_SUMMARY_SUCESS = '[Owner Panel] get owner oders summary status sucess',
+  GET_OWNER_ODERS_STATUS_SUMMARY_FAILED = '[Owner Panel] get owner oders summary status failed',
 }
 
 export const getOwnerHistoryOders = createAction(
@@ -110,5 +114,20 @@ export const getOdersByCustomerSucess = createAction(
 
 export const getOdersByCustomerFailed = createAction(
   OwnerOdersTypes.GET_OWNER_ODER_BY_CUSTOMER_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const getOdersStatusSummary = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_STATUS_SUMMARY,
+  props<{ restaurantId: number }>()
+);
+
+export const getOdersStatusSummarySucess = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_STATUS_SUMMARY_SUCESS,
+  props<{ item: OrderStatusSummaryResponse }>()
+);
+
+export const getOdersStatusSammaryFailed = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_STATUS_SUMMARY_FAILED,
   props<{ serverError: string }>()
 );
