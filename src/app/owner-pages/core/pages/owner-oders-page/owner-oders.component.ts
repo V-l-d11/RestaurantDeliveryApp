@@ -29,11 +29,13 @@ export class OwnerOdersPageComponent implements OnInit {
   queryRangeDateStart: string = '';
   queryCustomerName!: string;
   queryFilterDate!: string;
+  restaurantId!: number;
   navLinks: string[] = ['All', 'Pending', 'Completed', 'Failed'];
   resturantId$!: Observable<number>;
   odersList$!: Observable<PageableResponse<OwnerOderBase>>;
   ordersLoaded = false;
   oderStatuses$!: Observable<OrderStatusSummaryResponse | ''>;
+  formattedStatuses: string[] = [];
 
   constructor(private store$: Store, private router: Router) {
     this.store$.dispatch(findRestaurant());
@@ -50,6 +52,7 @@ export class OwnerOdersPageComponent implements OnInit {
     this.resturantId$
       .pipe(
         switchMap((restaurantId) => {
+          this.restaurantId = restaurantId;
           this.store$.dispatch(getOwnerHistoryOders({ restaurantId }));
           this.store$.dispatch(getOdersStatusSummary({ restaurantId }));
           return this.store$.select(getOders);
@@ -58,15 +61,47 @@ export class OwnerOdersPageComponent implements OnInit {
         take(1)
       )
       .subscribe((orders) => {
-        console.log(orders, 'Orders');
         this.oderStatuses$ = this.store$.select(selectOdersStatusSummary);
         this.odersList$ = this.store$.select(getOders);
         this.ordersLoaded = true;
+
+        this.oderStatuses$.subscribe((statusSummary) => {
+          this.formatStatuses(statusSummary as OrderStatusSummaryResponse);
+        });
       });
+  }
+  formatStatuses(statusSummary: OrderStatusSummaryResponse) {
+    const defaultStatuses: OrderStatusSummaryResponse = {
+      PENDING: 0,
+      COMPLETED: 0,
+      CANCELLED: 0,
+    };
+    const updatedStatuses = { ...defaultStatuses, ...statusSummary };
+    this.formattedStatuses = Object.entries(updatedStatuses).map(
+      ([status, count]) => `${status}(${count})`
+    );
+  }
+
+  onStatusSelected(selectedStatus: string): void {
+    selectedStatus = selectedStatus.toUpperCase();
+    if (selectedStatus === 'ALL') {
+      this.store$.dispatch(
+        getOwnerHistoryOders({ restaurantId: this.restaurantId })
+      );
+    } else {
+      this.store$.dispatch(
+        getOwnerHistoryOders({
+          restaurantId: this.restaurantId,
+          oderStatus: selectedStatus,
+        })
+      );
+    }
   }
 
   onInputCustomerChange(): void {
-    if (this.queryCustomerName.length >= 5) {
+    if (!this.queryCustomerName) {
+      this.loadOdersHistory(this.restaurantId);
+    } else if (this.queryCustomerName.length >= 5) {
       this.store$.dispatch(
         getOdersByCustomer({ fullName: this.queryCustomerName })
       );
@@ -74,7 +109,9 @@ export class OwnerOdersPageComponent implements OnInit {
   }
 
   onInputCreateAtChange() {
-    if (this.queryFilterDate.length >= 5) {
+    if (!this.queryFilterDate) {
+      this.loadOdersHistory(this.restaurantId);
+    } else if (this.queryFilterDate.length >= 5) {
       this.store$.dispatch(
         getOdersCreateAt({ createAt: this.queryFilterDate })
       );
@@ -82,21 +119,15 @@ export class OwnerOdersPageComponent implements OnInit {
   }
 
   onInputRangeDateChange() {
-    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-
-    const isStartDateValid = datePattern.test(this.queryRangeDateStart);
-    const isEndDateValid = datePattern.test(this.queryRangeDateEnd);
-
-    if (isStartDateValid && isEndDateValid) {
+    if (
+      this.queryRangeDateStart.length >= 10 &&
+      this.queryRangeDateEnd.length >= 10
+    ) {
       this.store$.dispatch(
         getOdersRangeDate({
           startDate: this.queryRangeDateStart,
           endDate: this.queryRangeDateEnd,
         })
-      );
-    } else {
-      console.warn(
-        'Invalid date format. Please enter the date in YYYY-MM-DD format.'
       );
     }
   }

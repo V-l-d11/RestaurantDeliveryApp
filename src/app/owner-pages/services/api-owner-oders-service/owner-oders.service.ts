@@ -31,10 +31,11 @@ export class OwnerOdersService {
     oderId: number,
     oderStatus: string
   ): Observable<OwnerOderBase> {
-    return this.http.put<OwnerOderBase>(
-      `${this.BASE_URL}/oder/${oderId}/${oderStatus}`,
-      {}
-    );
+    let params = new HttpParams();
+    params = params.append('oder_status', oderStatus);
+    return this.http.put<OwnerOderBase>(`${this.BASE_URL}oder/${oderId}`, {
+      params,
+    });
   }
 
   delteOder(oderId: number): Observable<string> {

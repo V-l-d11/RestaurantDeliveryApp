@@ -1,4 +1,8 @@
 $font-family: Jost;
+$bg-color: azure;
+$color: #95b1ef;
+$border: 0.5px solid #0000003b;
+$font-szie-inpt: 16px;
 .row-search {
   margin-top: 2%;
 }
@@ -13,18 +17,38 @@ h6 {
 }
 
 .search-section {
+  margin-top: 1%;
   .inpt-search {
     font-family: $font-family;
-    font-size: 16px;
+    font-size: $font-szie-inpt;
     padding-left: 10px;
     border-radius: 5px;
-    border: 0.5px solid #0000003b;
-    background-color: azure;
+    border: $border;
+    background-color: $bg-color;
     height: 35px;
     width: 200px;
   }
   .inpt-search::placeholder {
     font-family: $font-family;
-    color: #95b1ef;
+    color: $color;
   }
+}
+
+.status-section {
+  .sp-status {
+    color: blue;
+  }
+}
+.select-status {
+  border: $border;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+  width: 150px;
+  font-size: $font-szie-inpt;
+  background-color: azure;
+  color: #95b1ef;
+}
+.search-section::placeholder {
+  color: #95b1ef;
+  font-size: $font-szie-inpt;
 }

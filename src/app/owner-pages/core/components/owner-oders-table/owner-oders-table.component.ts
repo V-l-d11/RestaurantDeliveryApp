@@ -44,7 +44,7 @@ import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
       ),
       transition(
         'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+        animate('325ms cubic-bezier(0.4, 0.0, 0.2, 1)')
       ),
     ]),
   ],
