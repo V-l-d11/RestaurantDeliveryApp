@@ -171,5 +171,25 @@ export const OwnerOdersReducer = createReducer(
     loaded: true,
     loading: false,
     serverError,
-  }))
+  })),
+  on(oderActions.getOdersFilterByTotalPrice, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(oderActions.getOdersFilterByTotalPriceSucess, (state, { items }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    oders: items,
+  })),
+  on(
+    oderActions.getOdersFilterByTotalPriceFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      serverError,
+    })
+  )
 );

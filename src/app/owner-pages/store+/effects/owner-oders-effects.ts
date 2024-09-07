@@ -121,6 +121,26 @@ export class OwnerOdersEffects {
     )
   );
 
+  loadOdersListByTotalPrice$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(odersActions.getOdersFilterByTotalPrice),
+      switchMap((action) =>
+        this.oderService.getOdersByTotalPrice(action.obj).pipe(
+          map((response) =>
+            odersActions.getOdersFilterByTotalPriceSucess({ items: response })
+          ),
+          catchError((error) =>
+            of(
+              odersActions.getOdersFilterByTotalPriceFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
   private isValidDate(date: string): boolean {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     return datePattern.test(date);

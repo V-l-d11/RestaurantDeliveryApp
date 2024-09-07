@@ -46,19 +46,10 @@
 
     <div class="col-auto search-section">
       <input
-        class="inpt-search form-control me-2"
-        placeholder="Start Date"
-        [(ngModel)]="queryRangeDateStart"
-        (ngModelChange)="onInputRangeDateChange()"
-      />
-    </div>
-
-    <div class="col-auto search-section">
-      <input
+        [(ngModel)]="queryFilterTotalPrice"
+        (ngModelChange)="onInputFilterByTotalPrice()"
         class="inpt-search form-control"
-        placeholder="End Date"
-        [(ngModel)]="queryRangeDateEnd"
-        (ngModelChange)="onInputRangeDateChange()"
+        placeholder="Date Range (YYYY-MM-DD - YYYY-MM-DD)"
       />
     </div>
   </div>

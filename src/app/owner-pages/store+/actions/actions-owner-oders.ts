@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
+import { OderFilterPriceOwner } from 'src/app/models/baseModals/objectFilterPriceOder';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
@@ -25,6 +26,9 @@ export enum OwnerOdersTypes {
   GET_OWNER_ODERS_STATUS_SUMMARY = '[Owner Panel] get owner oders summary status',
   GET_OWNER_ODERS_STATUS_SUMMARY_SUCESS = '[Owner Panel] get owner oders summary status sucess',
   GET_OWNER_ODERS_STATUS_SUMMARY_FAILED = '[Owner Panel] get owner oders summary status failed',
+  GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE = '[Owner Panel] get owner oders by total price',
+  GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE_SUCESS = '[Owner Panel] get owner oders by total price sucess',
+  GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE_FAILED = '[Owner Panel] get owner oders by total price failed',
 }
 
 export const getOwnerHistoryOders = createAction(
@@ -129,5 +133,20 @@ export const getOdersStatusSummarySucess = createAction(
 
 export const getOdersStatusSammaryFailed = createAction(
   OwnerOdersTypes.GET_OWNER_ODERS_STATUS_SUMMARY_FAILED,
+  props<{ serverError: string }>()
+);
+
+export const getOdersFilterByTotalPrice = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE,
+  props<{ obj: OderFilterPriceOwner }>()
+);
+
+export const getOdersFilterByTotalPriceSucess = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE_SUCESS,
+  props<{ items: PageableResponse<OwnerOderBase> }>()
+);
+
+export const getOdersFilterByTotalPriceFailed = createAction(
+  OwnerOdersTypes.GET_OWNER_ODERS_FILTER_BY_TOTAL_PRICE_FAILED,
   props<{ serverError: string }>()
 );

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
+import { OderFilterPriceOwner } from 'src/app/models/baseModals/objectFilterPriceOder';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
@@ -91,6 +92,21 @@ export class OwnerOdersService {
     params = params.append('restaurantId', restaurantId);
     return this.http.get<OrderStatusSummaryResponse>(
       `${this.BASE_URL}oder/status-summary`,
+      { params }
+    );
+  }
+
+  getOdersByTotalPrice(
+    objFilterPrice: OderFilterPriceOwner
+  ): Observable<PageableResponse<OwnerOderBase>> {
+    let params = new HttpParams();
+
+    Object.entries(objFilterPrice).forEach(([key, value]) => {
+      params = params.append(String(key), value);
+    });
+
+    return this.http.get<PageableResponse<OwnerOderBase>>(
+      `${this.BASE_URL}oder/price-range`,
       { params }
     );
   }

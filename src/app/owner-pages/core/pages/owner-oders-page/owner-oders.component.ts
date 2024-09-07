@@ -1,13 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { filter, switchMap, Observable, take } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import {
+  filter,
+  switchMap,
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+  map,
+} from 'rxjs/operators';
 import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 import {
   getOdersByCustomer,
   getOdersCreateAt,
+  getOdersFilterByTotalPrice,
   getOdersRangeDate,
   getOdersStatusSummary,
   getOwnerHistoryOders,
@@ -24,11 +33,11 @@ import {
   templateUrl: './owner-oders.component.html',
   styleUrls: ['./owner-oders.component.scss'],
 })
-export class OwnerOdersPageComponent implements OnInit {
-  queryRangeDateEnd: string = '';
-  queryRangeDateStart: string = '';
+export class OwnerOdersPageComponent implements OnInit, OnDestroy {
+  queryDateRange: string = '';
   queryCustomerName!: string;
   queryFilterDate!: string;
+  queryFilterTotalPrice!: string;
   restaurantId!: number;
   navLinks: string[] = ['All', 'Pending', 'Completed', 'Failed'];
   resturantId$!: Observable<number>;
@@ -36,6 +45,8 @@ export class OwnerOdersPageComponent implements OnInit {
   ordersLoaded = false;
   oderStatuses$!: Observable<OrderStatusSummaryResponse | ''>;
   formattedStatuses: string[] = [];
+  private dateRangeSubject = new Subject<string>();
+  private destroy$ = new Subject<void>();
 
   constructor(private store$: Store, private router: Router) {
     this.store$.dispatch(findRestaurant());
@@ -57,8 +68,7 @@ export class OwnerOdersPageComponent implements OnInit {
           this.store$.dispatch(getOdersStatusSummary({ restaurantId }));
           return this.store$.select(getOders);
         }),
-        filter((orders) => orders.content.length > 0),
-        take(1)
+        filter((orders) => orders.content.length > 0)
       )
       .subscribe((orders) => {
         this.oderStatuses$ = this.store$.select(selectOdersStatusSummary);
@@ -70,6 +80,12 @@ export class OwnerOdersPageComponent implements OnInit {
         });
       });
   }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   formatStatuses(statusSummary: OrderStatusSummaryResponse) {
     const defaultStatuses: OrderStatusSummaryResponse = {
       PENDING: 0,
@@ -118,21 +134,15 @@ export class OwnerOdersPageComponent implements OnInit {
     }
   }
 
-  onInputRangeDateChange() {
-    if (
-      this.queryRangeDateStart.length >= 10 &&
-      this.queryRangeDateEnd.length >= 10
-    ) {
-      this.store$.dispatch(
-        getOdersRangeDate({
-          startDate: this.queryRangeDateStart,
-          endDate: this.queryRangeDateEnd,
-        })
-      );
+  onInputFilterByTotalPrice() {
+    if (this.queryFilterTotalPrice.length >= 2) {
+      let obj = {
+        restaurantId: this.restaurantId,
+        price: Number(this.queryFilterTotalPrice),
+      };
+      this.store$.dispatch(getOdersFilterByTotalPrice({ obj }));
     }
   }
 
-  onDateCreateAtFiltered(date: string) {}
-
-  onDateRangeCreateAt(startDate: string, endDate: string) {}
+  updateOderStatus() {}
 }
