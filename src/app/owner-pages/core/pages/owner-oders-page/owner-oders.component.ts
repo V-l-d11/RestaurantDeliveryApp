@@ -135,7 +135,9 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
   }
 
   onInputFilterByTotalPrice() {
-    if (this.queryFilterTotalPrice.length >= 2) {
+    if (!this.queryFilterTotalPrice) {
+      this.loadOdersHistory(this.restaurantId);
+    } else if (this.queryFilterTotalPrice.length >= 2) {
       let obj = {
         restaurantId: this.restaurantId,
         price: Number(this.queryFilterTotalPrice),
@@ -145,4 +147,6 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
   }
 
   updateOderStatus() {}
+
+  deleteOder() {}
 }

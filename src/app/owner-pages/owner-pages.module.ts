@@ -86,6 +86,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { OwnerOdersEffects } from './store+/effects/owner-oders-effects';
 import { OwnerOdersDetailsTableLineComponent } from './core/components/owner-oders-details-table-line/owner-oders-details-table-line.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { OwnerOdersMinCardFoodUiComponent } from './core/components/owner-oders-min-card-food-ui/owner-oders-min-card-food-ui.component';
 
 const routes: Routes = [
   {
@@ -145,6 +146,7 @@ const routes: Routes = [
     OwnerMenuSinglCardComponent,
     OwnerOdersTableComponent,
     OwnerOdersDetailsTableLineComponent,
+    OwnerOdersMinCardFoodUiComponent,
   ],
   imports: [
     CommonModule,

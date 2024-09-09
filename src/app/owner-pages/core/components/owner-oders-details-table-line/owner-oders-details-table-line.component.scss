@@ -1,4 +1,16 @@
 $font-family: Jost;
+$font-size-titels-first: 18px;
+$font-size-titels-second: 16px;
+$font-size-titels-thrd: 14px;
+
+.col {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.row-adresses-m {
+  margin-top: 20px;
+}
 
 .example-element-row {
   cursor: pointer;
@@ -13,7 +25,7 @@ $font-family: Jost;
 .example-element-detail {
   display: flex;
   flex-direction: row;
-  padding: 10px;
+  gap: 100px;
 }
 
 .example-element-detail .column {
@@ -24,51 +36,50 @@ $font-family: Jost;
 
 h5 {
   font-family: $font-family;
-  font-size: 18px;
+  font-weight: medium;
+  font-size: $font-size-titels-second;
 }
 h6 {
   font-family: $font-family;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: medium;
 }
 span {
   font-family: $font-family;
-  font-size: 15px;
+  font-size: 13px;
 }
-
-.row {
-  padding: 0px;
-  margin: 0px;
-}
-.col-md-4 {
-  width: 30%;
-  span {
-    font-weight: 500;
-  }
-}
-
-.shadow-column {
-  margin-right: 10px;
-  margin-left: 10px;
-  background: #ffffff;
-  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+p {
+  font-family: $font-family;
+  font-size: 14px;
 }
 
 .customer-adresses-section {
   .customer-adresses-list {
+    padding: 0;
+    margin: 10px;
+    list-style: none;
     li {
-      list-style: none;
-      span {
-        font-family: $font-family;
-        font-size: 15px;
-        font-weight: 550;
-      }
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      text-align: left;
+    }
+    span {
+      min-width: 100px;
+      padding-right: 10px;
+      font-family: $font-family;
+      font-size: 13px;
+      font-weight: 400;
+      text-align: left;
     }
   }
 }
+
 .delivery-address-list {
   li {
     list-style-type: none;
+
     span {
       font-family: $font-family;
       font-size: 16px;
@@ -79,19 +90,25 @@ span {
 
 .btn-oder-status {
   font-family: $font-family;
-  padding: 5px 10px 5px 10px;
-  border-radius: 8px;
+  font-size: 13px;
+  padding: 3px 7px 3px 7px;
+  border-radius: 4px;
   border: none;
+  color: #000;
 }
-
 .oder-status-pandding {
-  background-color: rgb(247, 99, 99);
+  background-color: rgb(249, 255, 60);
 }
-
 .oder-status-completed {
   background-color: green;
 }
+.oder-status-cancel {
+  background-color: red;
+}
 
+.delivery-section-adresses {
+  margin-top: 30px;
+}
 .btn-section-end {
   margin-top: 1%;
   margin-bottom: 3%;
@@ -101,7 +118,5 @@ span {
     border: none;
     font-family: $font-family;
     font-size: 14px;
-  }
-  .btn-contacts {
   }
 }

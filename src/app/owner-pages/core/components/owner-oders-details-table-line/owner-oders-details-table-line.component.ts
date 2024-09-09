@@ -12,7 +12,5 @@ export class OwnerOdersDetailsTableLineComponent implements OnChanges {
 
   constructor() {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.oderElement, 'ODer Element child');
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
 }
