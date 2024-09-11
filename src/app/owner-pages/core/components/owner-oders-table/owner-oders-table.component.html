@@ -80,6 +80,7 @@
     <mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
       <div [@detailExpand]="expandedElement === row ? 'expanded' : 'collapsed'">
         <app-owner-oders-details-table-line
+          (clickUpdateOderStatus)="updateOderStatus.emit($event)"
           [oderElement]="expandedElement"
         ></app-owner-oders-details-table-line>
       </div>

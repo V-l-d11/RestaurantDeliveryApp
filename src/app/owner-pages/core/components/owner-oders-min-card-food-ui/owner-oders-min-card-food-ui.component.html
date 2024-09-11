@@ -1,23 +1,36 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <img src="#" alt="Not Found" />
+    <div class="col-3 img-section">
+      <img
+        class="img-food"
+        src="./../../../../../assets/images/tetst.avif"
+        alt="Not Found"
+      />
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">{{ food.name }}</div>
-        <div class="col">{{ food.price }}</div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <h4>Ingridients:</h4>
+    <div class="col inf-section">
+      <div class="row g-0">
+        <div class="col-4 p-0">
+          <span style="margin: 0; padding: 0">{{ food.name }}</span>
         </div>
-        <div class="col">
+        <div class="col p-0">
+          <span style="margin: 0; padding: 0" class="price"
+            >{{ food.price }}$</span
+          >
+        </div>
+      </div>
+      <div class="row ingrid-section">
+        <div class="col-4">
+          <span class="ingrid-span">Ingridients:</span>
+        </div>
+        <div class="col" *ngIf="food.ingredients.length > 0">
           <ul *ngFor="let ingridient of food.ingredients">
             <li>
               <span>{{ ingridient.name }}</span> {{ ingridient.price }}
             </li>
           </ul>
+        </div>
+        <div class="col" *ngIf="food.ingredients.length == 0">
+          <span class="message">No Ingridients selected</span>
         </div>
       </div>
     </div>

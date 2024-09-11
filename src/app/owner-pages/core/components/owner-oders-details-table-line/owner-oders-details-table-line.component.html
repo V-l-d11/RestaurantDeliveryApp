@@ -5,7 +5,7 @@
         <div class="col">
           <h5>Customer Details:</h5>
         </div>
-        <div class="row g-0">
+        <div class="row g-0 name-details">
           <div class="col-3 p-0">
             <span style="margin: 0; padding: 0">Full Name:</span>
           </div>
@@ -15,7 +15,7 @@
             </p>
           </div>
         </div>
-        <div class="row g-0">
+        <div class="row g-0 name-details">
           <div class="col-3 p-0">
             <span style="margin: 0; padding: 0">E-mail:</span>
           </div>
@@ -55,7 +55,7 @@
           <h5>Oders Details:</h5>
         </div>
       </div>
-      <div class="row">
+      <div class="row oder-st-section">
         <div class="col">
           <h6>Oder Status:</h6>
         </div>
@@ -70,6 +70,13 @@
           >
             {{ oderElement.oderStatus }}
           </button>
+        </div>
+        <div class="col">
+          <select (change)="onStatusChange($event)" [value]="selectedStatus">
+            <option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </option>
+          </select>
         </div>
       </div>
 
@@ -102,10 +109,10 @@
       </div>
     </div>
 
-    <div class="column shadow-column">
+    <div class="column shadow-column last-column">
       <div class="row">
         <div class="col">
-          <h5>Delivery Menu Items</h5>
+          <h5>Delivery Menu Items:</h5>
         </div>
         <div class="row">
           <div class="col">
@@ -125,40 +132,47 @@
               <hr />
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <h6>Quantity:</h6>
-              - <span>{{ i.quantity }}</span>
+          <div class="row item-row">
+            <div class="col label-col">
+              <span class="total-sp">Quantity:</span>
+            </div>
+            <div class="col value-col">
+              <span>{{ i.quantity }}</span>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <span>Total Amount:</span>
-          </div>
-          <div class="col">
-            {{ oderElement.totalItem }}
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col">
-            <span>Total Price:</span>
-          </div>
-          <div class="col">
-            {{ oderElement.totalPrice }}
+          <div class="row item-row">
+            <div class="col label-col">
+              <span class="total-sp">Total Price:</span>
+            </div>
+            <div class="col value-col total-price">
+              {{ oderElement.totalPrice }}$
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="row btn-section-end">
-    <div class="col-2">
-      <button class="btn-section-back btn-contacts">Constact &#9742;</button>
+    <div class="col-4">
+      <button class="btn btn-section-back btn-contacts w-100">Contact</button>
     </div>
-    <div class="col-2">
-      <button class="btn-section-back btn-upload">Upload &#128228;</button>
+    <div class="col-4">
+      <button class="btn btn-section-back btn-upload w-100">Upload</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-section-back btn-delivery w-100">
+        Send the order by the deliverer
+      </button>
+    </div>
+
+    <div class="col">
+      <button
+        (click)="changeInformationOder()"
+        class="btn btn-section-back btn-delivery w-100"
+      >
+        Chnage Oder Status
+      </button>
     </div>
   </div>
 </div>

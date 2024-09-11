@@ -4,6 +4,8 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -19,6 +21,7 @@ import {
 } from '@angular/animations';
 import { User } from 'src/app/models/baseModals/user';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
+import { updateOderStatusData } from 'src/app/models/baseModals/oderDataStatus';
 
 @Component({
   selector: 'app-owner-oders-table',
@@ -51,6 +54,8 @@ import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 })
 export class OwnerOdersTableComponent implements AfterViewInit, OnInit {
   @Input() odersList!: Observable<PageableResponse<OwnerOderBase>>;
+  @Output() updateOderStatus = new EventEmitter<updateOderStatusData>();
+
   displayedColumns: string[] = [
     'number',
     'Customer',

@@ -23,17 +23,25 @@ $font-size-titels-thrd: 14px;
 }
 
 .example-element-detail {
-  display: flex;
-  flex-direction: row;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  gap: 50px;
 }
 
-.example-element-detail .column {
-  flex: 1;
+.name-details {
+  margin-top: 2%;
+}
+.oder-st-section {
+  margin-top: 4%;
+}
+.column {
+  margin-top: 5%;
   padding: 10px;
   box-sizing: border-box;
 }
-
+.last-column {
+  margin-top: 1%;
+}
 h5 {
   font-family: $font-family;
   font-weight: medium;
@@ -56,13 +64,13 @@ p {
 .customer-adresses-section {
   .customer-adresses-list {
     padding: 0;
-    margin: 10px;
+    margin: 6px;
     list-style: none;
     li {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 5px 0;
+      gap: 6px;
+      padding: 3px 0;
       text-align: left;
     }
     span {
@@ -107,16 +115,60 @@ p {
 }
 
 .delivery-section-adresses {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 .btn-section-end {
+  width: 950px;
   margin-top: 1%;
   margin-bottom: 3%;
   .btn-section-back {
+    width: 100%;
     padding: 5px 10px 5px 10px;
     border-radius: 5px;
-    border: none;
+
     font-family: $font-family;
     font-size: 14px;
   }
+  .btn-contacts {
+    background-color: rgb(72, 218, 72);
+    color: #000;
+  }
+  .btn-upload {
+    background-color: #000;
+    color: #fff;
+  }
+  .btn-upload:hover {
+    background-color: #595656;
+    color: #000;
+  }
+}
+
+.total-sp {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: $font-family;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label-col {
+  flex: 1;
+  text-align: left;
+}
+
+.value-col {
+  flex: 1;
+  text-align: right;
+  color: red;
+}
+.btn-delivery {
+  border: 0.5px solid #00000026;
+}
+.btn-delivery:hover {
+  background-color: #000;
+  color: #fff;
 }

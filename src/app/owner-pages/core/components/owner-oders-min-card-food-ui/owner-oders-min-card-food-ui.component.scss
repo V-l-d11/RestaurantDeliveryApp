@@ -1,0 +1,43 @@
+$font-faimly: Jost;
+$font-weight: 500;
+
+.container {
+  width: 100%;
+}
+
+span {
+  font-family: $font-faimly;
+  font-size: 16px;
+  font-weight: $font-weight;
+}
+.price {
+  font-size: 14px;
+  color: #ff0606;
+}
+.inf-section {
+  margin-left: 20px;
+}
+
+.img-section {
+  padding: 0px;
+  margin: 0px;
+}
+.img-food {
+  width: 90px;
+  height: 90px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.ingrid-section {
+  .ingrid-span {
+    font-size: 12px;
+    font-weight: 450;
+    font-family: $font-faimly;
+  }
+  .message {
+    font-size: 11px;
+    font-weight: 400;
+    font-family: $font-faimly;
+  }
+}
