@@ -66,14 +66,17 @@ export const OwnerOdersReducer = createReducer(
     loaded: false,
     loading: true,
   })),
-  // on(oderActions.updateOwnerOderStatusSucess, (state, { item }) => ({
-  //   ...state,
-  //   loaded: true,
-  //   loading: false,
-  //   oders: state.oders.map((el) =>
-  //     el.id === item.id ? { ...el, oderStatus: item.oderStatus } : el
-  //   ),
-  // })),
+  on(oderActions.updateOwnerOderStatusSucess, (state, { item }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    oders: {
+      ...state.oders,
+      content: state.oders.content.map((el) =>
+        el.id === item.id ? { ...el, oderStatus: item.oderStatus } : el
+      ),
+    },
+  })),
   on(oderActions.updateOwnerOderStatusFailed, (state, { serverError }) => ({
     ...state,
     loaded: true,

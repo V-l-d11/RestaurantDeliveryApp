@@ -4,6 +4,7 @@
       <h1>Oders</h1>
     </div>
   </div>
+
   <div class="row row-search">
     <div class="col-2 status-section" *ngFor="let status of formattedStatuses">
       <span class="sp-status">{{ status }}</span>
@@ -56,6 +57,7 @@
 
   <div class="row row-table">
     <app-owner-oders-table
+      (updateOderStatus)="updateOderStatus($event)"
       *ngIf="ordersLoaded"
       [odersList]="odersList$"
     ></app-owner-oders-table>

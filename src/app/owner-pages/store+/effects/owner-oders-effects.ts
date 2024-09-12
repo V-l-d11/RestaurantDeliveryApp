@@ -14,6 +14,7 @@ import {
   map,
   of,
   switchMap,
+  tap,
   withLatestFrom,
 } from 'rxjs';
 import { getPrevioseName } from '../selectors/owner-oders-selectors';
@@ -137,6 +138,34 @@ export class OwnerOdersEffects {
             )
           )
         )
+      )
+    )
+  );
+
+  updateOderStatus$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(odersActions.updateOwnerOderStatus),
+      switchMap((action) =>
+        this.oderService
+          .updateOderStatus(action.oderId, action.oderStatus)
+          .pipe(
+            map((response) =>
+              odersActions.updateOwnerOderStatusSucess({ item: response })
+            ),
+            tap(() => {
+              this.dialog.openSnackBar(
+                'Status Oder Sucessfully Changed!',
+                5000
+              );
+            }),
+            catchError((error) =>
+              of(
+                odersActions.updateOwnerOderStatusFailed({
+                  serverError: error.massage,
+                })
+              )
+            )
+          )
       )
     )
   );

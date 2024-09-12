@@ -18,8 +18,6 @@ import { OwnerDialogServiceService } from 'src/app/owner-pages/services/owner-di
 export class OwnerOdersDetailsTableLineComponent implements OnChanges {
   @Input()
   oderElement!: OwnerOderBase | null;
-  selectedStatus = '';
-  statuses = ['PENDING', 'COMPLETED', 'CANCEL'];
 
   @Output() clickUpdateOderStatus = new EventEmitter<updateOderStatusData>();
 
@@ -31,13 +29,12 @@ export class OwnerOdersDetailsTableLineComponent implements OnChanges {
     this.clickUpdateOderStatus.emit(data);
   }
 
-  onStatusChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-    const newStatus = selectElement.value;
-    console.log(newStatus, 'Select ELement');
-  }
-
   changeInformationOder() {
-    this.dialogService.openEditOdersModel();
+    if (this.oderElement) {
+      this.dialogService.openEditOdersModelAndHandleResult(
+        this.oderElement,
+        this.clickUpdateOderStatus
+      );
+    }
   }
 }

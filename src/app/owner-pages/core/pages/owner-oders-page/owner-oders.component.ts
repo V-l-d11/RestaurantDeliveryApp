@@ -11,6 +11,7 @@ import {
   map,
 } from 'rxjs/operators';
 import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/owner-oders-status-summary-response';
+import { updateOderStatusData } from 'src/app/models/baseModals/oderDataStatus';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 import {
@@ -20,6 +21,7 @@ import {
   getOdersRangeDate,
   getOdersStatusSummary,
   getOwnerHistoryOders,
+  updateOwnerOderStatus,
 } from 'src/app/owner-pages/store+/actions/actions-owner-oders';
 import { findRestaurant } from 'src/app/owner-pages/store+/actions/actions-owner-retsuarant';
 import { getRestaurantId } from 'src/app/owner-pages/store+/selectors/owner-dashboard-selectors';
@@ -146,7 +148,11 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateOderStatus() {}
+  updateOderStatus(data: updateOderStatusData) {
+    const oderId = data.oderId;
+    const oderStatus = data.oderStatus;
+    this.store$.dispatch(updateOwnerOderStatus({ oderId, oderStatus }));
+  }
 
   deleteOder() {}
 }

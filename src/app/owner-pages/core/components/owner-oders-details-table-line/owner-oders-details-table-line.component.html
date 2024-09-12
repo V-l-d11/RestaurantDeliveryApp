@@ -71,13 +71,7 @@
             {{ oderElement.oderStatus }}
           </button>
         </div>
-        <div class="col">
-          <select (change)="onStatusChange($event)" [value]="selectedStatus">
-            <option *ngFor="let status of statuses" [value]="status">
-              {{ status }}
-            </option>
-          </select>
-        </div>
+        <div class="col"></div>
       </div>
 
       <div class="row delivery-section-adresses">
@@ -153,25 +147,26 @@
       </div>
     </div>
   </div>
+
   <div class="row btn-section-end">
-    <div class="col-4">
+    <div class="col-3">
       <button class="btn btn-section-back btn-contacts w-100">Contact</button>
     </div>
-    <div class="col-4">
+    <div class="col-3">
       <button class="btn btn-section-back btn-upload w-100">Upload</button>
     </div>
-    <div class="col">
-      <button class="btn btn-section-back btn-delivery w-100">
-        Send the order by the deliverer
-      </button>
-    </div>
-
-    <div class="col">
+    <div class="col-3">
       <button
         (click)="changeInformationOder()"
         class="btn btn-section-back btn-delivery w-100"
       >
         Chnage Oder Status
+      </button>
+    </div>
+
+    <div class="col-3">
+      <button class="btn btn-section-back btn-delivery w-100">
+        Send the order by the deliverer
       </button>
     </div>
   </div>

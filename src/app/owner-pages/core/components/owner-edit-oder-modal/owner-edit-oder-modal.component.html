@@ -1,1 +1,64 @@
-<p>owner-edit-oder-modal works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col d-flex justify-content-center mt-3">
+      <h5>Change the order's ready status</h5>
+      <span class="sp-date"> {{ data.createAt | date : "dd-MM-yyyy" }}</span>
+    </div>
+  </div>
+
+  <div class="row selection-section">
+    <div class="col d-flex justify-content-center mt-3">
+      <select
+        class="select-status"
+        (change)="onStatusChange($event)"
+        [value]="selectedStatus"
+      >
+        <option *ngFor="let status of statuses" [value]="status">
+          {{ status }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col current-section d-flex justify-content-center mt-3">
+      <span class="sp-curr">Current Status</span>
+      <button
+        [ngClass]="{
+          'oder-status-completed': data.oderStatus === 'COMPLETED',
+          'oder-status-panding': data.oderStatus === 'PENDING',
+          'oder-status-cancel': data.oderStatus === 'CANCEL',
+          
+        }"
+        class="btn-up"
+      >
+        {{ data.oderStatus }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col current-section d-flex justify-content-center mt-3">
+      <span class="sp-curr">Changed status</span>
+      <button
+        [ngClass]="{
+          'oder-status-completed': selectedStatus === 'COMPLETED',
+          'oder-status-pandding': selectedStatus === 'PENDING',
+          'oder-status-cancel': selectedStatus === 'CANCEL',
+          'oder-status-null': selectedStatus === ''
+        }"
+        class="btn-up"
+      >
+        {{ selectedStatus || "Nothing Select" }}
+      </button>
+    </div>
+  </div>
+
+  <div class="row confirm-section">
+    <div class="col d-flex justify-content-center">
+      <button class="btn-confirm" (click)="confirmChanges()">
+        Confirm changes
+      </button>
+    </div>
+  </div>
+</div>

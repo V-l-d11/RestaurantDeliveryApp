@@ -48,7 +48,7 @@ export const getOwnerHistoryFailed = createAction(
 
 export const updateOwnerOderStatus = createAction(
   OwnerOdersTypes.UPDATE_OWNER_ODER_STATUS,
-  props<{ oderStatus: string }>()
+  props<{ oderId: number; oderStatus: string }>()
 );
 
 export const updateOwnerOderStatusSucess = createAction(
