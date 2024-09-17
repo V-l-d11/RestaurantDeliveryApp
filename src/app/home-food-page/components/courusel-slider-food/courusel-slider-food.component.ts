@@ -7,7 +7,7 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 })
 export class CouruselSliderFoodComponent {
   slides = [
-    { img: '/assets/images/imgSlider1.png' },
+    { img: '/assets/images/imgSlider1.png', title: '' },
     { img: '/assets/images/imgSlider2.png' },
     { img: '/assets/images/imgSlider3.png' },
     { img: '/assets/images/imgSlider4.png' },

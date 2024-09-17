@@ -15,6 +15,10 @@ import { AuthModule } from '../auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth.guards';
 import { AdminAuthGuard } from '../core/auth-owner.guards';
+import { StoreModule } from '@ngrx/store';
+import { HOME_FEATURE_NAME, HomeReducer } from './+store/reducer/home-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { HomePageEffects } from './+store/effects/home-page-effects';
 
 const routes: Routes = [
   {
@@ -84,6 +88,8 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    StoreModule.forFeature(HOME_FEATURE_NAME, HomeReducer),
+    EffectsModule.forFeature([HomePageEffects]),
   ],
   exports: [HomeFoodPageComponent],
 })

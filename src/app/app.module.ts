@@ -31,6 +31,7 @@ import { OwnerCategoriesFoodReduce } from './owner-pages/store+/reducers/owner-c
 import { OwnerIngridientsReducer } from './owner-pages/store+/reducers/owner-ingridients-reducer';
 import { MatChipsModule } from '@angular/material/chips';
 import { OwnerMenuFoodReducer } from './owner-pages/store+/reducers/owner-food-reducer';
+import { HomeReducer } from './home-food-page/+store/reducer/home-reducer';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -47,6 +48,7 @@ import { OwnerMenuFoodReducer } from './owner-pages/store+/reducers/owner-food-r
     FoodSearchPageModule,
     FoodRestaurantsPageModule,
     StoreModule.forRoot({
+      home: HomeReducer,
       auth: AuthReducer,
       search: SearchReducer,
       CustomerRestaurant: RestaurantCustomerReducer,

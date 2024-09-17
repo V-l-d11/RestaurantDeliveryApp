@@ -88,6 +88,8 @@ import { OwnerOdersDetailsTableLineComponent } from './core/components/owner-ode
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { OwnerOdersMinCardFoodUiComponent } from './core/components/owner-oders-min-card-food-ui/owner-oders-min-card-food-ui.component';
 import { OwnerEditOderModalComponent } from './core/components/owner-edit-oder-modal/owner-edit-oder-modal.component';
+import { OwnerAnalitictsPageComponent } from './core/pages/owner-analiticts-page/owner-analiticts-page.component';
+import { OwnerEventsPageComponent } from './core/pages/owner-events-page/owner-events-page.component';
 
 const routes: Routes = [
   {
@@ -149,6 +151,8 @@ const routes: Routes = [
     OwnerOdersDetailsTableLineComponent,
     OwnerOdersMinCardFoodUiComponent,
     OwnerEditOderModalComponent,
+    OwnerAnalitictsPageComponent,
+    OwnerEventsPageComponent,
   ],
   imports: [
     CommonModule,
