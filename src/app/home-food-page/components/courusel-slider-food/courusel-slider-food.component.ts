@@ -1,18 +1,17 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { Category } from 'src/app/models/baseModals/category';
 
 @Component({
   selector: 'app-courusel-slider-food',
   templateUrl: './courusel-slider-food.component.html',
   styleUrls: ['./courusel-slider-food.component.scss'],
 })
-export class CouruselSliderFoodComponent {
-  slides = [
-    { img: '/assets/images/imgSlider1.png', title: '' },
-    { img: '/assets/images/imgSlider2.png' },
-    { img: '/assets/images/imgSlider3.png' },
-    { img: '/assets/images/imgSlider4.png' },
-  ];
+export class CouruselSliderFoodComponent implements OnInit {
+  @Input()
+  categories!: Observable<Category[]>;
 
+  slides: { name: string; img: string }[] = [];
   slideConfig = {
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -41,4 +40,31 @@ export class CouruselSliderFoodComponent {
       },
     ],
   };
+
+  ngOnInit(): void {
+    this.categories
+      .pipe(
+        map((categories) =>
+          categories.map((category, index) => ({
+            name: category.name,
+            img: this.getImageForCategory(index),
+          }))
+        )
+      )
+      .subscribe((slidesWithImages) => {
+        this.slides = slidesWithImages;
+        console.log(this.slides, 'Thissliders');
+      });
+  }
+
+  getImageForCategory(index: number): string {
+    const images = [
+      '/assets/images/imgSlider1.png',
+      '/assets/images/imgSlider2.png',
+      '/assets/images/imgSlider3.png',
+      '/assets/images/imgSlider4.png',
+    ];
+
+    return images[index % images.length];
+  }
 }

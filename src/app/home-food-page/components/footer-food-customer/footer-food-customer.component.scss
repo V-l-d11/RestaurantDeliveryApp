@@ -1,0 +1,84 @@
+$font-family: Jost;
+.container-fluid {
+  margin-top: 7%;
+  width: 100%;
+  background-color: #efedea;
+  padding: 20px;
+}
+
+.row-menu {
+  margin-top: 2%;
+}
+.column-header {
+  background-color: #71717100;
+  color: rgb(0, 0, 0);
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+.column-header:hover {
+  color: #ffbf00;
+}
+.sub-column-header {
+  background-color: #71717100;
+  color: rgb(0, 0, 0);
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sub-column-header:hover {
+  color: #ffbf00;
+}
+
+.sub-columns,
+.sub-sub-columns {
+  margin-top: 10px;
+}
+
+.sub-columns {
+  border-left: 2px solid #00000025;
+  padding-left: 30px;
+}
+
+.sub-sub-columns {
+  border-left: 2px solid #ffbf00;
+  font-family: $font-family;
+  font-weight: 800;
+  padding-left: 10px;
+}
+
+.row-hr {
+  margin-top: 3%;
+}
+h4 {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 22px;
+}
+.ft-p {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #5a5a5a;
+}
+.svg {
+  width: 30px;
+  height: 30px;
+}
+
+h3 {
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.row-social {
+  margin-top: 3%;
+}
+.row-sc {
+  margin-top: 1%;
+}

@@ -1,3 +1,7 @@
+.slider-section {
+  margin-top: 5%;
+}
+
 .slick-prev::before,
 .slick-next::before {
   color: #000 !important;
@@ -18,4 +22,11 @@
 
 .title-section {
   margin-top: 5%;
+}
+
+.title-category {
+  font-family: Jost;
+  font-size: 20px;
+  font-weight: 500;
+  color: #373636;
 }

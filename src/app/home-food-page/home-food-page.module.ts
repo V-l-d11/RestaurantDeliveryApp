@@ -15,10 +15,14 @@ import { AuthModule } from '../auth/auth.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../core/auth.guards';
 import { AdminAuthGuard } from '../core/auth-owner.guards';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { HOME_FEATURE_NAME, HomeReducer } from './+store/reducer/home-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HomePageEffects } from './+store/effects/home-page-effects';
+import { getFoodCategoryAll } from './+store/actions/home-page-actions';
+import { HomeSerchResturantPreviewComponent } from './components/home-serch-resturant-preview/home-serch-resturant-preview.component';
+import { SectionCardsIntructionComponent } from './components/section-cards-intruction/section-cards-intruction.component';
+import { FooterFoodCustomerComponent } from './components/footer-food-customer/footer-food-customer.component';
 
 const routes: Routes = [
   {
@@ -78,6 +82,9 @@ const routes: Routes = [
     FoodCardRestaurantsComponent,
     FoodRestaurantsCardsSectionComponent,
     FoodPromoSectionComponent,
+    HomeSerchResturantPreviewComponent,
+    SectionCardsIntructionComponent,
+    FooterFoodCustomerComponent,
   ],
   imports: [
     CommonModule,
@@ -91,6 +98,8 @@ const routes: Routes = [
     StoreModule.forFeature(HOME_FEATURE_NAME, HomeReducer),
     EffectsModule.forFeature([HomePageEffects]),
   ],
-  exports: [HomeFoodPageComponent],
+  exports: [HomeFoodPageComponent, FooterFoodCustomerComponent],
 })
-export class HomeFoodPageModule {}
+export class HomeFoodPageModule {
+  constructor(private store$: Store) {}
+}

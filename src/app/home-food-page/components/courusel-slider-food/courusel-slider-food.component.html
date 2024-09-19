@@ -10,11 +10,10 @@
       [config]="slideConfig"
     >
       <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-        <img src="{{ slide.img }}" alt="" class="img-style" />
-
+        <img [src]="slide.img" alt="Category Image" class="img-style" />
         <div class="row title-section">
           <div class="col d-flex justify-content-center">
-            <span>Hello</span>
+            <span class="title-category">{{ slide.name }}</span>
           </div>
         </div>
       </div>

@@ -210,6 +210,6 @@ const routes: Routes = [
 })
 export class OwnerPagesModule {
   constructor(private store$: Store) {
-    this.store$.dispatch(findRestaurant());
+    //    this.store$.dispatch(findRestaurant());
   }
 }
