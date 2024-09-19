@@ -3,13 +3,27 @@ h1 {
   font-size: 39px;
   font-weight: 800;
 }
+.container-fluid {
+  max-width: 100%;
+  margin: 0px;
+}
 .main {
-  margin-top: 100px;
+  margin-top: 10%;
 }
 .second {
   margin-top: 40px;
 }
 
+.row-btn {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.col-btn {
+  margin: 0px;
+  padding: 0px;
+}
 .btn-restaurants {
   margin-top: 5%;
   color: #fff;

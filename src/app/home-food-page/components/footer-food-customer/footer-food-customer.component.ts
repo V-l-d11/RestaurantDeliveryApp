@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { getCtaegoriesFood } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
+import { Category } from 'src/app/models/baseModals/category';
 
 @Component({
   selector: 'app-footer-food-customer',
   templateUrl: './footer-food-customer.component.html',
   styleUrls: ['./footer-food-customer.component.scss'],
 })
-export class FooterFoodCustomerComponent {
+export class FooterFoodCustomerComponent implements OnInit {
+  categoriesFood$!: Observable<Category[]>;
   columns = [
     {
       label: 'Food Delivery App',
@@ -65,6 +71,23 @@ export class FooterFoodCustomerComponent {
       ],
     },
   ];
+
+  constructor(private store$: Store, private router: Router) {}
+
+  ngOnInit(): void {
+    this.categoriesFood$ = this.store$.select(getCtaegoriesFood);
+    this.categoriesFood$.subscribe((categories) => {
+      const kategoriesColumn = this.columns.find(
+        (column) => column.label === 'Kategories Food'
+      );
+      if (kategoriesColumn) {
+        kategoriesColumn.subColumns = categories.map((category) => ({
+          label: category.name,
+          open: false,
+        }));
+      }
+    });
+  }
 
   toggle(column: any) {
     column.open = !column.open;

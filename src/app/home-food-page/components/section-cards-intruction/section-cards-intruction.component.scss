@@ -1,5 +1,6 @@
 $font-family: Jost;
 .container-fluid {
+  max-width: 100%;
   margin-top: 10%;
   padding: 0px;
 }
@@ -8,6 +9,11 @@ h5 {
   font-family: $font-family;
   font-size: 40px;
   font-weight: 600;
+}
+
+.col-title {
+  margin: 0px;
+  padding: 0px;
 }
 .svg {
   width: 150px;
@@ -29,4 +35,9 @@ h5 {
     font-size: 18px;
     color: #7d7d7d;
   }
+}
+
+.col-svg {
+  margin: 0px;
+  padding: 0px;
 }
