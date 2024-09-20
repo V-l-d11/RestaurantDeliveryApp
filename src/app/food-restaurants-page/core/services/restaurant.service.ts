@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RestaurantListByFiltersRequest } from 'src/app/models/api/requests/restaurants-list-by-filters-customer';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import { RestaurantDto } from 'src/app/models/api/responses/favorites';
@@ -16,6 +17,7 @@ import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-cate
 export class RestaurantService {
   GET_ALL_RESTAURANT_URL: string =
     'http://localhost:8080/customers/restaurants';
+  BASE_URL: string = 'http://localhost:8080/customers';
 
   constructor(private http: HttpClient) {}
 
@@ -69,6 +71,25 @@ export class RestaurantService {
   ): Observable<ingridientsCategory[]> {
     return this.http.get<ingridientsCategory[]>(
       `http://localhost:8080/customer/ingridients/restaurant/${id}/category`
+    );
+  }
+
+  getRestaurantsListByFilters(
+    obj: RestaurantListByFiltersRequest
+  ): Observable<RestaurantCustomer[]> {
+    let params = new HttpParams();
+    (Object.keys(obj) as (keyof RestaurantListByFiltersRequest)[]).forEach(
+      (key) => {
+        const value = obj[key];
+        if (value) {
+          params = params.set(key as string, value.toString());
+        }
+      }
+    );
+
+    return this.http.get<RestaurantCustomer[]>(
+      `${this.BASE_URL}/restaurants/search-restaurants`,
+      { params }
     );
   }
 }

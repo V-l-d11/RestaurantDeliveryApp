@@ -98,3 +98,18 @@ export const getIngridientsCategoriesRestaurantFailed = createAction(
   '[Restaurant Customer page]  get Ingridient Category from Restaurant Failed',
   props<{ serverError: string }>()
 );
+
+export const getRestaurantsByFilters = createAction(
+  '[Restaurant Customer page] getRestaurantsByFilters ',
+  props<{ city: string }>()
+);
+
+export const getRestaurantsByFiltersSucess = createAction(
+  '[Restaurant Customer page] getRestaurantsByFilters sucess',
+  props<{ items: RestaurantCustomer[] }>()
+);
+
+export const getRestaurantsByFiltersFailed = createAction(
+  '[Restaurant Customer page] getRestaurantsByFilters failed',
+  props<{ serverError: string }>()
+);

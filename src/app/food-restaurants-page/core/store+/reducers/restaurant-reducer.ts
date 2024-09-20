@@ -171,5 +171,28 @@ export const RestaurantCustomerReducer = createReducer(
       loaded: true,
       serverError,
     })
+  ),
+  on(CustomerRestaurantActions.getRestaurantsByFilters, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(
+    CustomerRestaurantActions.getRestaurantsByFiltersSucess,
+    (state, { items }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      allRestaurants: items,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getRestaurantsByFiltersFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
   )
 );

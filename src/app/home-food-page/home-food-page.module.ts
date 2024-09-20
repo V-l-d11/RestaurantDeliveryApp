@@ -23,7 +23,7 @@ import { getFoodCategoryAll } from './+store/actions/home-page-actions';
 import { HomeSerchResturantPreviewComponent } from './components/home-serch-resturant-preview/home-serch-resturant-preview.component';
 import { SectionCardsIntructionComponent } from './components/section-cards-intruction/section-cards-intruction.component';
 import { FooterFoodCustomerComponent } from './components/footer-food-customer/footer-food-customer.component';
-
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -94,6 +94,7 @@ const routes: Routes = [
     SlickCarouselModule,
     MatCardModule,
     MatIconModule,
+    FormsModule,
     MatInputModule,
     StoreModule.forFeature(HOME_FEATURE_NAME, HomeReducer),
     EffectsModule.forFeature([HomePageEffects]),
