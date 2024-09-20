@@ -13,6 +13,9 @@ import {
   getSearchRestaurants,
 } from '../../store+/selectors/restaurant-selectors';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/models/baseModals/category';
+import { getFoodCategoryAll } from 'src/app/home-food-page/+store/actions/home-page-actions';
+import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
 
 @Component({
   selector: 'app-food-restaurant-search-page',
@@ -23,6 +26,7 @@ export class FoodRestaurantSearchPageComponent implements OnInit {
   query: string = '';
   allRestaurants$!: Observable<RestaurantCustomer[] | null>;
   searchRestaurants$!: Observable<RestaurantCustomer[] | null>;
+  categoriesFilter$!: Observable<Category[]>;
 
   constructor(
     private store$: Store,
@@ -31,6 +35,7 @@ export class FoodRestaurantSearchPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.categoriesFilter$ = this.store$.select(getCtaegoriesFoodHome);
     this.store$.dispatch(getAllRestaurants());
     this.allRestaurants$ = this.store$.select(getAllRestaurantsSelector);
     this.searchRestaurants$ = this.store$.select(getSearchRestaurants);

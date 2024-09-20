@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BascetEffects } from '../users-pages/core/store+/effects/user-bascet-effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 const routes: Routes = [
   {
     path: '',
@@ -51,6 +52,7 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatSlideToggleModule,
     MatTooltipModule,
     MatButtonModule,
     RouterModule.forChild(routes),

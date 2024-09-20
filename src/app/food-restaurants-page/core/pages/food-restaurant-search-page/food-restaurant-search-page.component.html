@@ -1,72 +1,308 @@
 <div class="container-fluid">
-  <div class="row section">
-    <div class="col d-flex justify-content-center">
-      <input
-        type="text"
-        [(ngModel)]="query"
-        (input)="onInputChange()"
-        (ngModelChange)="onInputChange()"
-        placeholder="Search Restaurant"
-        class="inpt-search"
-      />
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col d-flex justify-content-center section-search">
-      <div class="section-search-loacathion">
-        <input class="location-inpt" type="text" placeholder="Locathion" />
-      </div>
-
-      <div class="search-type-inpt">
-        <input
-          class="cuisin-type-inpt"
-          type="text"
-          placeholder="Cuisine Type"
-        />
-      </div>
-
-      <div class="section-is-open">
-        <button class="is-open-btn">Is Open?</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="d-flex justify-content-center section-1">
-    <div
-      class=""
-      *ngIf="
-        searchRestaurants$ | async as restaurants;
-        else allRestaurantsBlock
-      "
-    >
-      <div
-        *ngIf="restaurants.length > 0"
-        class="d-flex flex-wrap justify-content-around"
-      >
-        <div class="card-component" *ngFor="let restaurant of restaurants">
-          <app-ui-restaurant-card
-            (click)="redirectToRestaurant(restaurant.id)"
-            [restaurant]="restaurant"
-          ></app-ui-restaurant-card>
+  <div class="row row-sections">
+    <div class="col-3 filters-section">
+      <div class="row">
+        <div class="col">
+          <h6>Placeses</h6>
         </div>
       </div>
 
-      <div *ngIf="restaurants.length === 0">No restaurants found.</div>
-    </div>
-
-    <ng-template #allRestaurantsBlock>
-      <div
-        class="d-flex flex-wrap justify-content-around"
-        *ngIf="allRestaurants$ | async as allRestaurants"
-      >
-        <div class="card-component" *ngFor="let restaurant of allRestaurants">
-          <app-ui-restaurant-card
-            (click)="redirectToRestaurant(restaurant.id)"
-            [restaurant]="restaurant"
-          ></app-ui-restaurant-card>
+      <div class="row row-btn-sorting">
+        <div class="col">
+          <h6>Sort by</h6>
         </div>
       </div>
-    </ng-template>
+
+      <div class="row row-close">
+        <div class="col">
+          <svg
+            class="svg"
+            height="800px"
+            width="800px"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 502 502"
+            xml:space="preserve"
+          >
+            <g>
+              <path
+                style="fill: #e6e6e6"
+                d="M394.754,492h-287.51c-16.598,0-30.053-13.455-30.053-30.053c0-16.598,13.455-30.053,30.053-30.053
+		h287.509c16.598,0,30.053,13.455,30.053,30.053C424.807,478.545,411.351,492,394.754,492z"
+              />
+              <g>
+                <path
+                  d="M160.503,406c-0.401,0-0.805-0.024-1.213-0.073c-5.483-0.663-9.39-5.646-8.727-11.128
+			c3.342-27.633,12.567-53.042,26.678-73.481c3.138-4.546,9.367-5.686,13.911-2.547c4.545,3.138,5.686,9.366,2.547,13.911
+			c-12.276,17.781-20.327,40.092-23.281,64.519C169.805,402.275,165.49,406,160.503,406z"
+                />
+              </g>
+              <g>
+                <path
+                  d="M207.007,313.716c-2.958,0-5.886-1.306-7.859-3.809c-3.419-4.337-2.676-10.625,1.661-14.044
+			c7.748-6.109,16.064-10.832,24.718-14.037c5.178-1.919,10.932,0.725,12.851,5.904c1.918,5.179-0.726,10.933-5.904,12.851
+			c-6.691,2.478-13.178,6.174-19.281,10.987C211.357,313.014,209.173,313.716,207.007,313.716z"
+                />
+              </g>
+              <g>
+                <path
+                  d="M226.247,223.052c-1.797,0-3.616-0.484-5.255-1.5c-25.74-15.939-45.897-38.868-55.305-62.908
+			c-2.013-5.143,0.525-10.944,5.668-12.957c5.145-2.012,10.944,0.526,12.957,5.668c7.863,20.096,25.07,39.484,47.209,53.192
+			c4.695,2.908,6.145,9.071,3.237,13.767C232.867,221.371,229.594,223.052,226.247,223.052z"
+                />
+              </g>
+              <path
+                style="fill: #e6e6e6"
+                d="M107.244,10h287.509c16.598,0,30.053,13.455,30.053,30.053s-13.455,30.053-30.053,30.053H107.244
+		c-16.598,0-30.053-13.455-30.053-30.053S90.647,10,107.244,10z"
+              />
+              <path
+                d="M394.753,421.894h-6.878c-1.235-46.804-14.953-90.669-38.962-124.165c-15.546-21.689-34.284-37.524-54.825-46.729
+		c20.542-9.205,39.279-25.039,54.825-46.729c24.008-33.496,37.727-77.361,38.962-124.165h6.878
+		c22.085,0,40.054-17.968,40.054-40.053S416.839,0,394.753,0H107.245C85.16,0,67.191,17.968,67.191,40.053
+		s17.968,40.053,40.054,40.053h6.878c1.235,46.804,14.953,90.669,38.962,124.165c15.546,21.689,34.284,37.524,54.825,46.729
+		c-20.542,9.205-39.279,25.039-54.825,46.729c-24.008,33.496-37.727,77.361-38.962,124.165h-6.878
+		c-22.085,0-40.054,17.968-40.054,40.053S85.16,502,107.245,502h287.509c22.085,0,40.054-17.968,40.054-40.053
+		S416.839,421.894,394.753,421.894z M87.191,40.053C87.191,28.996,96.188,20,107.245,20h287.509
+		c11.058,0,20.054,8.996,20.054,20.053s-8.996,20.053-20.054,20.053H107.245C96.188,60.106,87.191,51.111,87.191,40.053z
+		 M134.13,80.106h233.739c-2.553,88.969-53.993,160.227-116.87,160.227S136.682,169.075,134.13,80.106z M250.999,261.667
+		c62.877,0,114.317,71.258,116.869,160.227H134.13C136.682,332.925,188.122,261.667,250.999,261.667z M394.753,482H107.245
+		c-11.058,0-20.054-8.996-20.054-20.053s8.996-20.053,20.054-20.053h287.509c11.058,0,20.054,8.996,20.054,20.053
+		S405.811,482,394.753,482z"
+              />
+            </g>
+          </svg>
+          <span class="sp-close">Close to me</span>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row row-oceny">
+        <div class="col">
+          <svg
+            class="svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.4382 2.77841C12.2931 2.73181 12.1345 2.74311 11.9998 2.80804C11.8523 2.87913 11.7548 3.0032 11.7197 3.13821L11.244 4.97206C11.0777 5.61339 10.8354 6.23198 10.5235 6.81599C10.0392 7.72267 9.30632 8.42 8.62647 9.00585L7.18773 10.2456C6.96475 10.4378 6.8474 10.7258 6.87282 11.0198L7.68498 20.4125C7.72601 20.887 8.12244 21.25 8.59635 21.25H13.245C16.3813 21.25 19.0238 19.0677 19.5306 16.1371L20.2361 12.0574C20.3332 11.4959 19.9014 10.9842 19.3348 10.9842H14.1537C13.1766 10.9842 12.4344 10.1076 12.5921 9.14471L13.2548 5.10015C13.3456 4.54613 13.3197 3.97923 13.1787 3.43584C13.1072 3.16009 12.8896 2.92342 12.5832 2.82498L12.4382 2.77841L12.6676 2.06435L12.4382 2.77841ZM11.3486 1.45674C11.8312 1.2242 12.3873 1.18654 12.897 1.35029L13.042 1.39686L12.8126 2.11092L13.042 1.39686C13.819 1.64648 14.4252 2.26719 14.6307 3.0592C14.8241 3.80477 14.8596 4.58256 14.7351 5.34268L14.0724 9.38724C14.0639 9.439 14.1038 9.4842 14.1537 9.4842H19.3348C20.8341 9.4842 21.9695 10.8365 21.7142 12.313L21.0087 16.3928C20.3708 20.081 17.0712 22.75 13.245 22.75H8.59635C7.3427 22.75 6.29852 21.7902 6.19056 20.5417L5.3784 11.149C5.31149 10.3753 5.62022 9.61631 6.20855 9.10933L7.64729 7.86954C8.3025 7.30492 8.85404 6.75767 9.20042 6.10924C9.45699 5.62892 9.65573 5.12107 9.79208 4.59542L10.2678 2.76157C10.417 2.18627 10.8166 1.71309 11.3486 1.45674ZM2.96767 9.4849C3.36893 9.46758 3.71261 9.76945 3.74721 10.1696L4.71881 21.4061C4.78122 22.1279 4.21268 22.75 3.48671 22.75C2.80289 22.75 2.25 22.1953 2.25 21.5127V10.2342C2.25 9.83256 2.5664 9.50221 2.96767 9.4849Z"
+              fill="#1C274C"
+            />
+          </svg>
+          <span class="sp-close">Oceny</span>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <svg
+            class="svg"
+            width="800px"
+            height="800px"
+            viewBox="0 0 400 400"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M252.644 56.915C295.342 38.4482 320.69 113.363 271.651 123.522C231.551 131.832 216.845 78.0154 247.144 58.0544"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M330.482 265.712C341.911 277.397 345.967 295.564 330.334 311.241C305.977 335.671 271.834 312.649 271.756 285.037"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M192.293 285.199C193.35 293.668 190.602 302.807 182.127 311.229C159.576 333.641 128.721 316.163 123.655 291.812"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M231 133C206.612 161.128 194.495 179.606 187 209"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M231.268 139C230.078 174.935 230.842 200.382 278 181.706"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M270.454 181.27C277.648 203.747 292.95 234.179 296.436 257.918"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M198.698 209.851C179.8 211.119 147.038 219.427 133.916 234.11C126.125 242.825 100.697 270.714 108.106 285.446C112.07 293.339 163.502 289.662 170.276 288.7C200.718 284.374 240.691 289.662 270.337 285.446C276.764 284.532 267.42 277.198 275.865 277.198C288.469 277.198 350.064 262.896 339.366 250.123C314.559 220.523 257.393 244.451 266.097 274.746"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M200.303 212.449C207.9 229.886 214.057 274.576 214.593 278.703"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M200.303 208.553C255.045 208.309 257.332 233.927 223.294 274.806"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M169.124 213.748C142.024 230.768 99.6067 221.459 67.7939 231.936"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M60 128.007C68.4342 143.576 60 224.334 63.5625 228.038"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M63.8965 128.233C105.69 123.275 132.857 122.22 136.014 128.233C139.17 134.247 139.17 171.658 130.567 218.945"
+              stroke="#000000"
+              stroke-opacity="0.9"
+              stroke-width="16"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="sp-close">Oplata za dostawe</span>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row row-btns-op">
+        <div class="col d-flex justify-content-between">
+          <span>Open</span>
+          <mat-slide-toggle></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="row row-free-deliv">
+        <div class="col d-flex justify-content-between">
+          <span>Free Delivery</span>
+          <mat-slide-toggle></mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="row row-pop-categories">
+        <div class="col">
+          <h6>Popular Categories</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">list</div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h6>More Filters</h6>
+        </div>
+      </div>
+
+      <div *ngIf="categoriesFilter$ | async as filterCategories" class="row">
+        <div
+          *ngFor="let category of filterCategories"
+          class="row row-category-filters"
+        >
+          <span class="sp-category-name">{{ category.name }}</span>
+        </div>
+      </div>
+
+      <div class="row row-discaunt">
+        <div class="col">
+          <h6>Discounts</h6>
+        </div>
+      </div>
+
+      <div class="row row-dis">
+        <div class="col d-flex justify-content-between">
+          <span>Discounts</span>
+          <input
+            class="inpt-check align-self-center"
+            type="checkbox"
+            id="scales"
+            name="scales"
+          />
+        </div>
+      </div>
+
+      <div class="row row-cupons">
+        <div class="col d-flex justify-content-between">
+          <span>Coupon program</span>
+          <input
+            class="inpt-check align-self-center"
+            type="checkbox"
+            id="scales"
+            name="scales"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col restaurants-sections">
+      <div class="row row-search-restaurant d-flex">
+        <div class="col-10 col-rest-intp">
+          <input
+            class="inpt-search"
+            placeholder="Restaurant Name & Food Name"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn-sig-in">Login in</button>
+        </div>
+      </div>
+      <div class="row row-steps-up">
+        <div class="col"><span>Szczecin</span>-><span>Restaurants</span></div>
+      </div>
+
+      <div class="row row-steps-down">
+        <div class="col">
+          <h3>Restaurant With Delivery -> Szcecin</h3>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

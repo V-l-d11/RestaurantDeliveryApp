@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { getFoodCategoryAll } from '../../+store/actions/home-page-actions';
 import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/baseModals/category';
-import { getCtaegoriesFood } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
+import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
 
 @Component({
   selector: 'app-home-food-page',
@@ -18,6 +18,6 @@ export class HomeFoodPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories = this.store$.select(getCtaegoriesFood);
+    this.categories = this.store$.select(getCtaegoriesFoodHome);
   }
 }

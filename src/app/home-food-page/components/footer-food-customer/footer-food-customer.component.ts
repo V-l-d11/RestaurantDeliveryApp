@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getCtaegoriesFood } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
+import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
 import { Category } from 'src/app/models/baseModals/category';
 
 @Component({
@@ -75,7 +75,7 @@ export class FooterFoodCustomerComponent implements OnInit {
   constructor(private store$: Store, private router: Router) {}
 
   ngOnInit(): void {
-    this.categoriesFood$ = this.store$.select(getCtaegoriesFood);
+    this.categoriesFood$ = this.store$.select(getCtaegoriesFoodHome);
     this.categoriesFood$.subscribe((categories) => {
       const kategoriesColumn = this.columns.find(
         (column) => column.label === 'Kategories Food'

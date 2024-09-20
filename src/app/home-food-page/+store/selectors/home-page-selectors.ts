@@ -14,7 +14,7 @@ export const getError = createSelector(
   (state) => state.serverError
 );
 
-export const getCtaegoriesFood = createSelector(
+export const getCtaegoriesFoodHome = createSelector(
   getFeature,
   (state) => state.categoryFood
 );
