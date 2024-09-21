@@ -1,0 +1,32 @@
+<div *ngIf="restaurantsFilters$ | async as restaurants" class="container">
+  <div *ngFor="let restaurant of restaurants" class="row restaurant-card">
+    <div class="row">
+      <div class="col">
+        <img src="#" />
+      </div>
+
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <h6>{{ restaurant.name }}</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button>{{ restaurant.open }}</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {{ restaurant.cuisineType }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {{ restaurant.address.street }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
