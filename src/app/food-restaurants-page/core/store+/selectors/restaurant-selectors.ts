@@ -44,3 +44,8 @@ export const getIngridientsCategory = createSelector(
   getFeature,
   (state) => state.ingridientsCategories
 );
+
+export const selectAllCuisineTypes = createSelector(
+  getFeature,
+  (state) => state.cuisineTypes
+);

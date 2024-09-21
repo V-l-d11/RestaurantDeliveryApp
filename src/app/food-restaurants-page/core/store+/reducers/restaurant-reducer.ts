@@ -9,24 +9,26 @@ import { ingridientsCategory } from 'src/app/models/api/responses/ingridients-ca
 export const RESTAURANT_CUSTOMER_FEATURE_NAME = 'CustomerRestaurant';
 
 export interface CustomerRestaurantState {
-  allRestaurants: RestaurantCustomer[] | null;
+  allRestaurants: RestaurantCustomer[];
   searchedRestaurants: RestaurantCustomer[] | null;
   selectedRestaurant: RestaurantCustomer | null;
   categoriesRestaurant: RestaurantCategory[] | null;
   restaurantFoodFilterRadio: FoodSearchResponse[] | null;
   ingridientsCategories: ingridientsCategory[] | null;
+  cuisineTypes: Array<string>;
   loading: boolean;
   loaded: boolean;
   serverError: string;
 }
 
 export const initialState: CustomerRestaurantState = {
-  allRestaurants: null,
+  allRestaurants: [],
   searchedRestaurants: null,
   selectedRestaurant: null,
   categoriesRestaurant: null,
   restaurantFoodFilterRadio: null,
   ingridientsCategories: null,
+  cuisineTypes: [],
   loading: false,
   loaded: false,
   serverError: '',
@@ -188,6 +190,29 @@ export const RestaurantCustomerReducer = createReducer(
   ),
   on(
     CustomerRestaurantActions.getRestaurantsByFiltersFailed,
+    (state, { serverError }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      serverError,
+    })
+  ),
+  on(CustomerRestaurantActions.getAllCuisineTypes, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(
+    CustomerRestaurantActions.getAllCuisineTypesSucess,
+    (state, { items }) => ({
+      ...state,
+      loaded: true,
+      loading: false,
+      cuisineTypes: items,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getAllCuisineTypesFailed,
     (state, { serverError }) => ({
       ...state,
       loaded: true,

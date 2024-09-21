@@ -7,7 +7,7 @@ h6 {
 }
 h3 {
   font-family: $font-family;
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 600;
 }
 span {
@@ -26,7 +26,13 @@ span {
 .sp-close {
   margin-left: 7%;
 }
-
+.sp-nav {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.sp-nav:hover {
+  color: #0000005d;
+}
 .inpt-check {
   width: 20px;
   height: 20px;
@@ -91,12 +97,20 @@ span {
     margin-top: 3%;
   }
   .row-steps-down {
-    margin-top: 1%;
+    margin-top: 3%;
   }
 }
 .row-category-filters {
   margin-top: 1%;
   .sp-category-name {
+    cursor: pointer;
     margin-top: 2%;
   }
+  .sp-category-name:hover {
+    color: #f8e21e;
+    font-weight: 500;
+  }
+}
+.row-restaurant-list {
+  margin-top: 1%;
 }

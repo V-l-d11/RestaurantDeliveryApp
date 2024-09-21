@@ -22,6 +22,7 @@ import { BascetEffects } from '../users-pages/core/store+/effects/user-bascet-ef
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CustomerRestaurantSearchListComponent } from './core/components/customer-restaurant-search-list/customer-restaurant-search-list.component';
 const routes: Routes = [
   {
     path: '',
@@ -47,6 +48,7 @@ const routes: Routes = [
     FoodSingleRestaurantPageComponent,
     RestaurantFilterSectionComponent,
     FoodDetailsDialogModalComponent,
+    CustomerRestaurantSearchListComponent,
   ],
   imports: [
     CommonModule,

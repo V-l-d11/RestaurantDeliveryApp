@@ -3,4 +3,5 @@ export interface RestaurantListByFiltersRequest {
   cuisineType?: string;
   foodName?: string;
   restaurantName?: string;
+  isOpen?: boolean;
 }

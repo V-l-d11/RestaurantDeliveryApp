@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
+import {
+  getAllCuisineTypes,
+  getRestaurantsByFilters,
+  loadSingleRestaurant,
+} from '../../store+/actions/restaurant-actions';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { RestaurantListByFiltersRequest } from 'src/app/models/api/requests/restaurants-list-by-filters-customer';
+import { FormControl } from '@angular/forms';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import {
-  getAllRestaurants,
-  loadSingleRestaurant,
-  serachRestaurants,
-} from '../../store+/actions/restaurant-actions';
-import {
   getAllRestaurantsSelector,
-  getLoading,
-  getSearchRestaurants,
+  selectAllCuisineTypes,
 } from '../../store+/selectors/restaurant-selectors';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Category } from 'src/app/models/baseModals/category';
-import { getFoodCategoryAll } from 'src/app/home-food-page/+store/actions/home-page-actions';
-import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
 
 @Component({
   selector: 'app-food-restaurant-search-page',
@@ -24,44 +23,104 @@ import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/h
 })
 export class FoodRestaurantSearchPageComponent implements OnInit {
   query: string = '';
-  allRestaurants$!: Observable<RestaurantCustomer[] | null>;
-  searchRestaurants$!: Observable<RestaurantCustomer[] | null>;
-  categoriesFilter$!: Observable<Category[]>;
+  cuisineTypesFilter$!: Observable<string[]>;
+  city!: string;
+  filters!: RestaurantListByFiltersRequest;
+  searchInputRestaurantName = new FormControl('');
+  searchInputFoodName = new FormControl('');
+  restaurantList$!: Observable<RestaurantCustomer[]>;
+  isOpen: boolean = false;
 
   constructor(
     private store$: Store,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.store$.dispatch(getAllCuisineTypes());
+  }
 
   ngOnInit(): void {
-    this.categoriesFilter$ = this.store$.select(getCtaegoriesFoodHome);
-    this.store$.dispatch(getAllRestaurants());
-    this.allRestaurants$ = this.store$.select(getAllRestaurantsSelector);
-    this.searchRestaurants$ = this.store$.select(getSearchRestaurants);
+    this.filters = {
+      city: '',
+      restaurantName: '',
+      cuisineType: '',
+      foodName: '',
+      isOpen: false,
+    };
+
+    const storedCity = localStorage.getItem('city');
+    if (storedCity) {
+      this.city = storedCity;
+      this.filters.city = this.city;
+      this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+    }
+
+    this.route.queryParams.subscribe((params) => {
+      this.city = params['city'];
+      console.log(this.city, 'City');
+      if (this.city) {
+        console.log(this.city, 'City x2');
+        this.filters.city = this.city;
+        this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+      }
+    });
+    this.cuisineTypesFilter$ = this.store$.select(selectAllCuisineTypes);
+
+    this.setupSearchInput(this.searchInputRestaurantName, 'restaurantName');
+    this.setupSearchInput(this.searchInputFoodName, 'foodName');
+
+    this.restaurantList$ = this.store$.select(getAllRestaurantsSelector);
+  }
+
+  setupSearchInput(
+    control: FormControl,
+    filterKey: keyof RestaurantListByFiltersRequest
+  ) {
+    control.valueChanges
+      .pipe(
+        filter((value: string | null): value is string => value !== null),
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe((value) => {
+        if (value.length === 0) {
+          this.filters = {
+            ...this.filters,
+            [filterKey]: '',
+          };
+        } else {
+          this.filters = {
+            ...this.filters,
+            [filterKey]: value,
+          };
+        }
+
+        this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+      });
+  }
+
+  onCategoryClik(name: string) {
+    if (name === 'All') {
+      this.filters = { ...this.filters, city: this.city, cuisineType: '' };
+      this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+    } else {
+      this.filters = { ...this.filters, city: this.city, cuisineType: name };
+      console.log(this.filters, 'This Filters');
+      this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+    }
+  }
+
+  onOpenFilterClick() {
+    this.isOpen = !this.isOpen;
+    this.filters = { ...this.filters, isOpen: this.isOpen };
+    this.store$.dispatch(getRestaurantsByFilters({ obj: this.filters }));
+  }
+  redirectToHomePage() {
+    this.router.navigate(['foodapp']);
   }
 
   redirectToRestaurant(id: number) {
-    //this.store$.dispatch(getSingleRestaurant({ id }));
+    this.store$.dispatch(loadSingleRestaurant({ id }));
     this.router.navigate([`foodapp/RestaurantSearch/restaurant/${id}`]);
-  }
-
-  onInputChange(): void {
-    if (this.query.length >= 5) {
-      this.store$.dispatch(serachRestaurants({ query: this.query }));
-    } else {
-      // this.store$.dispatch(getAllRestaurants());
-      this.allRestaurants$ = this.store$.pipe(
-        select(getAllRestaurantsSelector)
-      );
-    }
-  }
-
-  onQueryChange(query: string): void {
-    if (query === '') {
-      console.log('Hello');
-
-      this.allRestaurants$ = this.store$.select(getAllRestaurantsSelector);
-    }
   }
 }

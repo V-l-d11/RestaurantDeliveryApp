@@ -216,7 +216,7 @@
       <div class="row row-btns-op">
         <div class="col d-flex justify-content-between">
           <span>Open</span>
-          <mat-slide-toggle></mat-slide-toggle>
+          <mat-slide-toggle (click)="onOpenFilterClick()"></mat-slide-toggle>
         </div>
       </div>
 
@@ -242,12 +242,19 @@
         </div>
       </div>
 
-      <div *ngIf="categoriesFilter$ | async as filterCategories" class="row">
+      <div
+        *ngIf="cuisineTypesFilter$ | async as filtercuisineTypes"
+        class="row"
+      >
+        <div (click)="onCategoryClik('All')" class="row row-category-filters">
+          <span class="sp-category-name">All</span>
+        </div>
         <div
-          *ngFor="let category of filterCategories"
+          *ngFor="let type of filtercuisineTypes"
           class="row row-category-filters"
+          (click)="onCategoryClik(type)"
         >
-          <span class="sp-category-name">{{ category.name }}</span>
+          <span class="sp-category-name">{{ type }}</span>
         </div>
       </div>
 
@@ -284,10 +291,19 @@
 
     <div class="col restaurants-sections">
       <div class="row row-search-restaurant d-flex">
-        <div class="col-10 col-rest-intp">
+        <div class="col col-rest-intp">
           <input
+            [formControl]="searchInputRestaurantName"
             class="inpt-search"
             placeholder="Restaurant Name & Food Name"
+          />
+        </div>
+
+        <div class="col col-rest-intp">
+          <input
+            [formControl]="searchInputFoodName"
+            class="inpt-search"
+            placeholder=" Food Name"
           />
         </div>
         <div class="col-2">
@@ -295,13 +311,23 @@
         </div>
       </div>
       <div class="row row-steps-up">
-        <div class="col"><span>Szczecin</span>-><span>Restaurants</span></div>
+        <div class="col">
+          <span class="sp-nav" (click)="redirectToHomePage()">{{ city }}</span
+          >-><span>Restaurants</span>
+        </div>
       </div>
 
       <div class="row row-steps-down">
         <div class="col">
-          <h3>Restaurant With Delivery -> Szcecin</h3>
+          <h3>Restaurant With Delivery -> {{ city }}</h3>
         </div>
+      </div>
+
+      <div class="row row-restaurant-list">
+        <app-customer-restaurant-search-list
+          (redirectToSingleRestaurant)="redirectToRestaurant($event)"
+          [restaurantsFilters$]="restaurantList$"
+        ></app-customer-restaurant-search-list>
       </div>
     </div>
   </div>

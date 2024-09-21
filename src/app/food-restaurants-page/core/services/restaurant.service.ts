@@ -92,4 +92,10 @@ export class RestaurantService {
       { params }
     );
   }
+
+  getAllCuisineTypes(): Observable<string[]> {
+    return this.http.get<string[]>(
+      `${this.BASE_URL}/restaurants/cuisine-types`
+    );
+  }
 }

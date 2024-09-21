@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { RestaurantListByFiltersRequest } from 'src/app/models/api/requests/restaurants-list-by-filters-customer';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import { RestaurantDto } from 'src/app/models/api/responses/favorites';
@@ -101,7 +102,7 @@ export const getIngridientsCategoriesRestaurantFailed = createAction(
 
 export const getRestaurantsByFilters = createAction(
   '[Restaurant Customer page] getRestaurantsByFilters ',
-  props<{ city: string }>()
+  props<{ obj: RestaurantListByFiltersRequest }>()
 );
 
 export const getRestaurantsByFiltersSucess = createAction(
@@ -111,5 +112,19 @@ export const getRestaurantsByFiltersSucess = createAction(
 
 export const getRestaurantsByFiltersFailed = createAction(
   '[Restaurant Customer page] getRestaurantsByFilters failed',
+  props<{ serverError: string }>()
+);
+
+export const getAllCuisineTypes = createAction(
+  '[Restaurant Customer page] get All Cuisine types'
+);
+
+export const getAllCuisineTypesSucess = createAction(
+  '[Restaurant Customer page] get All Cuisine types sucess',
+  props<{ items: Array<string> }>()
+);
+
+export const getAllCuisineTypesFailed = createAction(
+  '[Restaurant Customer page] get All Cuisine types failed',
   props<{ serverError: string }>()
 );

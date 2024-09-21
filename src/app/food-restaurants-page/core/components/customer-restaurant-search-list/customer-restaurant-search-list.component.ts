@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 
@@ -10,4 +10,10 @@ import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-resp
 export class CustomerRestaurantSearchListComponent {
   @Input()
   restaurantsFilters$!: Observable<RestaurantCustomer[]>;
+  @Output()
+  redirectToSingleRestaurant = new EventEmitter<number>();
+
+  redirectToRestaurant(id: number) {
+    this.redirectToSingleRestaurant.emit(id);
+  }
 }

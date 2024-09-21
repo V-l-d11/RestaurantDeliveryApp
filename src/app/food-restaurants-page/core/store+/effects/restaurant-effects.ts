@@ -167,4 +167,48 @@ export class RestaurantCustomerEffects {
       )
     )
   );
+
+  loadRestaurantsByFilter$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getRestaurantsByFilters),
+      switchMap((action) =>
+        this.restaurantService.getRestaurantsListByFilters(action.obj).pipe(
+          map((response) =>
+            RestaurantCustomerActions.getRestaurantsByFiltersSucess({
+              items: response,
+            })
+          ),
+          catchError((error) =>
+            of(
+              RestaurantCustomerActions.getRestaurantsByFiltersFailed({
+                serverError: error.message,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
+
+  loadAllCuisineTypes$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(RestaurantCustomerActions.getAllCuisineTypes),
+      switchMap(() =>
+        this.restaurantService.getAllCuisineTypes().pipe(
+          map((response) =>
+            RestaurantCustomerActions.getAllCuisineTypesSucess({
+              items: response,
+            })
+          ),
+          catchError((error) =>
+            of(
+              RestaurantCustomerActions.getAllCuisineTypesFailed({
+                serverError: error.massage,
+              })
+            )
+          )
+        )
+      )
+    )
+  );
 }
