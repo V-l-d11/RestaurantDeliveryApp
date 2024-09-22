@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CustomerRestaurantSearchListComponent } from './core/components/customer-restaurant-search-list/customer-restaurant-search-list.component';
+import { MatRadioModule } from '@angular/material/radio';
 const routes: Routes = [
   {
     path: '',
@@ -55,6 +56,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatRadioModule,
     MatTooltipModule,
     MatButtonModule,
     RouterModule.forChild(routes),

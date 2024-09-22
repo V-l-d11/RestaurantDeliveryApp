@@ -1,72 +1,33 @@
-.ul-list {
-  list-style: none;
-}
-
-$primary-color: #ff7a00; // Change color here. C'mon, try it!
+$primary-color: #ff7a00;
+$font-family: Jost;
 $text-color: mix(#000, $primary-color, 64%);
 
-label {
-  display: flex;
-  cursor: pointer;
+.filter-card {
+  padding: 30px 20px 30px 20px;
+  width: 100%;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+span {
+  font-family: $font-family;
+  font-size: 16px;
   font-weight: 500;
-  margin-bottom: 0.375em;
-  input {
-    position: absolute;
-    left: -9999px;
-    &:checked + span {
-      background-color: mix(#fff, $primary-color, 84%);
-      &:before {
-        box-shadow: inset 0 0 0 1em $primary-color;
-      }
-    }
-  }
-  span {
-    display: flex;
-    align-items: center;
-    padding: 0.375em 0.75em 0.375em 0.375em;
-    border-radius: 99em;
-    transition: 0.25s ease;
-    &:hover {
-      background-color: mix(#fff, $primary-color, 84%);
-    }
-    &:before {
-      display: flex;
-      flex-shrink: 0;
-      content: "";
-      background-color: #fff;
-      width: 1.5em;
-      height: 1.5em;
-      border-radius: 50%;
-      margin-right: 0.375em;
-      transition: 0.25s ease;
-      box-shadow: inset 0 0 0 0.125em $primary-color;
-    }
-  }
+  color: #ff7a00;
 }
-
-.row-inf {
-  width: 92%;
-  margin: 0px auto;
-}
-.section-2 {
-  margin-top: 5%;
-}
-.h3-inf {
+h3 {
   font-family: Jost;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
-  text-align: left;
-  margin-left: 30px;
+  margin-bottom: 0px;
 }
-.list-food {
-  margin-left: 10%;
+.row-hr {
+  margin-top: 0px;
+  padding-top: 0px;
 }
-.card {
-  padding: 15px 15px 15px 15px;
-}
-.card-component {
-  padding-left: 30px !important;
-}
-.cards {
-  margin-left: 40px;
+.row-title {
+  padding-bottom: 0px;
+  .col {
+    margin-bottom: 3%;
+    padding-bottom: 0px;
+  }
 }
