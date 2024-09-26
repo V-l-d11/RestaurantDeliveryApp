@@ -14,11 +14,12 @@ export class FoodRestaurantDialogModalsService {
   public foodDetailsOpen = (data: CombineFoodDialog) => {
     const dialogRef = this.dialog.open(FoodDetailsDialogModalComponent, {
       width: '70%',
-      height: '80vh',
+      height: '70vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,
       data: data,
+      panelClass: 'custom-dialog-container',
     });
   };
 }

@@ -1,0 +1,71 @@
+$font-family: Jost;
+.container-fluid {
+  width: 650px;
+  padding: 20px 15px 20px 15px;
+  box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.container-fluid:hover {
+  transform: scale(1.05);
+}
+
+h4 {
+  font-family: $font-family;
+  font-size: 25px;
+}
+span {
+  font-family: $font-family;
+  font-size: 18px;
+  padding-left: 10px;
+  color: #f74f39f7;
+}
+p {
+  font-family: $font-family;
+  color: #000;
+}
+.price-sp {
+  font-weight: 500;
+}
+.row-title {
+  margin-top: 3%;
+}
+
+.btn-action {
+  border: none;
+  font-family: $font-family;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px 10px 5px 10px;
+}
+.add-to-cart {
+  background-color: #adffa922;
+  border: 0.5px solid #00000018;
+  color: #000000;
+  font-size: 18px;
+}
+.available {
+  background-color: #28a745;
+  color: white;
+  border: 1px solid #28a745;
+}
+.not-available {
+  background-color: #54dc3546;
+  color: white;
+  border: 1px solid #dc3545;
+}
+.row-description {
+  margin-top: 2%;
+}
+.disabled {
+  background-color: #6c757d;
+  color: white;
+  border: 1px solid #6c757d;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+@media (min-width: 1024px) and (max-width: 1900px) {
+  .container-fluid {
+    width: 560px;
+  }
+}

@@ -98,7 +98,16 @@
       >
         <div class="slider-wrapper">
           <div *ngFor="let category of categories" class="category-item">
-            <button class="btn-category">{{ category.name }}</button>
+            <button
+              [class.active]="foodCategory === category.name"
+              (click)="onCategorySelected(category.name)"
+              class="btn-category"
+            >
+              {{ category.name }}
+            </button>
+          </div>
+          <div class="category-item">
+            <button class="btn-category">All</button>
           </div>
         </div>
       </div>
@@ -112,18 +121,18 @@
       ></app-restaurant-filter-section>
     </div>
     <div class="col">
-      <div class="col-6" *ngIf="filterItems$ | async as filterItems">
+      <div
+        class="row filter-food-section"
+        *ngIf="filterItems$ | async as filterItems"
+      >
         <div
-          class="col d-flex justify-content-center list-food"
-          *ngIf="filterItems$ | async as filterItems"
+          *ngFor="let item of filterItems"
+          class="col-6 d-flex justify-content-center item"
         >
-          <div *ngFor="let item of filterItems" class="mr-5 cards">
-            <app-ui-card-food
-              class="card-component"
-              [result]="item"
-              (openDetailsFoodCard)="openDetailsFoodCard($event)"
-            ></app-ui-card-food>
-          </div>
+          <app-food-card-by-single-restaurant
+            (goToDetails)="openDetailsFoodCard($event)"
+            [foodItem]="item"
+          ></app-food-card-by-single-restaurant>
         </div>
       </div>
     </div>

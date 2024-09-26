@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { login } from '../../store/actions/food-auth-actions';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthDialogModalsService } from '../../services/food-dialog-modal-services/auth-dialog-modals.service';
+import { addItemToCard } from 'src/app/users-pages/core/store+/actions/user-panel-actions';
 
 @Component({
   selector: 'app-food-auth-login-dialog',
@@ -36,6 +37,13 @@ export class FoodAuthLoginDialogComponent implements OnInit {
     //  if (this.form.valid) {
     this.store$.dispatch(login(this.form.value));
     this.dialogRef.close();
+
+    const pendingItem = localStorage.getItem('pendingCartItem');
+    if (pendingItem) {
+      console.log(JSON.parse(pendingItem));
+      this.store$.dispatch(addItemToCard({ item: JSON.parse(pendingItem) }));
+      localStorage.removeItem('pendingCartItem');
+    }
     this.router.navigate(['/foodapp/userDashboard']);
     // }
   }

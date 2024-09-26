@@ -3,13 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
 import {
-  getFilterRestaurantFoodRadio,
+  selectFilterFoodByRestaurant,
   getSingleRestaurant,
 } from '../../store+/selectors/restaurant-selectors';
-import { RestaurantCategory } from 'src/app/models/api/responses/restaurant-category';
 import { ActivatedRoute } from '@angular/router';
 import {
-  getFilterFoodRadio,
+  getFilterFoodSingleRestaurant,
   loadSingleRestaurant,
 } from '../../store+/actions/restaurant-actions';
 import { Category } from 'src/app/models/baseModals/category';
@@ -17,6 +16,7 @@ import { getFoodCategoryAll } from 'src/app/home-food-page/+store/actions/home-p
 import { getCtaegoriesFoodHome } from 'src/app/home-food-page/+store/selectors/home-page-selectors';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { FoodRestaurantDialogModalsService } from '../../services/dialog-modal/food-restaurant-dialog-modals.service';
+import { FiltersCustomerSingleRestaurantFood } from 'src/app/models/api/requests/filtersCustomerSingleRestaurantFood';
 
 @Component({
   selector: 'app-food-single-restaurant-page',
@@ -27,8 +27,17 @@ export class FoodSingleRestaurantPageComponent implements OnInit, OnDestroy {
   restaurant!: Observable<RestaurantCustomer | null>;
   categoriesFood$!: Observable<Category[]>;
   filterItems$!: Observable<FoodSearchResponse[] | null>;
+  queryFoodName!: string;
+  selectedCategory: string | null = null;
   private filterIntemsSubscription: Subscription | undefined;
   id!: number;
+  filters!: FiltersCustomerSingleRestaurantFood;
+
+  vegetarian: boolean | null = null;
+  seasonal: boolean | null = null;
+  nonveg: boolean | null = null;
+  foodCategory: string = '';
+
   constructor(
     private store$: Store,
     private route: ActivatedRoute,
@@ -37,28 +46,36 @@ export class FoodSingleRestaurantPageComponent implements OnInit, OnDestroy {
     this.store$.dispatch(getFoodCategoryAll());
   }
 
-  onFilterSelected(filterValue: string) {}
+  onFilterSelected(filterValue: string) {
+    if (filterValue === 'vegeterian') {
+      this.vegetarian = !this.vegetarian;
+    } else if (filterValue === 'seasonal') {
+      this.seasonal = !this.seasonal;
+    } else if (filterValue === 'nonveg') {
+      this.nonveg = !this.nonveg;
+    }
+    console.log(filterValue, 'Filter Value');
+    console.log(this.vegetarian, 'This Vegt');
+    this.applyFilters();
+  }
 
-  filterFood(
-    vegeterian: boolean | null,
-    seasonal: boolean | null,
-    nonveg: boolean | null,
-    foodCategory: string
-  ) {
-    const filteredVegeterian = vegeterian !== null ? vegeterian : undefined;
-    const filteredSeasonal = seasonal !== null ? seasonal : undefined;
-    const filteredNonveg = nonveg !== null ? nonveg : undefined;
+  onCategorySelected(category: string) {
+    this.foodCategory = category;
+    console.log(category);
+    this.applyFilters();
+  }
 
-    const restaurantId = this.id;
-    this.store$.dispatch(
-      getFilterFoodRadio({
-        restaurantId,
-        vegeterian: filteredVegeterian,
-        seasonal: filteredSeasonal,
-        nonveg: filteredNonveg,
-        foodCategory: foodCategory,
-      })
-    );
+  applyFilters() {
+    console.log(this.vegetarian, 'Vageterian');
+    console.log(this.nonveg, 'Non VEg');
+    const filters: FiltersCustomerSingleRestaurantFood = {
+      restaurantId: this.id,
+      vegetarian: this.vegetarian || undefined,
+      seasonal: this.seasonal || undefined,
+      nonveg: this.nonveg || undefined,
+      foodCategory: this.foodCategory,
+    };
+    this.store$.dispatch(getFilterFoodSingleRestaurant({ obj: filters }));
   }
 
   openDetailsFoodCard(item: FoodSearchResponse) {
@@ -71,12 +88,14 @@ export class FoodSingleRestaurantPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
+      this.applyFilters();
       this.store$.dispatch(loadSingleRestaurant({ id: this.id }));
     });
     this.categoriesFood$ = this.store$.select(getCtaegoriesFoodHome);
     this.restaurant = this.store$.select(getSingleRestaurant);
 
-    this.filterItems$ = this.store$.select(getFilterRestaurantFoodRadio);
+    this.filterItems$ = this.store$.select(selectFilterFoodByRestaurant);
+    this.filterItems$.subscribe((el) => console.log(el));
     this.filterIntemsSubscription = this.filterItems$.subscribe();
   }
 

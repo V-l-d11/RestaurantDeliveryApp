@@ -24,6 +24,8 @@ import { TokenIntercaptor } from '../interceptors/token-interceptor';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CustomerRestaurantSearchListComponent } from './core/components/customer-restaurant-search-list/customer-restaurant-search-list.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { FoodCardBySingleRestaurantComponent } from './core/components/food-card-by-single-restaurant/food-card-by-single-restaurant.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 const routes: Routes = [
   {
     path: '',
@@ -50,6 +52,7 @@ const routes: Routes = [
     RestaurantFilterSectionComponent,
     FoodDetailsDialogModalComponent,
     CustomerRestaurantSearchListComponent,
+    FoodCardBySingleRestaurantComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +61,7 @@ const routes: Routes = [
     MatSlideToggleModule,
     MatRadioModule,
     MatTooltipModule,
+    MatCheckboxModule,
     MatButtonModule,
     RouterModule.forChild(routes),
     FormsModule,

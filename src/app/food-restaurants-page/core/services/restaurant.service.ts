@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FiltersCustomerSingleRestaurantFood } from 'src/app/models/api/requests/filtersCustomerSingleRestaurantFood';
 import { RestaurantListByFiltersRequest } from 'src/app/models/api/requests/restaurants-list-by-filters-customer';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
@@ -44,22 +45,18 @@ export class RestaurantService {
     );
   }
 
-  getFilterRestaurants(
-    restaurantId: number,
-    foodCategory: string,
-    vegeterian?: boolean,
-    seasonal?: boolean,
-    nonveg?: boolean
+  getFilterFoodBySingleRestaurant(
+    actions: FiltersCustomerSingleRestaurantFood
   ): Observable<FoodSearchResponse[]> {
-    console.log(foodCategory, 'Food Category');
+    const { restaurantId, ...restFilters } = actions;
+    console.log(restFilters, 'Rest Filters');
+    let params = new HttpParams();
+    Object.entries(restFilters).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        params = params.set(key, value.toString());
+      }
+    });
 
-    const params = {
-      vegeterian: vegeterian !== undefined ? vegeterian.toString() : '',
-      seasonal: seasonal !== undefined ? seasonal.toString() : '',
-      nonveg: nonveg !== undefined ? nonveg.toString() : '',
-      foodCategory: foodCategory || '',
-    };
-    console.log(nonveg !== undefined ? nonveg.toString() : '');
     return this.http.get<FoodSearchResponse[]>(
       `http://localhost:8080/foodl/restaurant/${restaurantId}`,
       { params }

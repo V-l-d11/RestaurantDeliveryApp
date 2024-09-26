@@ -112,32 +112,24 @@ export class RestaurantCustomerEffects {
     )
   );
 
-  loadFilterRadio$ = createEffect(() =>
+  loadFilterFoodBySingleRestaurant$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(RestaurantCustomerActions.getFilterFoodRadio),
+      ofType(RestaurantCustomerActions.getFilterFoodSingleRestaurant),
       switchMap((action) =>
-        this.restaurantService
-          .getFilterRestaurants(
-            action.restaurantId,
-            action.foodCategory,
-            action.vegeterian,
-            action.seasonal,
-            action.nonveg
-          )
-          .pipe(
-            map((response) =>
-              RestaurantCustomerActions.getFilterFoodRadioSucess({
-                obj: response,
+        this.restaurantService.getFilterFoodBySingleRestaurant(action.obj).pipe(
+          map((response) =>
+            RestaurantCustomerActions.getFilterFoodSingleRestaurantSucess({
+              obj: response,
+            })
+          ),
+          catchError((error) =>
+            of(
+              RestaurantCustomerActions.getFilterFoodSingleRestaurantFailed({
+                serverError: error.massage,
               })
-            ),
-            catchError((error) =>
-              of(
-                RestaurantCustomerActions.getFilterFoodRadioFailed({
-                  serverError: error.massage,
-                })
-              )
             )
           )
+        )
       )
     )
   );

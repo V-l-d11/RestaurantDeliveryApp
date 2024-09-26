@@ -35,7 +35,7 @@ export const getRestaurantCategories = createSelector(
   (state) => state.categoriesRestaurant
 );
 
-export const getFilterRestaurantFoodRadio = createSelector(
+export const selectFilterFoodByRestaurant = createSelector(
   getFeature,
   (state) => state.restaurantFoodFilterRadio
 );

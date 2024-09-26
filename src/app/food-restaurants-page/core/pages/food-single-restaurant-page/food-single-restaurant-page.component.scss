@@ -115,7 +115,18 @@ $font-family: Jost;
   cursor: pointer;
   border-radius: 5px;
   white-space: nowrap;
+  &:hover {
+    background-color: #ff9800;
+  }
 }
-.btn-category:hover {
+.btn-category.active {
   background-color: #ff9800;
+  color: #fff;
+}
+
+.filter-food-section {
+  width: 100%;
+  .item {
+    margin-top: 1%;
+  }
 }

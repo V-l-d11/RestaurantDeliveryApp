@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <div class="row info-section">
+    <div class="col-5">
+      <img src="#" alt="Hello" />
+    </div>
+    <div class="col">
+      <div class="row row-title">
+        <div class="col">
+          <h4>{{ foodItem.name }}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span>Price:</span>
+          <span class="price-sp">{{ foodItem.price }}$</span>
+        </div>
+      </div>
+      <div class="row row-description">
+        <div class="col">
+          <p>{{ foodItem.description }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <button
+            class="btn-action"
+            [ngClass]="{
+              available: foodItem.available,
+              'not-available': !foodItem.available
+            }"
+          >
+            {{ foodItem.available ? "Available" : "unavailable" }}
+          </button>
+        </div>
+        <div class="col-2">
+          <button
+            class="btn-action"
+            [ngClass]="{
+              'add-to-cart': foodItem.available,
+              disabled: !foodItem.available
+            }"
+            [disabled]="!foodItem.available"
+            (click)="openModalDetails(foodItem)"
+          >
+            &#43;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

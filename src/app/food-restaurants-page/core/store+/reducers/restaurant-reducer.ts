@@ -128,19 +128,22 @@ export const RestaurantCustomerReducer = createReducer(
       serverError,
     })
   ),
-  on(CustomerRestaurantActions.getFilterFoodRadio, (state) => ({
+  on(CustomerRestaurantActions.getFilterFoodSingleRestaurant, (state) => ({
     ...state,
     loading: true,
     loaded: false,
   })),
-  on(CustomerRestaurantActions.getFilterFoodRadioSucess, (state, { obj }) => ({
-    ...state,
-    loading: false,
-    loaded: true,
-    restaurantFoodFilterRadio: obj,
-  })),
   on(
-    CustomerRestaurantActions.getFilterFoodRadioFailed,
+    CustomerRestaurantActions.getFilterFoodSingleRestaurantSucess,
+    (state, { obj }) => ({
+      ...state,
+      loading: false,
+      loaded: true,
+      restaurantFoodFilterRadio: obj,
+    })
+  ),
+  on(
+    CustomerRestaurantActions.getFilterFoodSingleRestaurantFailed,
     (state, { serverError }) => ({
       ...state,
       loading: false,

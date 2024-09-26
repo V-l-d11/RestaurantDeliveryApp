@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getIngridientsCategoriesRestaurant } from '../../store+/actions/restaurant-actions';
 import { getIngridientsCategory } from '../../store+/selectors/restaurant-selectors';
@@ -28,7 +28,6 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   form!: FormGroup;
   isAuth!: Observable<any>;
   authentificate!: boolean;
-
   constructor(
     private store$: Store,
     @Inject(MAT_DIALOG_DATA) public data: CombineFoodDialog,
@@ -41,43 +40,65 @@ export class FoodDetailsDialogModalComponent implements OnInit {
     );
     console.log(data, 'Data');
   }
-
-  updateTotalPrice(ingridient: any, isCheked: boolean) {
-    if (isCheked) {
-      this.totalprice += ingridient.price;
-    } else {
-      this.totalprice -= ingridient.price;
+  updateQuantity(change: number) {
+    const currentQuantity = this.form.get('quantity')!.value;
+    const newQuantity = currentQuantity + change;
+    if (newQuantity >= 1) {
+      this.form.get('quantity')!.setValue(newQuantity);
+      this.updateTotalPrice();
     }
+  }
+
+  updateTotalPrice() {
+    let basePrice = this.data.item.price * this.form.get('quantity')!.value;
+    const selectedIngredients = this.form.get('ingredients')!.value;
+    if (Array.isArray(selectedIngredients)) {
+      selectedIngredients.forEach((ing: any) => {
+        basePrice += ing.price;
+      });
+    }
+    this.totalprice = basePrice;
   }
 
   handleCheckboxChange(event: any, ingredient: any) {
-    const isChecked = event.target.checked;
-    const ingridentsArray = this.form.get('ingredients') as FormControl;
-    if (event.target.checked) {
-      ingridentsArray.value.push(ingredient.name);
-      console.log(ingridentsArray, 'Ingridients');
-    } else {
-      const index = ingridentsArray.value.findIndex(
-        (item: any) => item === ingredient
-      );
-      if (index !== -1) {
-        ingridentsArray.value.splice(index, 1);
-      }
+    const isChecked = event?.checked;
+    if (isChecked === undefined) {
+      return;
     }
-    ingridentsArray.markAsDirty();
-    this.updateTotalPrice(ingredient, isChecked);
+    const ingredientsArray = this.form.get('ingredients') as FormControl;
+    const updatedIngredient = { ...ingredient, selected: isChecked };
+    if (isChecked) {
+      if (
+        !ingredientsArray.value.some((ing: any) => ing.name === ingredient.name)
+      ) {
+        ingredientsArray.setValue([
+          ...ingredientsArray.value,
+          updatedIngredient,
+        ]);
+      }
+    } else {
+      ingredientsArray.setValue(
+        ingredientsArray.value.filter(
+          (ing: any) => ing.name !== ingredient.name
+        )
+      );
+    }
+    this.updateTotalPrice();
   }
 
   addToBascet() {
+    console.log(this.form.value);
     this.isAuth = this.store$.select(isAuth);
     this.isAuth.subscribe((isAuthenticated) => {
       this.authentificate = isAuthenticated;
     });
     if (this.authentificate) {
       this.dialogRef.close();
+      console.log(this.form.value);
       this.store$.dispatch(addItemToCard({ item: this.form.value }));
       this.router.navigate(['/foodapp/userDashboard']);
     } else {
+      localStorage.setItem('pendingCartItem', JSON.stringify(this.form.value));
       this.dialogRef.close();
       this.loaginService.loginModaldialog();
     }

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { FiltersCustomerSingleRestaurantFood } from 'src/app/models/api/requests/filtersCustomerSingleRestaurantFood';
 import { RestaurantListByFiltersRequest } from 'src/app/models/api/requests/restaurants-list-by-filters-customer';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
 import { RestaurantCustomer } from 'src/app/models/api/responses/Restaurant-response';
@@ -64,24 +65,18 @@ export const getCategoryRestaurantFailed = createAction(
   props<{ serverError: string }>()
 );
 
-export const getFilterFoodRadio = createAction(
-  '[Restaurant Customer page] get Filter Food Radio ',
-  props<{
-    restaurantId: number;
-    vegeterian?: boolean;
-    seasonal?: boolean;
-    nonveg?: boolean;
-    foodCategory: string;
-  }>()
+export const getFilterFoodSingleRestaurant = createAction(
+  '[Restaurant Customer page] get Filter fitlers Single Restaurant Radio ',
+  props<{ obj: FiltersCustomerSingleRestaurantFood }>()
 );
 
-export const getFilterFoodRadioSucess = createAction(
-  '[Restaurant Customer page] get Filter Food Radio Sucess',
+export const getFilterFoodSingleRestaurantSucess = createAction(
+  '[Restaurant Customer page] get Filter Food fitlers Single Restaurant Sucess',
   props<{ obj: FoodSearchResponse[] }>()
 );
 
-export const getFilterFoodRadioFailed = createAction(
-  '[Restaurant Customer page] get Filter Food Radio Failed',
+export const getFilterFoodSingleRestaurantFailed = createAction(
+  '[Restaurant Customer page] get Filter Food fitlers Single Restaurant Failed',
   props<{ serverError: string }>()
 );
 
