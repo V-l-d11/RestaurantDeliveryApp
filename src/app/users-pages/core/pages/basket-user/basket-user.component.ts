@@ -32,6 +32,7 @@ export class BasketUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.card$ = this.store$.select(getCard);
+    this.card$.subscribe((el) => console.log(el, 'HHHHHHHHHHH'));
 
     console.log(this.restaurantIds, 'RestaurantIds');
   }

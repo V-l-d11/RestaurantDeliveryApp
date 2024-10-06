@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row card">
     <div class="col-4">
       <img />
@@ -18,6 +18,50 @@
           {{ j.name }}
         </div>
       </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container card">
+  <div class="row">
+    <div class="col-9 main-title">
+      <h5>{{ item.food.name }}</h5>
+    </div>
+    <div class="col-3 main-title-price">
+      <span class="sp-price">{{ item.food.price }}$</span>
+    </div>
+  </div>
+  <div class="row row-rest-inf">
+    <div class="col">
+      <span class="sp-title">From:</span>
+      <span class="rest-name">{{ item.food.restaurant.name }}</span>
+    </div>
+  </div>
+  <div class="row row-ingridietns">
+    <div class="col">
+      <span class="sp-title-ingrid">Ingridients:</span>
+    </div>
+  </div>
+  <div class="row list-ingridients">
+    <div *ngFor="let ingridient of item.ingredients" class="col-2 ingrid-card">
+      <span>{{ ingridient.name }}</span>
+    </div>
+  </div>
+
+  <div class="row row-btns">
+    <div class="col d-flex">
+      <button class="quantity-btn" (click)="decrement()">-</button>
+
+      <span class="quantity-sp">{{ quantity }}</span>
+      <button class="quantity-btn" (click)="increment()">+</button>
+    </div>
+  </div>
+  <div class="row row-notafication">
+    <div class="col">
+      <span class="sp-notfic">Add Notafication</span>
+    </div>
+    <div class="col">
+      <span class="sp-notfic"> More Information</span>
     </div>
   </div>
 </div>

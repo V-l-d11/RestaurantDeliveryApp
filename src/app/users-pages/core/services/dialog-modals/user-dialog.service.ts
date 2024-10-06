@@ -12,7 +12,7 @@ export class UserDialogService {
   public OderCreateModal = (data: any) => {
     const dialogRef = this.dialog.open(UserOderCreateDialogModalComponent, {
       width: '40%',
-      height: '55vh',
+      height: '70vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,

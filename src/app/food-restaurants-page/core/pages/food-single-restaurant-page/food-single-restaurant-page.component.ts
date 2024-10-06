@@ -54,8 +54,6 @@ export class FoodSingleRestaurantPageComponent implements OnInit, OnDestroy {
     } else if (filterValue === 'nonveg') {
       this.nonveg = !this.nonveg;
     }
-    console.log(filterValue, 'Filter Value');
-    console.log(this.vegetarian, 'This Vegt');
     this.applyFilters();
   }
 

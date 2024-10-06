@@ -17,8 +17,8 @@ export class AuthDialogModalsService {
 
   public loginModaldialog = () => {
     const dialogRef = this.dialog.open(FoodAuthLoginDialogComponent, {
-      width: '40%',
-      height: '42vh',
+      width: '55%',
+      height: '60vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,
@@ -27,8 +27,8 @@ export class AuthDialogModalsService {
 
   public RegisterModaldialog = () => {
     const dialogRef = this.dialog.open(FoodAuthRegisterDialogComponent, {
-      width: '40%',
-      height: '50vh',
+      width: '55%',
+      height: '60vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: true,

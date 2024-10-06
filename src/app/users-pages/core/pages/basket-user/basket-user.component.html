@@ -1,6 +1,19 @@
 <div class="container" *ngIf="card$ | async as card">
+  <div class="row">
+    <div class="col">
+      <h2>Bascet</h2>
+    </div>
+  </div>
+  <div class="row btns-row">
+    <div class="col-2 btn-deliv-section">
+      <button class="btn-dliv">Delivery <mat-icon>commute</mat-icon></button>
+    </div>
+    <div class="col-2">
+      <button class="btn-dliv">In Store <mat-icon>store</mat-icon></button>
+    </div>
+  </div>
   <div class="row" *ngFor="let i of card.item">
-    <div class="col-6 mt-4">
+    <div class="col-4 mt-4">
       <app-card-item-bascet [item]="i"></app-card-item-bascet>
     </div>
   </div>
@@ -13,10 +26,10 @@
 
     <div class="row">
       <div class="col-4">
-        <span class="sp">Delivery Fee</span>
+        <span class="sp">Delivery Price</span>
       </div>
       <div class="col-4">
-        <span class="sp">0.21$</span>
+        <span class="sp">0.00$</span>
       </div>
     </div>
     <div class="row row-bl">
@@ -24,7 +37,7 @@
         <span class="sp">GST and Restaurant Charges</span>
       </div>
       <div class="col-4 row-bl">
-        <span class="sp">0.30$</span>
+        <span class="sp">0.00$</span>
       </div>
     </div>
     <div class="row row-hr">

@@ -87,7 +87,7 @@ export class FoodDetailsDialogModalComponent implements OnInit {
   }
 
   addToBascet() {
-    console.log(this.form.value);
+    console.log(this.form.value, 'This is form is isisi sis i');
     this.isAuth = this.store$.select(isAuth);
     this.isAuth.subscribe((isAuthenticated) => {
       this.authentificate = isAuthenticated;

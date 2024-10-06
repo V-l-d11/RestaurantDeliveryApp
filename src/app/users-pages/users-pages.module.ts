@@ -33,6 +33,7 @@ import { UserFavoritesRestaurantComponent } from './core/components/user-favorit
 import { UserAddressesListComponent } from './core/components/user-addresses-list/user-addresses-list.component';
 import { LogoutModalComponent } from './core/components/logout-modal/logout-modal.component';
 import { FoodAuthEffects } from '../auth/core/store/effects/food-auth.effects';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    MatIconModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(USER_BASCET_FEATURE_NAME, BascetReducer),

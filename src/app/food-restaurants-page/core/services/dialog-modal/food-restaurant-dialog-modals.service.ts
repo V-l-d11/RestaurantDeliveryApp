@@ -14,7 +14,7 @@ export class FoodRestaurantDialogModalsService {
   public foodDetailsOpen = (data: CombineFoodDialog) => {
     const dialogRef = this.dialog.open(FoodDetailsDialogModalComponent, {
       width: '70%',
-      height: '70vh',
+      height: '100vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,

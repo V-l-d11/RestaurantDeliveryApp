@@ -1,9 +1,10 @@
+$font-family: Jost;
 .container {
   width: 100%;
 }
 .inpt-address {
   border-radius: 8px;
-  width: 50%;
+  width: 60%;
   height: 40px;
   color: rgba(0, 0, 0, 0.698);
   padding-left: 20px;
@@ -41,4 +42,45 @@
   font-family: Jost;
   border-radius: 8px;
   padding: 5px 40px 5px 40px;
+}
+
+.row-info-card {
+  margin: 3% auto;
+  width: 60%;
+  background: #ffffff;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.11);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  .col-icon {
+    padding-top: 10px;
+    .icon {
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+    }
+  }
+  .col-inf {
+    .row-m-title {
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+      h5 {
+        font-family: $font-family;
+        font-size: 18px;
+        margin-bottom: 0px;
+      }
+    }
+    .row-sp-inf {
+      margin-top: 0px;
+      padding-top: 0px;
+      span {
+        font-family: $font-family;
+        font-weight: 400;
+        color: #00000058;
+      }
+    }
+  }
+}
+.row-info-card:hover {
+  transform: scale(1.05);
 }
