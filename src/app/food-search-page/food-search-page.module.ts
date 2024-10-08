@@ -14,6 +14,7 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { FoodSearchEffects } from './core/store+/effects/food-search-effects';
 import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SlickCarouselModule,
     FormsModule,
+    MatIconModule,
     HttpClientModule,
     StoreModule.forFeature(FOOD_SEARCH_FEATURE_NAME, SearchReducer),
     EffectsModule.forFeature([FoodSearchEffects]),

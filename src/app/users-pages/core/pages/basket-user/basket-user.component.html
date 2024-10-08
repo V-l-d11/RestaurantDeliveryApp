@@ -11,6 +11,11 @@
     <div class="col-2">
       <button class="btn-dliv">In Store <mat-icon>store</mat-icon></button>
     </div>
+    <div class="col-2">
+      <button class="btn-dliv" (click)="redirectToFood()">
+        Add Food<mat-icon>add_shopping_cart</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="row" *ngFor="let i of card.item">
     <div class="col-4 mt-4">

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/models/baseModals/category';
 
 @Component({
   selector: 'app-food-carusel-popelar-cuisin',
@@ -6,39 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./food-carusel-popelar-cuisin.component.scss'],
 })
 export class FoodCaruselPopelarCuisinComponent {
-  slides = [
-    { img: '/assets/images/imgSlider1.png' },
-    { img: '/assets/images/imgSlider2.png' },
-    { img: '/assets/images/imgSlider3.png' },
-    { img: '/assets/images/imgSlider4.png' },
+  @Input()
+  categories$!: Observable<Category[]>;
+  @ViewChild('slider', { static: false }) slider!: ElementRef;
+
+  images: string[] = [
+    'sentiment_satisfied_alt',
+    'attach_money',
+    ' local_drink',
+    'gesture',
+    'bubble_chart',
+    'music_note',
+    'local_bar',
+    'local_library',
   ];
 
-  slideConfig = {
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    pauseOnHover: true,
-    infinite: true,
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          arrows: true,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: true,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-    ],
-  };
+  scrollLeft() {
+    this.slider.nativeElement.scrollBy({
+      left: -300,
+      behavior: 'smooth',
+    });
+  }
+
+  scrollRight() {
+    this.slider.nativeElement.scrollBy({
+      left: 300,
+      behavior: 'smooth',
+    });
+  }
 }

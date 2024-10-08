@@ -1,10 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  searchFood,
-  searchFoodFailed,
-  searchFoodSuccess,
-} from '../actions/food-search-actions';
 import { FoodSearchResponse } from 'src/app/models/api/responses/Food-search-response';
+import * as foodSerchAction from './../actions/food-search-actions';
 
 export interface SearchSatate {
   foodSearch: FoodSearchResponse[];
@@ -26,22 +22,39 @@ export const initalState: SearchSatate = {
 
 export const SearchReducer = createReducer(
   initalState,
-  on(searchFood, (state, { name }) => ({
+  on(foodSerchAction.searchFood, (state, { name }) => ({
     ...state,
     nameOfFood: name,
     loading: true,
     loaded: false,
   })),
-  on(searchFoodSuccess, (state, { obj }) => ({
+  on(foodSerchAction.searchFoodSuccess, (state, { obj }) => ({
     ...state,
     foodSearch: obj,
     loading: false,
     loaded: true,
   })),
-  on(searchFoodFailed, (state, { serverError }) => ({
+  on(foodSerchAction.searchFoodFailed, (state, { serverError }) => ({
     ...state,
     serverError,
     loaded: true,
     loading: false,
+  })),
+  on(foodSerchAction.getAllFood, (state) => ({
+    ...state,
+    loaded: false,
+    loading: true,
+  })),
+  on(foodSerchAction.getAllFoodSucess, (state, { obj }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    foodSearch: obj.content,
+  })),
+  on(foodSerchAction.searchFoodFailed, (state, { serverError }) => ({
+    ...state,
+    loaded: true,
+    loading: false,
+    serverError,
   }))
 );

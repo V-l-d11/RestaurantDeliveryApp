@@ -1,11 +1,32 @@
-<div style="max-width: 98%; padding: 0px">
-  <ngx-slick-carousel
-    class="carousel"
-    #slickModal="slick-carousel"
-    [config]="slideConfig"
-  >
-    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-      <img src="{{ slide.img }}" alt="" class="img-style" />
+<div class="container" *ngIf="categories$ | async as categories">
+  <div class="slider-container">
+    <button (click)="scrollLeft()" class="scroll-btn left-btn">&#8249;</button>
+    <div class="slider" #slider>
+      <div
+        class="col-3 card-container"
+        *ngFor="let category of categories; let i = index"
+      >
+        <div>
+          <div class="row row-titel">
+            <div class="col">
+              <span>{{ category.name }}</span>
+            </div>
+          </div>
+          <div class="row row-images d-flex justify-content-center">
+            <mat-icon class="icon">{{ images[i] }}</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 card-container">
+        <div class="row row-titel align-items-center" style="height: 100%">
+          <div class="col d-flex justify-content-center">
+            <span>All</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </ngx-slick-carousel>
+    <button (click)="scrollRight()" class="scroll-btn right-btn">
+      &#8250;
+    </button>
+  </div>
 </div>

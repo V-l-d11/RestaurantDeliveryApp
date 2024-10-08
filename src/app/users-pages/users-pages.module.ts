@@ -34,6 +34,8 @@ import { UserAddressesListComponent } from './core/components/user-addresses-lis
 import { LogoutModalComponent } from './core/components/logout-modal/logout-modal.component';
 import { FoodAuthEffects } from '../auth/core/store/effects/food-auth.effects';
 import { MatIconModule } from '@angular/material/icon';
+import { UserTimeStatusModalComponent } from './core/components/user-time-status-modal/user-time-status-modal.component';
+import { UserPaymentModalComponent } from './core/components/user-payment-modal/user-payment-modal.component';
 
 const routes: Routes = [
   {
@@ -65,6 +67,8 @@ const routes: Routes = [
     UserFavoritesRestaurantComponent,
     UserAddressesListComponent,
     LogoutModalComponent,
+    UserTimeStatusModalComponent,
+    UserPaymentModalComponent,
   ],
   imports: [
     CommonModule,

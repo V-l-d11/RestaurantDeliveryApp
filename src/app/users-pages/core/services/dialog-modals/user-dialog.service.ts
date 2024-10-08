@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserOderCreateDialogModalComponent } from '../../components/user-oder-create-dialog-modal/user-oder-create-dialog-modal.component';
 import { LogoutModalComponent } from '../../components/logout-modal/logout-modal.component';
+import { UserTimeStatusModalComponent } from '../../components/user-time-status-modal/user-time-status-modal.component';
+import { UserPaymentModalComponent } from '../../components/user-payment-modal/user-payment-modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +19,26 @@ export class UserDialogService {
       closeOnNavigation: true,
       disableClose: false,
       data,
+    });
+  };
+
+  public waitTimeStatusModal = () => {
+    const dialogRef = this.dialog.open(UserTimeStatusModalComponent, {
+      width: '50%',
+      height: '20vh',
+      hasBackdrop: true,
+      closeOnNavigation: true,
+      disableClose: false,
+    });
+  };
+
+  public paymentModal = () => {
+    const dialogRef = this.dialog.open(UserPaymentModalComponent, {
+      width: '50%',
+      height: '20vh',
+      hasBackdrop: true,
+      closeOnNavigation: true,
+      disableClose: false,
     });
   };
 

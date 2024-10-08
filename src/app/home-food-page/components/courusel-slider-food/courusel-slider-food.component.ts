@@ -64,7 +64,7 @@ export class CouruselSliderFoodComponent implements OnInit {
       '/assets/images/imgSlider3.png',
       '/assets/images/imgSlider4.png',
     ];
-
+    console.log(images, 'Images');
     return images[index % images.length];
   }
 }

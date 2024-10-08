@@ -10,20 +10,30 @@
       />
     </div>
   </div>
-
-  <div class="row popular-cuisin">
-    <div class="col d-flex justify-content-around info-parag">
-      <h1 class="h1">Popular Cuisines</h1>
-    </div>
-  </div>
-
   <div class="row carusel-food">
     <app-food-carusel-popelar-cuisin
+      [categories$]="foodCategories"
       class="col-12"
       style="display: flex; justify-content: center; width: 100%"
     ></app-food-carusel-popelar-cuisin>
   </div>
 
+  <div class="row paginator d-flex justify-content-center">
+    <div class="col-1">
+      <button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+      >
+        Previous
+      </button>
+    </div>
+    <div class="col-1 col-title align-self-center">
+      <span class="sp-title">Page {{ currentPage }}</span>
+    </div>
+    <div class="col-1">
+      <button (click)="changePage(currentPage + 1)">Next</button>
+    </div>
+  </div>
   <div class="row row-cl" *ngIf="result$ | async as results">
     <ng-container *ngIf="results && results.length > 0; else emptyResult">
       <div class="col" *ngFor="let result of results">
@@ -31,10 +41,12 @@
       </div>
     </ng-container>
   </div>
-
   <ng-template #emptyResult>
-    <div class="row">
-      <div class="col d-flex justify-content-center">
+    <div class="row h-100">
+      <div
+        class="col d-flex justify-content-center align-items-center"
+        style="height: 100vh"
+      >
         <h2 class="info-found">
           {{ query ? "No food found..." : "Enter something..." }}
         </h2>

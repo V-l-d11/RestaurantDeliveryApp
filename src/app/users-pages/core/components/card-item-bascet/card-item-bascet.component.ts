@@ -18,6 +18,10 @@ export class CardItemBascetComponent implements OnInit {
 
   constructor(private store$: Store) {}
 
+  removeCard() {
+    this.store$.dispatch(removeCardItem({ id: this.item.id }));
+  }
+
   increment() {
     this.quantity++;
     this.store$.dispatch(

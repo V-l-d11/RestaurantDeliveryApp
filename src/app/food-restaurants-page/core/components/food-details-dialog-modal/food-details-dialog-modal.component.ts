@@ -94,7 +94,7 @@ export class FoodDetailsDialogModalComponent implements OnInit {
     });
     if (this.authentificate) {
       this.dialogRef.close();
-      console.log(this.form.value);
+      console.log(this.form.value, '^^^^^^^^^^^^');
       this.store$.dispatch(addItemToCard({ item: this.form.value }));
       this.router.navigate(['/foodapp/userDashboard']);
     } else {

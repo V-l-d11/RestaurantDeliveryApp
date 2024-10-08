@@ -8,7 +8,6 @@ import {
   Subject,
   catchError,
   debounce,
-  debounceTime,
   delay,
   distinctUntilChanged,
   map,
@@ -37,6 +36,20 @@ export class FoodSearchEffects {
           map((response) => SearchActions.searchFoodSuccess({ obj: response })),
           catchError((error) =>
             of(SearchActions.searchFoodFailed({ serverError: error.massage }))
+          )
+        )
+      )
+    )
+  );
+
+  allFood$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SearchActions.getAllFood),
+      switchMap((action) =>
+        this.searchService.getAllFood(action.page, action.size).pipe(
+          map((response) => SearchActions.getAllFoodSucess({ obj: response })),
+          catchError((error) =>
+            of(SearchActions.getAllFoodFailed({ serverError: error.massage }))
           )
         )
       )

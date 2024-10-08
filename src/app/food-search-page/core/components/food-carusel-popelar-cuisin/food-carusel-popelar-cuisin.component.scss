@@ -1,8 +1,67 @@
-.img-style {
-  width: 100px;
-  height: 100px;
+$font-family: Jost;
+.container {
+  width: 100%;
 }
-.carousel {
-  margin: 0 auto;
-  display: block;
+.slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+.card-container {
+  cursor: pointer;
+  flex: 0 0 auto;
+  min-width: 150px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  scroll-snap-align: start;
+  border: 0.5px solid #0000000d;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  .row-titel {
+    font-family: $font-family;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+.card-container:hover {
+  transform: scale(1.05);
+  background-color: rgb(251, 206, 43);
+  color: #fff;
+}
+.icon {
+  font-size: 25px;
+  width: 35px;
+  height: 35px;
+}
+.scroll-btn {
+  background-color: #fff;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+}
+
+.left-btn {
+  left: 0;
+}
+
+.right-btn {
+  right: 0;
 }
