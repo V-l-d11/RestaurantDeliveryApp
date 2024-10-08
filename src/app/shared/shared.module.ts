@@ -8,6 +8,7 @@ import { UiFoodPromoCardLargeComponent } from './ui-food-promo-card-large/ui-foo
 import { UiCardFoodComponent } from './ui-card-food/ui-card-food.component';
 import { UiRestaurantCardComponent } from './ui-restaurant-card/ui-restaurant-card.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     UiFoodHeaderComponent,
@@ -18,7 +19,7 @@ import { MatCardModule } from '@angular/material/card';
     UiCardFoodComponent,
     UiRestaurantCardComponent,
   ],
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, MatIconModule],
   exports: [
     UiFoodHeaderComponent,
     UiFoodH1Component,

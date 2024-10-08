@@ -3,21 +3,22 @@ $font-family: Jost;
 
 .card-section {
   position: relative;
-  width: 320px;
-  height: 350px;
+  width: 300px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 18px;
+  margin-top: 150px;
+  transition: transform 0.3 ease;
 }
-.card-section.expanded {
-  height: 520px;
+.card-section:hover {
+  transform: scale(1.03);
 }
 .img-sec {
   position: absolute;
   top: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 190px;
-  height: 190px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -25,7 +26,6 @@ $font-family: Jost;
   width: 100%;
   height: auto;
 }
-
 .btn-open {
   position: absolute;
   left: 89%;
@@ -55,20 +55,26 @@ $font-family: Jost;
     text-decoration: underline;
     font-family: $font-family;
     color: #0000005f;
-    font-size: 17px;
+    font-size: 14px;
   }
 }
 .price-section {
   padding-top: 10px;
   .price {
     color: $background-color;
-    font-size: 25px;
+    font-size: 18px;
     font-family: $font-family;
   }
 }
 
 .info {
-  padding-top: 120px;
+  padding-top: 80px;
+  align-items: center;
+  h1 {
+    font-family: $font-family;
+    font-size: 21px;
+    font-weight: 600;
+  }
 }
 .info-paragraf {
   padding-top: 10px;
@@ -88,6 +94,7 @@ $font-family: Jost;
 }
 .btn-add-bascet {
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .btn-like {
@@ -99,7 +106,6 @@ $font-family: Jost;
 .btn-like:hover {
   color: $background-color;
 }
-
 .green-btn {
   padding: 5px 30px 5px 30px;
   font-size: 15px;
@@ -109,7 +115,6 @@ $font-family: Jost;
   border-radius: 16px;
   background-color: green;
 }
-
 .red-btn {
   background-color: $background-color;
   padding: 5px 30px 5px 30px;
@@ -119,8 +124,13 @@ $font-family: Jost;
   color: #fff;
   border-radius: 16px;
 }
-
 .btn-add:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+.unavailable-title {
+  color: #00000024;
+}
+.unavailable-price {
+  color: #00000031;
 }

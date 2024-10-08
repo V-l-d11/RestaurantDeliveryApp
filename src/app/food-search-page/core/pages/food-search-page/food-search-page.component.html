@@ -36,11 +36,15 @@
   </div>
   <div class="row row-cl" *ngIf="result$ | async as results">
     <ng-container *ngIf="results && results.length > 0; else emptyResult">
-      <div class="col" *ngFor="let result of results">
+      <div
+        class="col-6 col-md-4 col-lg-3 card-container"
+        *ngFor="let result of results; let i = index"
+      >
         <app-ui-card-food [result]="result"></app-ui-card-food>
       </div>
     </ng-container>
   </div>
+
   <ng-template #emptyResult>
     <div class="row h-100">
       <div
