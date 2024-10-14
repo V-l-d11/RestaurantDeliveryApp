@@ -10,18 +10,22 @@ export class UiCardFoodComponent implements OnInit {
   @Input() result!: FoodSearchResponse;
   @Output() openDetailsFoodCard: EventEmitter<FoodSearchResponse> =
     new EventEmitter<FoodSearchResponse>();
-
+  @Output() restaurantRoutingHndler: EventEmitter<number> =
+    new EventEmitter<number>();
   isShowCategory: boolean = false;
   likeColor: string = 'black';
 
-  constructor() {
-    console.log(this.result, 'This result');
-  }
+  constructor() {}
 
   openDetailsFoodCardHandler(): void {
-    console.log('Heloo');
     this.openDetailsFoodCard.emit(this.result);
   }
+
+  routingHandler(restaurantId: number) {
+    this.restaurantRoutingHndler.emit(restaurantId);
+  }
+
+  opeIngridModal() {}
 
   toggleLike() {
     if (this.likeColor === 'black') {
@@ -32,6 +36,6 @@ export class UiCardFoodComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.result, 'Result Ng OnInit');
+    console.log(this.result, 'Tgis result');
   }
 }

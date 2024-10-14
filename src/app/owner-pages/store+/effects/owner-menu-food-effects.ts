@@ -3,18 +3,27 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { OwnerManuService } from '../../services/api-owner-menu-services/owner-manu.service';
 import * as menuActions from './../actions/actions-owner-manu';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap, tap } from 'rxjs';
 import * as restaurantActions from './../actions/actions-owner-retsuarant';
 import { OwnerDialogServiceService } from '../../services/owner-dialog-service/owner-dialog-service.service';
-
+import { getAllFood } from 'src/app/food-search-page/core/store+/actions/food-search-actions';
+import { getRestaurantId } from '../selectors/owner-dashboard-selectors';
+import * as customerAction from '../../../food-restaurants-page/core/store+/actions/restaurant-actions';
 @Injectable()
 export class OwnerMenuFoodEffects {
+  retsuarantId!: Observable<number>;
+  id!: number;
   constructor(
     private actions$: Actions,
     private store$: Store,
     private ownerMenuFoodService: OwnerManuService,
     private dialog: OwnerDialogServiceService
-  ) {}
+  ) {
+    this.retsuarantId = this.store$.select(getRestaurantId);
+    this.retsuarantId.subscribe((el) => (this.id = el));
+  }
+  currentPage: number = 1;
+  pageSize: number = 8;
 
   // loadMenuFoodFilter$ = createEffect(() =>
   //   this.actions$.pipe(
@@ -100,6 +109,14 @@ export class OwnerMenuFoodEffects {
               menuActions.updateFoodAvailableStatusSucess({ item: response }),
             this.dialog.openSnackBar('Status Updated Sucessfully', 4000)
           ),
+          tap(() => {
+            let page = this.currentPage;
+            let size = this.pageSize;
+            this.store$.dispatch(getAllFood({ page, size }));
+            this.store$.dispatch(
+              customerAction.loadSingleRestaurant({ id: this.id })
+            );
+          }),
           catchError((error) =>
             of(
               menuActions.updateFoodAvailableStatusFailed({

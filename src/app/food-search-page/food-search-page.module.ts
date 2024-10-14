@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { FoodSearchEffects } from './core/store+/effects/food-search-effects';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { DetailsFoodCardModalComponent } from './core/components/details-food-card-modal/details-food-card-modal.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [FoodSearchPageComponent, FoodCaruselPopelarCuisinComponent],
+  declarations: [FoodSearchPageComponent, FoodCaruselPopelarCuisinComponent, DetailsFoodCardModalComponent],
   imports: [
     CommonModule,
     SharedModule,

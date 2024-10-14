@@ -1,4 +1,9 @@
-<div class="container-fluid">
+<div class="container">
+  <div class="row main-title">
+    <div class="col d-flex justify-content-center">
+      <h2>Our Food List</h2>
+    </div>
+  </div>
   <div class="row section">
     <div class="col d-flex justify-content-center">
       <input
@@ -8,6 +13,10 @@
         placeholder="Search Food"
         class="inpt-search"
       />
+    </div>
+
+    <div class="col-1 col-btns">
+      <button class="btn-search">Search</button>
     </div>
   </div>
   <div class="row carusel-food">
@@ -40,7 +49,10 @@
         class="col-6 col-md-4 col-lg-3 card-container"
         *ngFor="let result of results; let i = index"
       >
-        <app-ui-card-food [result]="result"></app-ui-card-food>
+        <app-ui-card-food
+          (restaurantRoutingHndler)="redirectToRetaurant($event)"
+          [result]="result"
+        ></app-ui-card-food>
       </div>
     </ng-container>
   </div>

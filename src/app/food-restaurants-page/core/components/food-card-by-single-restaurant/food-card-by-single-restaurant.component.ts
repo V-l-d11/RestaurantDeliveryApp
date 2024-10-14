@@ -13,5 +13,6 @@ export class FoodCardBySingleRestaurantComponent {
 
   openModalDetails(item: FoodSearchResponse) {
     this.goToDetails.emit(item);
+    console.log(this.foodItem.available, '***********************8888');
   }
 }

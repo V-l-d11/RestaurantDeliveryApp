@@ -39,7 +39,7 @@ export class OwnerDialogServiceService {
   public addIngridientCategory = () => {
     const dialogRef = this.dialog.open(OwnerDialogAddIngridCategoryComponent, {
       width: '60%',
-      height: '80vh',
+      height: '100vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,
@@ -49,7 +49,7 @@ export class OwnerDialogServiceService {
   public addIngridientItem = () => {
     const dialogRef = this.dialog.open(OwnerDialogAddIngridientItemComponent, {
       width: '50%',
-      height: '40vh',
+      height: '50vh',
       hasBackdrop: true,
       closeOnNavigation: true,
       disableClose: false,

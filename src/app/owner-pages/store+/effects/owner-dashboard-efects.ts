@@ -5,6 +5,7 @@ import { OwnerDashboardService } from '../../services/api-owner-dashboard-servic
 import * as ownerRestaurantActions from './../actions/actions-owner-retsuarant';
 import { catchError, map, of, switchMap, tap } from 'rxjs';
 import * as odersActions from './../actions/actions-owner-oders';
+import * as customerActions from '../../../food-restaurants-page/core/store+/actions/restaurant-actions';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +51,7 @@ export class OwnerDashboardEffects {
             ),
             tap(() => {
               this.store$.dispatch(ownerRestaurantActions.findRestaurant());
+              this.store$.dispatch(customerActions.getAllRestaurants());
             }),
             catchError((error) =>
               of(

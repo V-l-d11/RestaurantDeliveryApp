@@ -3,6 +3,10 @@ $bg-color: azure;
 $color: #95b1ef;
 $border: 0.5px solid #0000003b;
 $font-szie-inpt: 16px;
+
+.container {
+  position: relative;
+}
 .row-search {
   margin-top: 2%;
 }
