@@ -21,30 +21,23 @@ export class UserOderCreateDialogModalComponent implements OnInit {
   }
   onSubmit() {
     if (this.form.valid) {
+      console.log('Form is valid');
       this.store$.dispatch(createOder(this.form.value));
+    } else {
+      console.log('Form is invalid');
+      console.log(this.form.value);
     }
   }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      restaurantId: new FormControl('', [Validators.required]),
-      street: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      state: new FormControl(null, [Validators.required]),
-      zipCode: new FormControl(null, [Validators.required]),
-      country: new FormControl(null, [Validators.required]),
+      deliveryAddress: new FormGroup({
+        street: new FormControl(null, [Validators.required]),
+        city: new FormControl(null, [Validators.required]),
+        state: new FormControl(null, [Validators.required]),
+        zipCode: new FormControl(null, [Validators.required]),
+        country: new FormControl(null, [Validators.required]),
+      }),
     });
-    if (
-      this.data.food &&
-      this.data.food.restaurant &&
-      this.data.food.restaurant.id
-    ) {
-      this.form.patchValue({
-        restaurantId: this.data.food.restaurant.id,
-      });
-    } else {
-      console.error('Invalid data format: restaurant id not found');
-      // Handle error or set default value for restaurantId
-    }
   }
 }

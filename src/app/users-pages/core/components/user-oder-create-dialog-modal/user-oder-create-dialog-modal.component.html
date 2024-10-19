@@ -1,47 +1,54 @@
 <form class="container" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col d-flex justify-content-center title-section">
-      <h3 class="title">Address Delivery</h3>
+  <div formGroupName="deliveryAddress">
+    <div class="row">
+      <div class="col d-flex justify-content-center title-section">
+        <h3 class="title">Address Delivery</h3>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col d-flex justify-content-center inpt-section">
-      <input
-        formControlName="country"
-        class="inpt-address"
-        placeholder="Country"
-      />
+    <div class="row">
+      <div class="col d-flex justify-content-center inpt-section">
+        <input
+          formControlName="country"
+          class="inpt-address"
+          placeholder="Country"
+        />
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col d-flex justify-content-center inpt-section">
-      <input formControlName="city" class="inpt-address" placeholder="City" />
+    <div class="row">
+      <div class="col d-flex justify-content-center inpt-section">
+        <input formControlName="city" class="inpt-address" placeholder="City" />
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col d-flex justify-content-center inpt-section">
-      <input
-        formControlName="street"
-        class="inpt-address"
-        placeholder="Street"
-      />
+    <div class="row">
+      <div class="col d-flex justify-content-center inpt-section">
+        <input
+          formControlName="street"
+          class="inpt-address"
+          placeholder="Street"
+        />
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col d-flex justify-content-center inpt-section">
-      <input formControlName="state" class="inpt-address" placeholder="State" />
+    <div class="row">
+      <div class="col d-flex justify-content-center inpt-section">
+        <input
+          formControlName="state"
+          class="inpt-address"
+          placeholder="State"
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col d-flex justify-content-center inpt-section">
+        <input
+          formControlName="zipCode"
+          class="inpt-address"
+          placeholder="zip Code"
+        />
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col d-flex justify-content-center inpt-section">
-      <input
-        formControlName="zipCode"
-        class="inpt-address"
-        placeholder="zip Code"
-      />
-    </div>
-  </div>
   <div class="row row-info-card">
     <div class="col-2 col-icon">
       <mat-icon class="icon">alarm</mat-icon>
