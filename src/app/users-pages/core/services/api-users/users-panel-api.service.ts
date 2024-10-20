@@ -11,6 +11,7 @@ import {
 import { RestaurantDto } from 'src/app/models/api/responses/favorites';
 import { OderResponse } from 'src/app/models/api/responses/oder-response';
 import { UserProfile } from 'src/app/models/api/responses/user-profile';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
 @Injectable({
   providedIn: 'root',
@@ -70,7 +71,9 @@ export class UsersPanelApiService {
     });
   }
 
-  getOderhistory(): Observable<OderResponse[]> {
-    return this.http.get<OderResponse[]>('http://localhost:8080/api/oder/user');
+  getOderhistory(): Observable<PageableResponse<OderResponse>> {
+    return this.http.get<PageableResponse<OderResponse>>(
+      'http://localhost:8080/api/oder/user'
+    );
   }
 }

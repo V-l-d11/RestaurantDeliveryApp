@@ -20,5 +20,6 @@ export class MyOdersUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.oderList$ = this.store$.select(getOderList);
+    this.oderList$.subscribe((el) => console.log(el, 'Element'));
   }
 }

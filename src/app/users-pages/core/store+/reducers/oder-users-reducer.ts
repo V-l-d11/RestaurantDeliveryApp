@@ -51,7 +51,7 @@ export const OdersReducerUser = createReducer(
     ...state,
     loading: false,
     loaded: true,
-    odersList: obj,
+    odersList: obj.content,
   })),
   on(OderActions.getOderHistoryFailed, (state, { serverError }) => ({
     ...state,

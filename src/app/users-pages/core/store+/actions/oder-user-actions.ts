@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { OderRequest } from 'src/app/models/api/requests/oder-request';
 import { Address } from 'src/app/models/api/responses/Restaurant-response';
 import { OderResponse } from 'src/app/models/api/responses/oder-response';
+import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
 
 export const createOder = createAction(
   '[User Panel] create oder',
@@ -22,7 +23,7 @@ export const getOderHistory = createAction('[User Panel] get oder history');
 
 export const getOderHistorySucess = createAction(
   '[User Panel] get oder hostory sucess',
-  props<{ obj: OderResponse[] }>()
+  props<{ obj: PageableResponse<OderResponse> }>()
 );
 
 export const getOderHistoryFailed = createAction(
