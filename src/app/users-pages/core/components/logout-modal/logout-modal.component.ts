@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { logout } from 'src/app/auth/core/store/actions/food-auth-actions';
@@ -13,13 +13,10 @@ export class LogoutModalComponent {
     private $store: Store,
     private dialogRef: MatDialogRef<LogoutModalComponent>
   ) {}
-
-  logout() {
+  logout = () => {
     this.$store.dispatch(logout());
     this.dialogRef.close();
-  }
+  };
 
-  close() {
-    this.dialogRef.close();
-  }
+  close = () => this.dialogRef.close();
 }

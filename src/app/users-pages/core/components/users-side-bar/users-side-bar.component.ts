@@ -13,19 +13,16 @@ export class UsersSideBarComponent {
     private modalService: UserDialogService
   ) {}
 
-  openOdersUser() {
-    this.router.navigate(['/foodapp/userDashboard/oders']);
-  }
+  openOdersUser = () => this.router.navigate(['/foodapp/userDashboard/oders']);
 
-  openFavoritesUser() {
+  openFavoritesUser = () =>
     this.router.navigate(['/foodapp/userDashboard/favorites']);
-  }
 
-  openBasketUser() {
+  openBasketUser = () =>
     this.router.navigate(['/foodapp/userDashboard/bascet']);
-  }
 
-  logout() {
-    this.modalService.logoutModal();
-  }
+  openRestaurantList = () =>
+    this.router.navigate(['/foodapp/RestaurantSearch']);
+
+  logout = () => this.modalService.logoutModal();
 }

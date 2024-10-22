@@ -1,7 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { getOderHistory } from '../../store+/actions/oder-user-actions';
+import { Component, Input } from '@angular/core';
 import { OderResponse } from 'src/app/models/api/responses/oder-response';
 
 @Component({
@@ -9,13 +6,8 @@ import { OderResponse } from 'src/app/models/api/responses/oder-response';
   templateUrl: './users-card-history-oders.component.html',
   styleUrls: ['./users-card-history-oders.component.scss'],
 })
-export class UsersCardHistoryOdersComponent implements OnInit {
+export class UsersCardHistoryOdersComponent {
   @Input()
   item!: OderResponse;
   showDetails = false;
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log(this.item, 'This is item');
-  }
 }

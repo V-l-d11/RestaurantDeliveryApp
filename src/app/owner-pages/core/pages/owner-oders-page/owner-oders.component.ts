@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import {
   filter,
   switchMap,
@@ -14,6 +14,7 @@ import { OrderStatusSummaryResponse } from 'src/app/models/api/responses/admin/o
 import { updateOderStatusData } from 'src/app/models/baseModals/oderDataStatus';
 import { OwnerOderBase } from 'src/app/models/baseModals/owerOderBase';
 import { PageableResponse } from 'src/app/models/baseModals/pagaeble';
+import { OwnerOderEventsService } from 'src/app/owner-pages/services/oder-events-service/owner-oder-events.service';
 import {
   getOdersByCustomer,
   getOdersCreateAt,
@@ -49,8 +50,12 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
   formattedStatuses: string[] = [];
   private dateRangeSubject = new Subject<string>();
   private destroy$ = new Subject<void>();
+  private orderCreatedSubscription!: Subscription;
 
-  constructor(private store$: Store, private router: Router) {
+  constructor(
+    private store$: Store,
+    private oderNotification: OwnerOderEventsService
+  ) {
     this.store$.dispatch(findRestaurant());
   }
 
@@ -68,6 +73,7 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
           this.restaurantId = restaurantId;
           this.store$.dispatch(getOwnerHistoryOders({ restaurantId }));
           this.store$.dispatch(getOdersStatusSummary({ restaurantId }));
+          this.restaurantId = restaurantId;
           return this.store$.select(getOders);
         }),
         filter((orders) => orders.content.length > 0)
@@ -81,11 +87,21 @@ export class OwnerOdersPageComponent implements OnInit, OnDestroy {
           this.formatStatuses(statusSummary as OrderStatusSummaryResponse);
         });
       });
+
+    this.orderCreatedSubscription =
+      this.oderNotification.orderCreated$.subscribe(() => {
+        this.store$.dispatch(
+          getOwnerHistoryOders({ restaurantId: this.restaurantId })
+        );
+      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+    if (this.orderCreatedSubscription) {
+      this.orderCreatedSubscription.unsubscribe();
+    }
   }
 
   formatStatuses(statusSummary: OrderStatusSummaryResponse) {

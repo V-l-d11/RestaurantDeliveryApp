@@ -11,20 +11,15 @@ import { createOder } from '../../store+/actions/oder-user-actions';
 })
 export class UserOderCreateDialogModalComponent implements OnInit {
   form!: FormGroup;
-
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private store$: Store
-  ) {
-    console.log(data, 'Data INJECTABLE');
-  }
+  ) {}
   onSubmit() {
     if (this.form.valid) {
-      console.log('Form is valid');
       this.store$.dispatch(createOder(this.form.value));
     } else {
-      console.log('Form is invalid');
-      console.log(this.form.value);
+      console.log('Form is not value');
     }
   }
 

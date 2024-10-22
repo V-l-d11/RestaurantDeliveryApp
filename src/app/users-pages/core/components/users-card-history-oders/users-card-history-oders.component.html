@@ -1,4 +1,4 @@
-<div class="container card-section">
+<div class="container card-section" *ngIf="item">
   <div class="row row-inf" *ngFor="let i of item.items">
     <div class="col-6">
       <img />
@@ -11,7 +11,9 @@
       </div>
       <div class="row">
         <div class="col">
-          <span class="address">{{ item.createAt }}</span>
+          <span class="address">{{
+            item.createAt | date : "dd.MM.yyyy, HH:mm"
+          }}</span>
         </div>
       </div>
       <div class="row">

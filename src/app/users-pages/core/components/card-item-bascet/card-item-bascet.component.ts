@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   clearCard,
@@ -18,9 +18,7 @@ export class CardItemBascetComponent implements OnInit {
 
   constructor(private store$: Store) {}
 
-  removeCard() {
-    this.store$.dispatch(removeCardItem({ id: this.item.id }));
-  }
+  removeCard = () => this.store$.dispatch(removeCardItem({ id: this.item.id }));
 
   increment() {
     this.quantity++;
@@ -35,7 +33,6 @@ export class CardItemBascetComponent implements OnInit {
   }
   decrement() {
     this.quantity--;
-    console.log(this.item.id, 'Hello browser');
     if (this.quantity < 0) {
       this.store$.dispatch(removeCardItem({ id: this.item.id }));
     } else {
@@ -51,7 +48,6 @@ export class CardItemBascetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.item, 'ITEM BASCET');
     this.quantity = this.item.quantity;
   }
 }
